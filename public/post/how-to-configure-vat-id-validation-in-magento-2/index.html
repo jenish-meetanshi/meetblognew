@@ -1,0 +1,136 @@
+<!DOCTYPE html><html><head><meta charSet="utf-8"/><meta http-equiv="x-ua-compatible" content="ie=edge"/><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/><meta name="generator" content="Gatsby 5.14.0"/><style>.gatsby-image-wrapper{position:relative;overflow:hidden}.gatsby-image-wrapper picture.object-fit-polyfill{position:static!important}.gatsby-image-wrapper img{bottom:0;height:100%;left:0;margin:0;max-width:none;padding:0;position:absolute;right:0;top:0;width:100%;object-fit:cover}.gatsby-image-wrapper [data-main-image]{opacity:0;transform:translateZ(0);transition:opacity .25s linear;will-change:opacity}.gatsby-image-wrapper-constrained{display:inline-block;vertical-align:top}</style><noscript><style>.gatsby-image-wrapper noscript [data-main-image]{opacity:1!important}.gatsby-image-wrapper [data-placeholder-image]{opacity:0!important}</style></noscript><script type="module">const e="undefined"!=typeof HTMLImageElement&&"loading"in HTMLImageElement.prototype;e&&document.body.addEventListener("load",(function(e){const t=e.target;if(void 0===t.dataset.mainImage)return;if(void 0===t.dataset.gatsbyImageSsr)return;let a=null,n=t;for(;null===a&&n;)void 0!==n.parentNode.dataset.gatsbyImageWrapper&&(a=n.parentNode),n=n.parentNode;const o=a.querySelector("[data-placeholder-image]"),r=new Image;r.src=t.currentSrc,r.decode().catch((()=>{})).then((()=>{t.style.opacity=1,o&&(o.style.opacity=0,o.style.transition="opacity 500ms linear")}))}),!0);</script></head><body><div id="___gatsby"><div style="outline:none" tabindex="-1" id="gatsby-focus-wrapper"><div><h1>How to Configure VAT ID Validation in Magento 2</h1><p><strong>Published on:</strong> <!-- -->May 31, 2023</p><div>
+<p>In this blog, we will be covering the process of configuring VAT ID Validation in Magento 2. If you&#8217;re wondering <strong><em>how to configure VAT ID Validation in Magento 2</em></strong>, read on.</p>
+
+
+
+<p>Value Added Tax (VAT) is a tax added to goods and services. To set up <a href="https://www.investopedia.com/terms/v/valueaddedtax.asp#:~:text=Value%2Dadded%20tax%20(VAT)%20is%20a%20flat%20tax%20levied,at%20the%20point%20of%20sale.">VAT</a> in Magento 2, refer to the article <strong><em>How to set up Magento 2 VAT number Validation</em></strong>.</p>
+
+
+
+<p>To <strong><em>configure VAT ID Validation in Magento 2</em></strong>, you need to first create the necessary tax classes, rates, and rules for the customer groups. Once this is done, you can enable VAT ID Validation and complete the configuration.</p>
+
+
+
+<p>Running an eCommerce business that serves customers across different countries often requires the collection and verification of Value added Tax identification numbers (VAT ID) for tax compliance. Magento 2, a widely used eCommerce platform, provides an integrated functionality for VAT ID validation. This feature assists in adhering to local tax regulations and streamlining the checkout process. In this blog post, we will guide you through the configuration process of VAT ID validation in Magento 2, offering a step-by-step approach.</p>
+
+
+
+<h2 class="wp-block-heading">How to Configure VAT ID Validation in Magento 2: A Step-by-Step Guide</h2>
+
+
+
+<figure class="wp-block-image size-full"><div data-gatsby-image-wrapper="" style="position:relative;overflow:hidden;display:inline-block;vertical-align:top" class="gatsby-image-wrapper gatsby-image-wrapper-constrained wp-image-1968 inline-gatsby-image-wrapper"><div style="max-width:636px;display:block"><img alt="" role="presentation" aria-hidden="true" src="data:image/svg+xml;charset=utf-8,%3Csvg%20height=&#x27;633&#x27;%20width=&#x27;636&#x27;%20xmlns=&#x27;http://www.w3.org/2000/svg&#x27;%20version=&#x27;1.1&#x27;%3E%3C/svg%3E" style="max-width:100%;display:block;position:static"/></div><div aria-hidden="true" data-placeholder-image="" style="height:100%;left:0;position:absolute;top:0;width:100%"></div><img data-gatsby-image-ssr="" data-wp-inline-image="1" data-main-image="" style="height:100%;left:0;position:absolute;top:0;transform:translateZ(0);transition:opacity 250ms linear;width:100%;will-change:opacity;opacity:0" sizes="(min-width: 636px) 636px, 100vw" decoding="async" loading="lazy" data-src="/_gatsby/image/2c675c7de28016da9b868e40cbb68f03/02cc9171520a362fe804e7b8733d3b7a/How-to-Configure-VAT-ID-Validation-in-Magento-2-01.png?u=https%3A%2F%2Fwebguru.dev%2Fwp-content%2Fuploads%2F2023%2F05%2FHow-to-Configure-VAT-ID-Validation-in-Magento-2-01.png&amp;a=w%3D159%26h%3D158%26fm%3Dpng%26q%3D90&amp;cd=2023-05-31T03%3A53%3A11" data-srcset="/_gatsby/image/2c675c7de28016da9b868e40cbb68f03/02cc9171520a362fe804e7b8733d3b7a/How-to-Configure-VAT-ID-Validation-in-Magento-2-01.png?u=https%3A%2F%2Fwebguru.dev%2Fwp-content%2Fuploads%2F2023%2F05%2FHow-to-Configure-VAT-ID-Validation-in-Magento-2-01.png&amp;a=w%3D159%26h%3D158%26fm%3Dpng%26q%3D90&amp;cd=2023-05-31T03%3A53%3A11 159w,/_gatsby/image/2c675c7de28016da9b868e40cbb68f03/66ae898efa7f88ea1207880225078272/How-to-Configure-VAT-ID-Validation-in-Magento-2-01.png?u=https%3A%2F%2Fwebguru.dev%2Fwp-content%2Fuploads%2F2023%2F05%2FHow-to-Configure-VAT-ID-Validation-in-Magento-2-01.png&amp;a=w%3D318%26h%3D317%26fm%3Dpng%26q%3D90&amp;cd=2023-05-31T03%3A53%3A11 318w,/_gatsby/image/2c675c7de28016da9b868e40cbb68f03/f1357a2e110b63c150af1ff386eb1ea1/How-to-Configure-VAT-ID-Validation-in-Magento-2-01.png?u=https%3A%2F%2Fwebguru.dev%2Fwp-content%2Fuploads%2F2023%2F05%2FHow-to-Configure-VAT-ID-Validation-in-Magento-2-01.png&amp;a=w%3D636%26h%3D633%26fm%3Dpng%26q%3D90&amp;cd=2023-05-31T03%3A53%3A11 636w" alt="How to Configure VAT ID Validation in Magento 2 01"/><noscript><img data-gatsby-image-ssr="" data-wp-inline-image="1" data-main-image="" style="height:100%;left:0;position:absolute;top:0;transform:translateZ(0);transition:opacity 250ms linear;width:100%;will-change:opacity;opacity:0" sizes="(min-width: 636px) 636px, 100vw" decoding="async" loading="lazy" src="/_gatsby/image/2c675c7de28016da9b868e40cbb68f03/02cc9171520a362fe804e7b8733d3b7a/How-to-Configure-VAT-ID-Validation-in-Magento-2-01.png?u=https%3A%2F%2Fwebguru.dev%2Fwp-content%2Fuploads%2F2023%2F05%2FHow-to-Configure-VAT-ID-Validation-in-Magento-2-01.png&amp;a=w%3D159%26h%3D158%26fm%3Dpng%26q%3D90&amp;cd=2023-05-31T03%3A53%3A11" srcSet="/_gatsby/image/2c675c7de28016da9b868e40cbb68f03/02cc9171520a362fe804e7b8733d3b7a/How-to-Configure-VAT-ID-Validation-in-Magento-2-01.png?u=https%3A%2F%2Fwebguru.dev%2Fwp-content%2Fuploads%2F2023%2F05%2FHow-to-Configure-VAT-ID-Validation-in-Magento-2-01.png&amp;a=w%3D159%26h%3D158%26fm%3Dpng%26q%3D90&amp;cd=2023-05-31T03%3A53%3A11 159w,/_gatsby/image/2c675c7de28016da9b868e40cbb68f03/66ae898efa7f88ea1207880225078272/How-to-Configure-VAT-ID-Validation-in-Magento-2-01.png?u=https%3A%2F%2Fwebguru.dev%2Fwp-content%2Fuploads%2F2023%2F05%2FHow-to-Configure-VAT-ID-Validation-in-Magento-2-01.png&amp;a=w%3D318%26h%3D317%26fm%3Dpng%26q%3D90&amp;cd=2023-05-31T03%3A53%3A11 318w,/_gatsby/image/2c675c7de28016da9b868e40cbb68f03/f1357a2e110b63c150af1ff386eb1ea1/How-to-Configure-VAT-ID-Validation-in-Magento-2-01.png?u=https%3A%2F%2Fwebguru.dev%2Fwp-content%2Fuploads%2F2023%2F05%2FHow-to-Configure-VAT-ID-Validation-in-Magento-2-01.png&amp;a=w%3D636%26h%3D633%26fm%3Dpng%26q%3D90&amp;cd=2023-05-31T03%3A53%3A11 636w" alt="How to Configure VAT ID Validation in Magento 2 01"/></noscript><script type="module">const t="undefined"!=typeof HTMLImageElement&&"loading"in HTMLImageElement.prototype;if(t){const t=document.querySelectorAll("img[data-main-image]");for(let e of t){e.dataset.src&&(e.setAttribute("src",e.dataset.src),e.removeAttribute("data-src")),e.dataset.srcset&&(e.setAttribute("srcset",e.dataset.srcset),e.removeAttribute("data-srcset"));const t=e.parentNode.querySelectorAll("source[data-srcset]");for(let e of t)e.setAttribute("srcset",e.dataset.srcset),e.removeAttribute("data-srcset");e.complete&&(e.style.opacity=1,e.parentNode.parentNode.querySelector("[data-placeholder-image]").style.opacity=0)}}</script></div><script type="application/json" data-wp-inline-image-hydration="1">{"image":{"images":{"sources":[],"fallback":{"src":"/_gatsby/image/2c675c7de28016da9b868e40cbb68f03/02cc9171520a362fe804e7b8733d3b7a/How-to-Configure-VAT-ID-Validation-in-Magento-2-01.png?u=https%3A%2F%2Fwebguru.dev%2Fwp-content%2Fuploads%2F2023%2F05%2FHow-to-Configure-VAT-ID-Validation-in-Magento-2-01.png&a=w%3D159%26h%3D158%26fm%3Dpng%26q%3D90&cd=2023-05-31T03%3A53%3A11","srcSet":"/_gatsby/image/2c675c7de28016da9b868e40cbb68f03/02cc9171520a362fe804e7b8733d3b7a/How-to-Configure-VAT-ID-Validation-in-Magento-2-01.png?u=https%3A%2F%2Fwebguru.dev%2Fwp-content%2Fuploads%2F2023%2F05%2FHow-to-Configure-VAT-ID-Validation-in-Magento-2-01.png&a=w%3D159%26h%3D158%26fm%3Dpng%26q%3D90&cd=2023-05-31T03%3A53%3A11 159w,/_gatsby/image/2c675c7de28016da9b868e40cbb68f03/66ae898efa7f88ea1207880225078272/How-to-Configure-VAT-ID-Validation-in-Magento-2-01.png?u=https%3A%2F%2Fwebguru.dev%2Fwp-content%2Fuploads%2F2023%2F05%2FHow-to-Configure-VAT-ID-Validation-in-Magento-2-01.png&a=w%3D318%26h%3D317%26fm%3Dpng%26q%3D90&cd=2023-05-31T03%3A53%3A11 318w,/_gatsby/image/2c675c7de28016da9b868e40cbb68f03/f1357a2e110b63c150af1ff386eb1ea1/How-to-Configure-VAT-ID-Validation-in-Magento-2-01.png?u=https%3A%2F%2Fwebguru.dev%2Fwp-content%2Fuploads%2F2023%2F05%2FHow-to-Configure-VAT-ID-Validation-in-Magento-2-01.png&a=w%3D636%26h%3D633%26fm%3Dpng%26q%3D90&cd=2023-05-31T03%3A53%3A11 636w","sizes":"(min-width: 636px) 636px, 100vw"}},"layout":"constrained","width":636,"height":633},"alt":"How to Configure VAT ID Validation in Magento 2 01","className":"wp-image-1968 inline-gatsby-image-wrapper","data-wp-inline-image":"1"}</script></figure>
+
+
+
+<h3 class="wp-block-heading">Step 1: Set up tax classes, rates, and rules</h3>
+
+
+
+<p>Before you can <strong><em>configure VAT ID validation in Magento 2</em></strong>, you need to set up tax classes, rates, and rules for the customer groups you want to validate. Here&#8217;s how:</p>
+
+
+
+<ul class="wp-block-list">
+<li>Go to Stores &gt; Tax Zones and Rates in the Magento Admin Panel.</li>
+
+
+
+<li>Click on Add New Tax Rate and fill in the tax rate information for the country and region you want to validate VAT IDs for.</li>
+
+
+
+<li>Go to Stores &gt; Tax Rules and click on Add New Tax Rule.</li>
+
+
+
+<li>Fill in the tax rule information, including the customer tax class and product tax class, and select the tax rate you created in Step 2.</li>
+</ul>
+
+
+
+<p>Repeat the above steps for each customer group and tax rate you want to validate VAT IDs for.</p>
+
+
+
+<h3 class="wp-block-heading">Step 2: Enable VAT ID validation</h3>
+
+
+
+<p>Once you&#8217;ve set up tax classes, rates, and rules for the customer groups you want to validate, you can enable VAT ID validation in Magento 2. Here&#8217;s how:</p>
+
+
+
+<ul class="wp-block-list">
+<li>Go to Stores &gt; Configuration &gt; Customers &gt; Customer Configuration in the Magento Admin Panel.</li>
+
+
+
+<li>Expand the VAT Validation Settings section.</li>
+
+
+
+<li>Set Enable VAT Validation to Yes.</li>
+
+
+
+<li>Set Validation On to either Customer Account Creation or Both Customer Account Creation and Checkout.</li>
+
+
+
+<li>Set Require VAT Number to Yes if you want to make VAT ID validation mandatory.</li>
+
+
+
+<li>Set Show VAT Number on Storefront to Yes if you want to display the VAT ID field on the registration and checkout pages.</li>
+
+
+
+<li>Save the configuration.</li>
+</ul>
+
+
+
+<h3 class="wp-block-heading">Step 3: Test VAT ID validation</h3>
+
+
+
+<p>After you&#8217;ve enabled VAT ID validation in Magento 2, you should test it to make sure it&#8217;s working correctly. Here&#8217;s how:</p>
+
+
+
+<ul class="wp-block-list">
+<li>Go to the storefront and try to create a new account or check out with a Value added tax-registered customer group.</li>
+
+
+
+<li>Enter a valid VAT ID for the country and region you set up tax rates for in Step 1.</li>
+
+
+
+<li>Verify that the VAT ID is validated and the tax rate is applied correctly.</li>
+</ul>
+
+
+
+<h2 class="wp-block-heading">Conclusion</h2>
+
+
+
+<p>Configuring VAT ID validation in Magento 2 can help you comply with local tax regulations and provide a smoother checkout experience for your customers. Additionally, understanding <a href="/how-taxes-work-in-magento-2-store-and-what-tax-configurations-are-available/">how taxes work in Magento 2 store and what tax configurations are available</a> can ensure that you are collecting the correct taxes and properly accounting for them. By following the steps outlined in this blog, you can set up tax classes, rates, and rules, enable VAT ID validation, and test it to ensure it&#8217;s working correctly. If you have any questions or issues with VAT ID validation or <strong><em>How to Configure VAT ID Validation in Magento 2</em></strong>, don&#8217;t hesitate to reach out to Magento support or a certified Magento developer for assistance.</p>
+
+
+
+<p></p>
+<div class='sfsi_Sicons sfsi_Sicons_position_left' style='float: none; vertical-align: middle; text-align:left'><div style='margin:0px 8px 0px 0px; line-height: 24px'><span>Please follow and like us:</span></div><div class='sfsi_socialwpr'><div class='sf_fb_share sf_icon' style='text-align:left;vertical-align: middle;'><a  target='_blank' rel='noopener' href='https://www.facebook.com/sharer/sharer.php?u=/how-to-configure-vat-id-validation-in-magento-2/' style='display:inline-block;'><img class='sfsi_wicon'  data-pin-nopin='true' alt='fb-share-icon' title='Facebook Share' src='https://webguru.dev/wp-content/plugins/ultimate-social-media-icons/images/share_icons/fb_icons/en_US.svg' /></a></div><div class='sf_twiter sf_icon' style='display: inline-block;vertical-align: middle;width: auto;margin-left: 7px;'>
+						<a target='_blank' rel='noopener' href='https://twitter.com/intent/tweet?text=How+to+Configure+VAT+ID+Validation+in+Magento+2+https%3A%2F%2Fwebguru.dev%2Fhow-to-configure-vat-id-validation-in-magento-2%2F'style='display:inline-block' >
+							<img data-pin-nopin= true class='sfsi_wicon' src='https://webguru.dev/wp-content/plugins/ultimate-social-media-icons/images/share_icons/Twitter_Tweet/en_US_Tweet.svg' alt='Tweet' title='Tweet' >
+						</a>
+					</div></div></div><div class="saboxplugin-wrap" itemtype="http://schema.org/Person" itemscope itemprop="author"><div class="saboxplugin-tab"><div class="saboxplugin-gravatar"><div data-gatsby-image-wrapper="" style="position:relative;overflow:hidden;display:inline-block;vertical-align:top" class="gatsby-image-wrapper gatsby-image-wrapper-constrained  inline-gatsby-image-wrapper"><div style="max-width:100px;display:block"><img alt="" role="presentation" aria-hidden="true" src="data:image/svg+xml;charset=utf-8,%3Csvg%20height=&#x27;100&#x27;%20width=&#x27;100&#x27;%20xmlns=&#x27;http://www.w3.org/2000/svg&#x27;%20version=&#x27;1.1&#x27;%3E%3C/svg%3E" style="max-width:100%;display:block;position:static"/></div><div aria-hidden="true" data-placeholder-image="" style="height:100%;left:0;position:absolute;top:0;width:100%"></div><img data-gatsby-image-ssr="" data-wp-inline-image="2" data-main-image="" style="height:100%;left:0;position:absolute;top:0;transform:translateZ(0);transition:opacity 250ms linear;width:100%;will-change:opacity;opacity:0" sizes="(min-width: 100px) 100px, 100vw" decoding="async" loading="lazy" data-src="/_gatsby/image/2c35eda577657dc17647bf1d65e5bd4e/05624c0b3d4a4f7d0da605f624d7bb07/Aaron-Jenkins.png?u=https%3A%2F%2Fwebguru.dev%2Fwp-content%2Fuploads%2F2024%2F11%2FAaron-Jenkins.png&amp;a=w%3D25%26h%3D25%26fm%3Dpng%26q%3D90&amp;cd=2024-11-12T13%3A05%3A22" data-srcset="/_gatsby/image/2c35eda577657dc17647bf1d65e5bd4e/05624c0b3d4a4f7d0da605f624d7bb07/Aaron-Jenkins.png?u=https%3A%2F%2Fwebguru.dev%2Fwp-content%2Fuploads%2F2024%2F11%2FAaron-Jenkins.png&amp;a=w%3D25%26h%3D25%26fm%3Dpng%26q%3D90&amp;cd=2024-11-12T13%3A05%3A22 25w,/_gatsby/image/2c35eda577657dc17647bf1d65e5bd4e/7d342f8b9135b7648f10ed5d19c5b6df/Aaron-Jenkins.png?u=https%3A%2F%2Fwebguru.dev%2Fwp-content%2Fuploads%2F2024%2F11%2FAaron-Jenkins.png&amp;a=w%3D50%26h%3D50%26fm%3Dpng%26q%3D90&amp;cd=2024-11-12T13%3A05%3A22 50w,/_gatsby/image/2c35eda577657dc17647bf1d65e5bd4e/f7535d1722cb1d17e5bf31154bf170d3/Aaron-Jenkins.png?u=https%3A%2F%2Fwebguru.dev%2Fwp-content%2Fuploads%2F2024%2F11%2FAaron-Jenkins.png&amp;a=w%3D100%26h%3D100%26fm%3Dpng%26q%3D90&amp;cd=2024-11-12T13%3A05%3A22 100w" alt="Aaron Jenkins"/><noscript><img data-gatsby-image-ssr="" data-wp-inline-image="2" data-main-image="" style="height:100%;left:0;position:absolute;top:0;transform:translateZ(0);transition:opacity 250ms linear;width:100%;will-change:opacity;opacity:0" sizes="(min-width: 100px) 100px, 100vw" decoding="async" loading="lazy" src="/_gatsby/image/2c35eda577657dc17647bf1d65e5bd4e/05624c0b3d4a4f7d0da605f624d7bb07/Aaron-Jenkins.png?u=https%3A%2F%2Fwebguru.dev%2Fwp-content%2Fuploads%2F2024%2F11%2FAaron-Jenkins.png&amp;a=w%3D25%26h%3D25%26fm%3Dpng%26q%3D90&amp;cd=2024-11-12T13%3A05%3A22" srcSet="/_gatsby/image/2c35eda577657dc17647bf1d65e5bd4e/05624c0b3d4a4f7d0da605f624d7bb07/Aaron-Jenkins.png?u=https%3A%2F%2Fwebguru.dev%2Fwp-content%2Fuploads%2F2024%2F11%2FAaron-Jenkins.png&amp;a=w%3D25%26h%3D25%26fm%3Dpng%26q%3D90&amp;cd=2024-11-12T13%3A05%3A22 25w,/_gatsby/image/2c35eda577657dc17647bf1d65e5bd4e/7d342f8b9135b7648f10ed5d19c5b6df/Aaron-Jenkins.png?u=https%3A%2F%2Fwebguru.dev%2Fwp-content%2Fuploads%2F2024%2F11%2FAaron-Jenkins.png&amp;a=w%3D50%26h%3D50%26fm%3Dpng%26q%3D90&amp;cd=2024-11-12T13%3A05%3A22 50w,/_gatsby/image/2c35eda577657dc17647bf1d65e5bd4e/f7535d1722cb1d17e5bf31154bf170d3/Aaron-Jenkins.png?u=https%3A%2F%2Fwebguru.dev%2Fwp-content%2Fuploads%2F2024%2F11%2FAaron-Jenkins.png&amp;a=w%3D100%26h%3D100%26fm%3Dpng%26q%3D90&amp;cd=2024-11-12T13%3A05%3A22 100w" alt="Aaron Jenkins"/></noscript><script type="module">const t="undefined"!=typeof HTMLImageElement&&"loading"in HTMLImageElement.prototype;if(t){const t=document.querySelectorAll("img[data-main-image]");for(let e of t){e.dataset.src&&(e.setAttribute("src",e.dataset.src),e.removeAttribute("data-src")),e.dataset.srcset&&(e.setAttribute("srcset",e.dataset.srcset),e.removeAttribute("data-srcset"));const t=e.parentNode.querySelectorAll("source[data-srcset]");for(let e of t)e.setAttribute("srcset",e.dataset.srcset),e.removeAttribute("data-srcset");e.complete&&(e.style.opacity=1,e.parentNode.parentNode.querySelector("[data-placeholder-image]").style.opacity=0)}}</script></div><script type="application/json" data-wp-inline-image-hydration="2">{"image":{"images":{"sources":[],"fallback":{"src":"/_gatsby/image/2c35eda577657dc17647bf1d65e5bd4e/05624c0b3d4a4f7d0da605f624d7bb07/Aaron-Jenkins.png?u=https%3A%2F%2Fwebguru.dev%2Fwp-content%2Fuploads%2F2024%2F11%2FAaron-Jenkins.png&a=w%3D25%26h%3D25%26fm%3Dpng%26q%3D90&cd=2024-11-12T13%3A05%3A22","srcSet":"/_gatsby/image/2c35eda577657dc17647bf1d65e5bd4e/05624c0b3d4a4f7d0da605f624d7bb07/Aaron-Jenkins.png?u=https%3A%2F%2Fwebguru.dev%2Fwp-content%2Fuploads%2F2024%2F11%2FAaron-Jenkins.png&a=w%3D25%26h%3D25%26fm%3Dpng%26q%3D90&cd=2024-11-12T13%3A05%3A22 25w,/_gatsby/image/2c35eda577657dc17647bf1d65e5bd4e/7d342f8b9135b7648f10ed5d19c5b6df/Aaron-Jenkins.png?u=https%3A%2F%2Fwebguru.dev%2Fwp-content%2Fuploads%2F2024%2F11%2FAaron-Jenkins.png&a=w%3D50%26h%3D50%26fm%3Dpng%26q%3D90&cd=2024-11-12T13%3A05%3A22 50w,/_gatsby/image/2c35eda577657dc17647bf1d65e5bd4e/f7535d1722cb1d17e5bf31154bf170d3/Aaron-Jenkins.png?u=https%3A%2F%2Fwebguru.dev%2Fwp-content%2Fuploads%2F2024%2F11%2FAaron-Jenkins.png&a=w%3D100%26h%3D100%26fm%3Dpng%26q%3D90&cd=2024-11-12T13%3A05%3A22 100w","sizes":"(min-width: 100px) 100px, 100vw"}},"layout":"constrained","width":100,"height":100},"alt":"Aaron Jenkins","className":" inline-gatsby-image-wrapper","data-wp-inline-image":"2"}</script></div><div class="saboxplugin-authorname"><a href="/author/aaron-jenkins/" class="vcard author" rel="author"><span class="fn">Aaron Jenkins</span></a></div><div class="saboxplugin-desc"><div itemprop="description"><p>I am Aaron Jenkins, a Magento Developer with over 12+ years of experience. I specialize in Magento 2 and I am passionate about sharing my knowledge and experience through my blog. Here, I will be sharing tutorials, tips, and best practices for all things Magento 2. Follow my blog and let&#8217;s learn and grow together.</p>
+</div></div><div class="clearfix"></div></div></div></div></div></div><div id="gatsby-announcer" style="position:absolute;top:0;width:1px;height:1px;padding:0;overflow:hidden;clip:rect(0, 0, 0, 0);white-space:nowrap;border:0" aria-live="assertive" aria-atomic="true"></div></div><script id="gatsby-script-loader">/*<![CDATA[*/window.pagePath="/post/how-to-configure-vat-id-validation-in-magento-2/";/*]]>*/</script><!-- slice-start id="_gatsby-scripts-1" -->
+          <script
+            id="gatsby-chunk-mapping"
+          >
+            window.___chunkMapping="{\"app\":[\"/app-3ddb82f8280e198568b3.js\"],\"gatsby-plugin-image\":[\"/gatsby-plugin-image-7c78c800581786230e81.js\"],\"component---src-pages-index-js\":[\"/component---src-pages-index-js-5051ee2bc6be32fd4c73.js\"],\"component---src-templates-blog-list-js\":[\"/component---src-templates-blog-list-js-426aaaf93b9e3872cc04.js\"],\"component---src-templates-post-detail-js\":[\"/component---src-templates-post-detail-js-3652f5b1d4e8ec7c46d3.js\"]}";
+          </script>
+        <script>window.___webpackCompilationHash="4784946b59abe427ac78";</script><script src="/webpack-runtime-7a3be6f26e236bcd1ecd.js" async></script><script src="/framework-44b7a5500f1b8cbe0109.js" async></script><script src="/app-3ddb82f8280e198568b3.js" async></script><!-- slice-end id="_gatsby-scripts-1" --></body></html>

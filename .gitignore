@@ -10,7 +10,7 @@ yarn-error.log*
 
 # Gatsby files
 .cache/
-public/
+# public/
 
 # Environment variables
 .env
