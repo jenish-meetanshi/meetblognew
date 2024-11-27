@@ -7,42 +7,11 @@
 /**
  * @type {import('gatsby').GatsbyConfig}
  */
-// module.exports = {
-//   // pathPrefix: "/meetanshi-newblog", 
-//   siteMetadata: {
-//     siteUrl: `https://meetanshiblog.netlify.app/`,
-//     title: `My Gatsby WordPress Site`,
-//   },
-//   plugins: [
-//     {
-//       resolve: `gatsby-source-wordpress`,
-//       options: {
-//         url: `https://webguru.dev/graphql`,
-//         schema: {
-//           timeout: 30000,
-//         },
-//         develop: {
-//           hardCacheMediaFiles: true,
-//         },
-//         type: {
-//           MediaItem: {
-//             createFileNodes: false, // Disable file downloads
-//           },
-//         },
-//       },
-//     },
-//     `gatsby-plugin-image`,
-//     `gatsby-plugin-sharp`,
-//     `gatsby-transformer-sharp`,
-//     "gatsby-plugin-netlify",
-//   ],
-// };
-
 
 module.exports = {
   siteMetadata: {
     siteUrl: `https://5d43103688.nxcli.io/`,
-    pathPrefix: "/blog/testwordpress/public"
+    pathPrefix: "/blog/testwordpress/public",
     title: `My Gatsby WordPress Site`,
   },
   plugins: [
