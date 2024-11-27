@@ -14,6 +14,7 @@ module.exports = {
     title: `My Gatsby WordPress Site`,
   },
   pathPrefix: `/blog/testwordpress/public`,
+  trailingSlash: "always",
   plugins: [
     {
       resolve: `gatsby-source-wordpress`,
