@@ -16,7 +16,7 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: 18  # Ensure Node.js 18.x is used
+          node-version: 18
 
       - name: Install dependencies
         run: npm install
@@ -24,13 +24,13 @@ jobs:
       - name: Build Gatsby site
         run: npm run build
 
-      # Deploy to Nexcess using SFTP
       - name: Deploy to Nexcess
         uses: appleboy/scp-action@v0.1.4
         with:
           host: cloudhost-70174.us-midwest-1.nxcli.net
           username: blog-admin@5d43103688.nxcli.io
-          password: HippedCadsLacyDefine
-          source: ./public/  # Gatsby builds static files into the "public" folder
-          target: public_html/testwordpress/  # Directory where files should be uploaded
-          rm: true  # Remove old files before uploading new ones
+          key: ${{ secrets.SSH_PRIVATE_KEY }}  # Securely using the private key from GitHub Secrets
+          source: ./public/
+          target: public_html/testwordpress/
+          rm: true
+          debug: true
