@@ -24,10 +24,7 @@ jobs:
       - name: Build Gatsby site
         run: npm run build
 
-      - name: Deploy (optional)
-        run: npm run deploy
-
-      # Step 5: Deploy to Nexcess using SFTP
+      # Deploy to Nexcess using SFTP
       - name: Deploy to Nexcess
         uses: appleboy/scp-action@v0.1.4
         with:
