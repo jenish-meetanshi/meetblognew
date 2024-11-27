@@ -28,8 +28,8 @@ jobs:
         uses: appleboy/scp-action@v0.1.4
         with:
           host: cloudhost-70174.us-midwest-1.nxcli.net
-          username: blog-admin@5d43103688.nxcli.io
-          key: ${{ secrets.SSH_PRIVATE_KEY }}  # Securely using the private key from GitHub Secrets
+          username: blog-admin
+          key: ${{ secrets.SSH_PRIVATE_KEY }}  # Using the private SSH key stored as a secret
           source: ./public/
           target: public_html/testwordpress/
           rm: true
