@@ -41,7 +41,8 @@
 
 module.exports = {
   siteMetadata: {
-    siteUrl: `https://5d43103688.nxcli.io/blog/testwordpress/`,
+    siteUrl: `https://5d43103688.nxcli.io/`,
+    pathPrefix: "/blog/testwordpress/public"
     title: `My Gatsby WordPress Site`,
   },
   plugins: [
