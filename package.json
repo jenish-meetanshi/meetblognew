@@ -6,11 +6,12 @@
   "license": "0BSD",
   "scripts": {
     "build": "gatsby build",
+    "build:prefix": "gatsby build --prefix-paths",
     "develop": "gatsby develop",
     "start": "gatsby develop",
     "serve": "gatsby serve",
     "clean": "gatsby clean",
-    "deploy": "gatsby build && echo \"Files are ready for deployment.\""
+    "deploy": "npm run build:prefix && echo \"Files are ready for deployment.\""
   },
   "dependencies": {
     "bootstrap": "^5.3.3",
