@@ -1,32 +1,51 @@
-name: Gatsby Site Build
+name: Gatsby Site Incremental Build
 
 on:
-  workflow_dispatch:  # This allows triggering the workflow manually via API request
+  repository_dispatch:
+    types: [trigger-build]  # This listens for the "trigger-build" event from WordPress
 
 jobs:
   build:
     runs-on: ubuntu-latest
+
     steps:
+      # Step 1: Checkout repository
       - name: Checkout repository
         uses: actions/checkout@v3
 
+      # Step 2: Set up Node.js
       - name: Set up Node.js
         uses: actions/setup-node@v3
         with:
           node-version: 18
 
+      # Step 3: Cache dependencies
+      - name: Cache Node.js modules
+        uses: actions/cache@v3
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
+
+      # Step 4: Install dependencies
       - name: Install dependencies
         run: npm install
 
+      # Step 5: Build Gatsby site
       - name: Build Gatsby site
         run: npm run build
+        env:
+          GATSBY_WORDPRESS_BASE_URL: ${{ secrets.WORDPRESS_BASE_URL }}  # Set this in your GitHub secrets
+          GATSBY_CLOUD_INCREMENTAL: true
 
+      # Step 6: Deploy to Nexcess
       - name: Deploy to Nexcess
         uses: appleboy/scp-action@v0.1.4
         with:
           host: 5d43103688.nxcli.io
           username: afd62358_7
-          key: ${{ secrets.SSH_PRIVATE_KEY }}  # Use the private SSH key stored in GitHub secrets
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
           source: ./public/
           target: /chroot/home/afd62358/5d43103688.nxcli.io/pub/blog/testwordpress
           rm: true
