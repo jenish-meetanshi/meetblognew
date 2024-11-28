@@ -12,7 +12,7 @@ const Header = () => {
                 {/* Use the static logo image URL here */}
                 <img
                   src="/images/logo.svg" // Replace with the actual path to your static logo
-                  alt="Site Logo"
+                  alt="Logo"
                   style={{ width: "250px", height: "auto", marginBottom: "0" }}
                 />
               </Link>
