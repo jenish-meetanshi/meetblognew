@@ -19,7 +19,7 @@ module.exports = {
     {
       resolve: `gatsby-source-wordpress`,
       options: {
-        url: `https://mitfestival.app/meetanshiblog/graphql`,
+        url: `https://5d43103688.nxcli.io/blog/graphql`,
         schema: {
           timeout: 30000,
         },
