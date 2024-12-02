@@ -1,44 +1,44 @@
-name: Gatsby Site Incremental Build
+# name: Gatsby Site Incremental Build
 
-on:
-  repository_dispatch:
-    types: [trigger-build]  # This listens for the "trigger-build" event
+# on:
+#   repository_dispatch:
+#     types: [trigger-build]  # This listens for the "trigger-build" event
 
-jobs:
-  build:
-    runs-on: ubuntu-latest
+# jobs:
+#   build:
+#     runs-on: ubuntu-latest
 
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v3
+#     steps:
+#       - name: Checkout repository
+#         uses: actions/checkout@v3
 
-      - name: Cache node modules
-        uses: actions/cache@v3
-        with:
-          path: node_modules  # Path to the node_modules folder
-          key: ${{ runner.os }}-node-modules-${{ hashFiles('package-lock.json') }}  # Cache key based on package-lock
-          restore-keys: |
-            ${{ runner.os }}-node-modules-
+#       - name: Cache node modules
+#         uses: actions/cache@v3
+#         with:
+#           path: node_modules  # Path to the node_modules folder
+#           key: ${{ runner.os }}-node-modules-${{ hashFiles('package-lock.json') }}  # Cache key based on package-lock
+#           restore-keys: |
+#             ${{ runner.os }}-node-modules-
 
-      - name: Set up Node.js
-        uses: actions/setup-node@v3
-        with:
-          node-version: 18
+#       - name: Set up Node.js
+#         uses: actions/setup-node@v3
+#         with:
+#           node-version: 18
 
-      - name: Install dependencies
-        run: npm install
+#       - name: Install dependencies
+#         run: npm install
 
-      - name: Build Gatsby site
-        run: npm run build
+#       - name: Build Gatsby site
+#         run: npm run build
 
-      - name: Deploy to Nexcess
-        uses: appleboy/scp-action@v0.1.4
-        with:
-          host: 5d43103688.nxcli.io
-          username: afd62358_7
-          key: ${{ secrets.SSH_PRIVATE_KEY }}
-          source: ./public/
-          target: /chroot/home/afd62358/5d43103688.nxcli.io/pub/blog/testwordpress
-          rm: true
-          debug: true
+#       - name: Deploy to Nexcess
+#         uses: appleboy/scp-action@v0.1.4
+#         with:
+#           host: 5d43103688.nxcli.io
+#           username: afd62358_7
+#           key: ${{ secrets.SSH_PRIVATE_KEY }}
+#           source: ./public/
+#           target: /chroot/home/afd62358/5d43103688.nxcli.io/pub/blog/testwordpress
+#           rm: true
+#           debug: true
 
