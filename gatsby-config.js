@@ -28,10 +28,8 @@ module.exports = {
         },
         type: {
           MediaItem: {
-            createFileNodes: false, // Disable file downloads
-          },
-          User: {
-            excludeFieldNames: [],
+            excludeFieldNames: ["mediaDetails", "localFile"], // Exclude heavy fields
+            excludeByField: (field) => !field.isReferenced,  // Custom logic (optional)
           },
         },
       },
