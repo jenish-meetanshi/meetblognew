@@ -65,7 +65,7 @@ const CategoryDetail = ({ data, pageContext }) => {
         <div className="row">
           <div className="col-md-12">
             {/* Categories List */}
-            <div className="categories mb-4">
+            <div className="categories">
               <ul className="category-list-hero list-inline text-center">
                 <li className="list-inline-item">
                   <Link

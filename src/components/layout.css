@@ -5,7 +5,7 @@
     background-size: cover;
     border-radius: 30px;
     margin-top: 30px;
-    margin-bottom: 35px;
+    margin-bottom: 30px;
     text-align: center;
   }
   .home-hero-section h1{
@@ -45,7 +45,7 @@
     background-color: #333;
     color: #fff;
   }
-  .sticky-posts-homepage h2 a,.blog-list-main-container h3 a {
+  .sticky-posts-main-container h2 a,.blog-list-main-container h3 a {
     font-size: 34px;
     line-height: 44px;
     font-weight: 500;
@@ -54,7 +54,7 @@
     text-decoration: none;
     display: block;
   }
-  .sticky-posts-homepage h2 a:hover,.blog-list-main-container h3 a:hover{
+  .sticky-posts-main-container h2 a:hover,.blog-list-main-container h3 a:hover{
     color: #f47526;
   }
   .blog-list-main-container .blog-list-content-wrapper{
@@ -105,4 +105,8 @@
   }
   .listing-blog-info span a:hover{
     color: #f45e00;
+  }
+  .post-detail .post-detail-banner{
+    text-align: left;
+    padding: 0 20px;
   }

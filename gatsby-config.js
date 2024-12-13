@@ -7,37 +7,91 @@
 /**
  * @type {import('gatsby').GatsbyConfig}
  */
+// module.exports = {
+//   // pathPrefix: "/meetanshi-newblog", 
+//   siteMetadata: {
+//     siteUrl: `https://meetanshiblog.netlify.app/`,
+//     title: `My Gatsby WordPress Site`,
+//   },
+//   plugins: [
+//     {
+//       resolve: `gatsby-source-wordpress`,
+//       options: {
+//         url: `https://webguru.dev/graphql`,
+//         schema: {
+//           timeout: 30000,
+//         },
+//         develop: {
+//           hardCacheMediaFiles: true,
+//         },
+//         type: {
+//           MediaItem: {
+//             createFileNodes: false, // Disable file downloads
+//           },
+//         },
+//       },
+//     },
+//     `gatsby-plugin-image`,
+//     `gatsby-plugin-sharp`,
+//     `gatsby-transformer-sharp`,
+//     "gatsby-plugin-netlify",
+//   ],
+// };
+
+
+// module.exports = {
+//   siteMetadata: {
+//     siteUrl: `https://meetanshiblog.netlify.app/`,
+//     title: `My Gatsby WordPress Site`,
+//   },
+//   plugins: [
+//     {
+//       resolve: `gatsby-source-wordpress`,
+//       options: {
+//         url: `https://mitfestival.app/meetanshiblog/graphql`,
+//         schema: {
+//           timeout: 30000,
+//         },
+//         develop: {
+//           hardCacheMediaFiles: true,
+//         },
+//       },
+//     },
+//     `gatsby-plugin-image`,
+//     `gatsby-plugin-sharp`,
+//     `gatsby-transformer-sharp`,
+//     "gatsby-plugin-netlify",
+//   ],
+//   developMiddleware: (app) => {
+//     const proxy = require("http-proxy-middleware");
+//     app.use(
+//       "/api",
+//       proxy({
+//         target: "https://mitfestival.app/meetanshiblog",
+//         changeOrigin: true,
+//       })
+//     );
+//   },
+// };
+
+const { createProxyMiddleware } = require("http-proxy-middleware");
 
 module.exports = {
-  siteMetadata: {
-    siteUrl: `https://5d43103688.nxcli.io/`,
-    title: `My Gatsby WordPress Site`,
+  developMiddleware: app => {
+    app.use(
+      "/api/", // Replace with your API path
+      createProxyMiddleware({
+        target: "https://mitfestival.app/meetanshiblog/", // Replace with your target API URL
+        changeOrigin: true,
+      })
+    );
   },
-  pathPrefix: `/blog/testwordpress/public`,
-  trailingSlash: "always",
   plugins: [
     {
       resolve: `gatsby-source-wordpress`,
       options: {
-        url: `https://5d43103688.nxcli.io/blog/graphql`,
-        schema: {
-          timeout: 30000,
-        },
-        develop: {
-          hardCacheMediaFiles: true,
-        },
-        type: {
-          MediaItem: {
-            excludeFieldNames: ["mediaDetails", "localFile"], // Exclude heavy fields
-            excludeByField: (field) => !field.isReferenced,  // Custom logic (optional)
-          },
-        },
+        url: `https://mitfestival.app/meetanshiblog/graphql`,
       },
     },
-    `gatsby-plugin-image`,
-    `gatsby-plugin-sharp`,
-    `gatsby-transformer-sharp`,
-    "gatsby-plugin-netlify",
   ],
 };
-

@@ -52,15 +52,33 @@ const AuthorDetail = ({ data, pageContext }) => {
           <div className="col-md-12">
             {/* Author Details */}
             <div className="author-details text-center mb-4">
-              {author.avatar && author.avatar.url && (
+            {/* {author.fullImage && (
+              <img
+                src={author.fullImage}
+                alt={`${author.name} Full Image`}
+                className="author-full-image"
+              />
+            )}
+              <h2>{author.name}</h2>
+              <p>{author.description}</p> */}
+
+              <h2>{author.name}</h2>
+              {author.fullImage && (
                 <img
-                  src={author.avatar.url}
-                  alt={author.name}
-                  className="author-image"
+                  src={author.fullImage}
+                  alt={`${author.name} Full Image`}
+                  className="author-full-image"
                 />
               )}
-              <h2>{author.name}</h2>
-              <p>{author.description}</p>
+              {author.userImage && (
+                <img
+                  src={author.userImage}
+                  alt={`${author.name}'s Image`}
+                  className="user-image"
+                />
+              )}
+              {author.designation && <h3>{author.designation}</h3>}
+              {author.descriptionText && <p>{author.descriptionText}</p>}
             </div>
           </div>
         </div>
@@ -132,6 +150,42 @@ const AuthorDetail = ({ data, pageContext }) => {
   );
 };
 
+// export const query = graphql`
+//   query ($authorSlug: String!, $skip: Int!, $limit: Int!) {
+//     wpUser(slug: { eq: $authorSlug }) {
+//       name
+//       avatar {
+//         url
+//       }
+//       description
+//       fullImage # Fetch the custom "full image" field
+//     }
+//     allWpPost(
+//       filter: { author: { node: { slug: { eq: $authorSlug } } } }
+//       sort: { fields: date, order: DESC }
+//       limit: $limit
+//       skip: $skip
+//     ) {
+//       nodes {
+//         id
+//         title
+//         slug
+//         excerpt
+//         date
+//         author {
+//           node {
+//             name
+//             slug
+//             avatar {
+//               url
+//             }
+//           }
+//         }
+//       }
+//     }
+//   }
+// `;
+
 export const query = graphql`
   query ($authorSlug: String!, $skip: Int!, $limit: Int!) {
     wpUser(slug: { eq: $authorSlug }) {
@@ -140,6 +194,10 @@ export const query = graphql`
         url
       }
       description
+      fullImage
+      userImage  # Fetch the user image field
+      designation  # Fetch the designation field
+      descriptionText  # Fetch the description text field
     }
     allWpPost(
       filter: { author: { node: { slug: { eq: $authorSlug } } } }
@@ -166,5 +224,6 @@ export const query = graphql`
     }
   }
 `;
+
 
 export default AuthorDetail;

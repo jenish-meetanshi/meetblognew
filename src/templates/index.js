@@ -3,12 +3,13 @@ import { graphql, Link } from "gatsby";
 import Header from "../components/Header";
 import Hero from "../components/Hero";
 import Footer from "../components/Footer";
+import AuthorSlider from "../components/AuthorSlider";
 
 const Home = ({ data, pageContext }) => {
   const posts = data?.allWpPost?.nodes || [];
-  const { currentPage, numPages } = pageContext;
-
+  const stickyPosts = data?.stickyPosts?.nodes || [];
   const categories = data.allWpCategory.nodes;
+  const { currentPage, numPages } = pageContext;
 
   const isFirst = currentPage === 1;
   const isLast = currentPage === numPages;
@@ -26,7 +27,6 @@ const Home = ({ data, pageContext }) => {
     <main>
       <Header />
       <Hero />
-
       {/* Categories List */}
       <div className="container">
         <div className="row">
@@ -48,6 +48,35 @@ const Home = ({ data, pageContext }) => {
           </div>
         </div>
       </div>
+
+      {/* Sticky Posts */}
+      {stickyPosts.length > 0 && (
+        <div className="container ">
+          <div className="row">
+            <div className="col-md-12">
+            {stickyPosts.map((post) => (
+              <div key={post.id} className="sticky-posts-main-container blog-list-content-wrapper text-center">
+                <div className="listing-blog-info">
+                  <span>
+                    By <Link to={`/author/${post.author.node.slug}`}>{post.author.node.name}</Link>
+                  </span>
+                  <span>
+                    {" | "}{post.date} 
+                  </span>
+                  <span>
+                    {" | "}{calculateReadingTime(post.excerpt)} min read
+                  </span>
+                </div>
+                <h2>
+                  <Link to={`/${post.slug}`}>{post.title}</Link>
+                </h2>
+                <div dangerouslySetInnerHTML={{ __html: post.excerpt.replace(/<a[^>]*class="read-more"[^>]*>.*?<\/a>/, "") }} />
+              </div>
+            ))}
+            </div>
+          </div>
+        </div>
+      )}
 
       {/* Blog Posts */}
       <div className="container blog-list-main-container">
@@ -82,69 +111,61 @@ const Home = ({ data, pageContext }) => {
       <div className="container blog-pagination-main-container">
         <div className="row">
           <div className="col-md-12">
-            <div className="pagination">
               {numPages > 1 && (
-                <div style={{ marginTop: "20px" }}>
-                  {!isFirst && (
-                    <Link to={prevPage} style={{ marginRight: "10px" }}>
-                      ← Previous
-                    </Link>
-                  )}
-
+                <div className="pagination">
                   {Array.from({ length: numPages }, (_, i) => {
                     const page = i + 1;
                     const isCurrent = currentPage === page;
 
-                    // Show the first, last, current, and nearby pages, and ellipses
                     if (
-                      page === 1 || // First page
-                      page === numPages || // Last page
-                      page === currentPage || // Current page
-                      page === currentPage - 1 || // One before current page
-                      page === currentPage + 1 // One after current page
+                      page === 1 || 
+                      page === numPages || 
+                      page === currentPage || 
+                      page === currentPage - 1 || 
+                      page === currentPage + 1 
                     ) {
                       return (
                         <Link
                           key={i}
                           to={page === 1 ? `/` : `/page/${page}`}
-                          style={{
-                            marginRight: "10px",
-                            textDecoration: "none",
-                            color: isCurrent ? "red" : "black",
-                          }}
+                          // style={{
+                          //   marginRight: "10px",
+                          //   textDecoration: "none",
+                          //   color: isCurrent ? "red" : "black",
+                          // }}
+                          className={`page-number ${currentPage === page ? "active" : ""}`}
                         >
                           {page}
                         </Link>
                       );
                     }
 
-                    // Insert ellipses
                     if (
-                      (page === currentPage - 2 && page > 2) || // Before the current page range
-                      (page === currentPage + 2 && page < numPages - 1) // After the current page range
+                      (page === currentPage - 2 && page > 2) || 
+                      (page === currentPage + 2 && page < numPages - 1) 
                     ) {
                       return (
-                        <span key={i} style={{ marginRight: "10px" }}>
+                        <span key={i} className="page-ellipsis">
                           ...
                         </span>
                       );
                     }
-
-                    return null; // Hide other pages
+                    return null; 
                   })}
-
-                  {!isLast && (
-                    <Link to={nextPage} style={{ marginLeft: "10px" }}>
-                      Next →
-                    </Link>
-                  )}
                 </div>
               )}
-            </div>
           </div>
         </div>
       </div>
 
+      <div className="container">
+        <div className="row">
+          <div className="col-md-12">
+            <AuthorSlider />
+          </div>
+        </div>
+      </div>
+      
       <Footer />
     </main>
   );
@@ -152,7 +173,30 @@ const Home = ({ data, pageContext }) => {
 
 export const query = graphql`
   query HomeQuery($skip: Int!, $limit: Int!) {
-    allWpPost(sort: { date: DESC }, skip: $skip, limit: $limit) {
+    allWpPost(
+      sort: { date: DESC }
+      skip: $skip
+      limit: $limit
+      filter: { isSticky: { eq: false } } 
+    ) {
+      nodes {
+        id
+        slug
+        title
+        excerpt
+        date(formatString: "MMMM DD, YYYY")
+        author {
+          node {
+            name
+            slug
+            avatar {
+              url
+            }
+          }
+        }
+      }
+    }
+    stickyPosts: allWpPost(filter: { isSticky: { eq: true } }, sort: { date: DESC }) {
       nodes {
         id
         slug
