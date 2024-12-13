@@ -33,55 +33,37 @@ const PostDetail = ({ data }) => {
   const ctaLinkNofollow = post.categories.nodes[0]?.ctaLinkNofollow;
 
   useEffect(() => {
-    const addHeadingIds = () => {
-      const extractedHeadings = [];
-      const headingElements = document.querySelectorAll('h1, h2, h3');
+    const parser = new DOMParser();
+    const doc = parser.parseFromString(post.content, "text/html");
+    
+    const extractedHeadings = Array.from(doc.querySelectorAll("h1, h2, h3")).map((heading) => {
+      const headingText = heading.innerText.toLowerCase()
+        .replace(/[^\w\s-]/g, '')
+        .replace(/\s+/g, '-')
+        .replace(/-+/g, '-')
+        .replace(/^-|-$/g, '');
       
-      headingElements.forEach((heading) => {
-        const headingText = heading.textContent.toLowerCase()
-          .replace(/[^\w\s-]/g, '')
-          .replace(/\s+/g, '-')
-          .replace(/-+/g, '-')
-          .replace(/^-|-$/g, '');
+      const headingId = `heading-${headingText}`;
+  
+      return {
+        id: headingId,
+        text: heading.innerText,
+        level: heading.tagName.toLowerCase(),
+      };
+    });
+  
+    setTimeout(() => {
+      extractedHeadings.forEach(heading => {
+        const matchingElement = Array.from(document.querySelectorAll('h1, h2, h3'))
+          .find(el => el.textContent.trim() === heading.text.trim());
         
-        const headingId = `heading-${headingText}`;
-        
-        // Add or update the ID for the heading
-        heading.id = headingId;
-        
-        extractedHeadings.push({
-          id: headingId,
-          text: heading.textContent,
-          level: heading.tagName.toLowerCase(),
-        });
+        if (matchingElement) {
+          matchingElement.id = heading.id;
+        }
       });
-      
-      setHeadings(extractedHeadings);
-    };
-
-    // Use MutationObserver to wait for content to be fully rendered
-    const observer = new MutationObserver((mutations, obs) => {
-      const contentElement = document.querySelector('.post-content-main');
-      if (contentElement) {
-        addHeadingIds();
-        obs.disconnect();
-      }
-    });
-
-    observer.observe(document.body, {
-      childList: true,
-      subtree: true
-    });
-
-    // Fallback for cases where content is already loaded
-    if (document.querySelector('.post-content-main')) {
-      addHeadingIds();
-      observer.disconnect();
-    }
-
-    return () => {
-      observer.disconnect();
-    };
+    }, 0);
+  
+    setHeadings(extractedHeadings);
   }, [post.content]);
   
   const handleCommentSubmit = async (e) => {
@@ -92,7 +74,6 @@ const PostDetail = ({ data }) => {
       return;
     }
 
-    // Add CORS headers and use appropriate WordPress authentication
     const commentData = {
       post: post.databaseId,
       author_name: commentName,
@@ -106,36 +87,31 @@ const PostDetail = ({ data }) => {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          // Add necessary authentication headers if required by your WordPress setup
-          // "Authorization": `Bearer YOUR_AUTH_TOKEN` 
         },
         body: JSON.stringify(commentData),
-        credentials: 'include' // This helps with CORS and authentication
       });
 
       if (!response.ok) {
         const errorData = await response.json();
         console.error("Error:", errorData);
-        alert(`An error occurred: ${errorData.message || 'Unable to submit comment'}`);
+        alert(`An error occurred: ${errorData.message}`);
         return;
       }
 
-      const newComment = await response.json();
       alert("Comment submitted successfully!");
-      
-      // Reset form
       setCommentText("");
       setCommentName("");
       setCommentEmail("");
       setParentCommentId(null);
-
-      // Optionally, you might want to trigger a page reload or 
-      // fetch updated comments dynamically
-      window.location.reload();
     } catch (error) {
       console.error("Error submitting comment:", error);
-      alert("An unexpected error occurred. Please try again.");
+      alert("An unexpected error occurred.");
     }
+  };
+
+  const handleReply = (commentId) => {
+    setParentCommentId(commentId);
+    document.getElementById("commentForm").scrollIntoView({ behavior: "smooth" });
   };
 
   const scrollToSection = (id) => {
@@ -148,6 +124,21 @@ const PostDetail = ({ data }) => {
       });
     } else {
       console.warn(`Element with ID "${id}" not found.`);
+      
+      const headingElements = document.querySelectorAll('h1, h2, h3');
+      const matchingElement = Array.from(headingElements).find(el => 
+        el.textContent.trim().toLowerCase() === 
+        decodeURIComponent(id).replace('heading-', '').replace(/-/g, ' ')
+      );
+  
+      if (matchingElement) {
+        matchingElement.scrollIntoView({ 
+          behavior: "smooth", 
+          block: "start" 
+        });
+      } else {
+        console.error(`Could not find heading matching "${id}"`);
+      }
     }
   };
 
@@ -169,12 +160,9 @@ const PostDetail = ({ data }) => {
       <div className="container">
         <div className="row">
           <div className="col-md-9">
-            <div 
-              className="post-content-main" 
-              dangerouslySetInnerHTML={{ __html: post.content }} 
-            />
+            <div className="post-content-main" dangerouslySetInnerHTML={{ __html: post.content }} />
 
-<div className="comments-section">
+            <div className="comments-section">
               <h3 className="mb-4">Comments</h3>
               {processedComments.length === 0 ? (
                 <p>No comments yet.</p>
@@ -323,5 +311,46 @@ const PostDetail = ({ data }) => {
     </div>
   );
 };
+
+export const query = graphql`
+  query PostDetailQuery($id: String!) {
+    wpPost(id: { eq: $id }) {
+      databaseId
+      title
+      content
+      date(formatString: "MMMM DD, YYYY")
+      author {
+        node {
+          name
+          userImage
+          descriptionText
+        }
+      }
+      comments {
+        nodes {
+          id
+          content
+          parent {
+            id
+          }
+          author {
+            node {
+              name
+            }
+          }
+          date(formatString: "MMMM DD, YYYY")
+        }
+      }
+      categories {
+        nodes {
+          name
+          ctaImage
+          ctaLink
+          ctaLinkNofollow
+        }
+      }
+    }
+  }
+`;
 
 export default PostDetail;
