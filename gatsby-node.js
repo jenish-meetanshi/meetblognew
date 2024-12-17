@@ -61,6 +61,14 @@ exports.createPages = async ({ graphql, actions }) => {
         numPages,
         currentPage: i + 1,
       },
+    createPage({
+    path: "/search",
+    component: path.resolve("./src/templates/search-page.js"), // You can create this template for displaying search results
+    context: {
+      // Passing posts data or other necessary context for rendering search results
+      posts,
+    },
+  });
     });
   });
 
