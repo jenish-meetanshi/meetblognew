@@ -23,18 +23,18 @@ const Header = () => {
 
             {/* Search Section */}
             <div className="header-search">
-              <form action="/search/" method="GET" className="search-form">
-                <input
-                  type="text"
-                  name="query"
-                  placeholder="Search for posts..."
-                  aria-label="Search"
-                  required
-                />
-                <button type="submit" className="search-button" aria-label="Submit Search">
-                  <FontAwesomeIcon icon={faSearch} />
-                </button>
-              </form>
+            <form action="/search" method="GET" className="search-form">
+              <input
+                type="text"
+                name="query"
+                placeholder="Search for posts..."
+                aria-label="Search"
+                required
+              />
+              <button type="submit" className="search-button" aria-label="Submit Search">
+                <FontAwesomeIcon icon={faSearch} />
+              </button>
+            </form>
             </div>
 
           </div>
