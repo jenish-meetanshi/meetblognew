@@ -54,12 +54,12 @@ const SearchPage = ({ location, data }) => {
             results.map((post) => (
               <div key={post.id} className="col-md-6 mb-4 blog-list-content-wrapper">
                 <h3>
-                  <Link to={`/${post.slug}`}>{post.title}</Link>
+                  <Link to={/${post.slug}}>{post.title}</Link>
                 </h3>
                 <div dangerouslySetInnerHTML={{ __html: post.excerpt.replace(/<a[^>]*class="read-more"[^>]*>.*?<\/a>/, "") }} />
                 <div className="listing-blog-info">
                   <span>
-                    By <Link to={`/author/${post.author.node.slug}`}>{post.author.node.name}</Link>
+                    By <Link to={/author/${post.author.node.slug}}>{post.author.node.name}</Link>
                   </span>
                   <span>
                     {" | "}{post.date} 
@@ -81,7 +81,7 @@ const SearchPage = ({ location, data }) => {
   );
 };
 
-export const query = graphql`
+export const query = graphql
   query SearchQuery {
     allWpPost {
       nodes {
@@ -102,6 +102,6 @@ export const query = graphql`
       }
     }
   }
-`;
+;
 
 export default SearchPage;
