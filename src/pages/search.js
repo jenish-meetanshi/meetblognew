@@ -7,8 +7,7 @@ const SearchPage = ({ location, data }) => {
   const [query, setQuery] = useState('');
   const [results, setResults] = useState([]);
 
-  
-
+  // Capture the search query from the URL
   useEffect(() => {
     const urlParams = new URLSearchParams(location.search);
     const searchQuery = urlParams.get('query') || '';
@@ -23,6 +22,7 @@ const SearchPage = ({ location, data }) => {
     }
   }, [location.search, data.allWpPost.nodes]);
 
+  // Calculate reading time for each post
   const calculateReadingTime = (content) => {
     const wordsPerMinute = 200; // Average reading speed
     const textLength = content.split(' ').length;
