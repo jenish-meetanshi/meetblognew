@@ -4,7 +4,7 @@ exports.createPages = async ({ graphql, actions }) => {
   const { createPage } = actions;
 
   // Fetch posts
-  const result = await graphql(
+  const result = await graphql(`
     {
       allWpPost(sort: { date: DESC }) {
         nodes {
@@ -38,7 +38,7 @@ exports.createPages = async ({ graphql, actions }) => {
         }
       }
     }
-  );
+  `);
 
   if (result.errors) {
     throw result.errors;
@@ -53,7 +53,7 @@ exports.createPages = async ({ graphql, actions }) => {
   // Create homepage and paginated versions
   Array.from({ length: numPages }).forEach((_, i) => {
     createPage({
-      path: i === 0 ? / : /page/${i + 1},
+      path: i === 0 ? `/` : `/page/${i + 1}`,
       component: path.resolve("./src/templates/index.js"),
       context: {
         limit: postsPerPage,
@@ -73,7 +73,7 @@ exports.createPages = async ({ graphql, actions }) => {
 
     Array.from({ length: numPages }).forEach((_, i) => {
       createPage({
-        path: i === 0 ? /category/${category.slug}/ : /category/${category.slug}/${i + 1},
+        path: i === 0 ? `/category/${category.slug}/` : `/category/${category.slug}/${i + 1}`,
         component: path.resolve("./src/templates/category-detail.js"),
         context: {
           limit: postsPerPage,
@@ -90,7 +90,7 @@ exports.createPages = async ({ graphql, actions }) => {
   // Create individual post pages
   posts.forEach((post) => {
     createPage({
-      path: /${post.slug},
+      path: `/${post.slug}`,
       component: path.resolve("./src/templates/post-detail.js"),
       context: {
         id: post.id,
@@ -109,7 +109,7 @@ exports.createPages = async ({ graphql, actions }) => {
   
       Array.from({ length: numPages }).forEach((_, i) => {
         createPage({
-          path: i === 0 ? /author/${author.slug}/ : /author/${author.slug}/${i + 1},
+          path: i === 0 ? `/author/${author.slug}/` : `/author/${author.slug}/${i + 1}`,
           component: path.resolve("./src/templates/author-detail.js"),
           context: {
             limit: postsPerPage,
