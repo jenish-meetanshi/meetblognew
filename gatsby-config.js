@@ -77,6 +77,7 @@
 const { createProxyMiddleware } = require("http-proxy-middleware");
 
 module.exports = {
+  pathPrefix: "https://5d43103688.nxcli.io/blog/testwordpress/public/", 
   developMiddleware: app => {
     app.use(
       "/api/", // Replace with your API path
