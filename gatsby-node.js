@@ -3,13 +3,15 @@ const path = require("path");
 exports.createPages = async ({ graphql, actions }) => {
   const { createPage } = actions;
 
-  // Fetch posts
+  // Fetch posts, categories, authors, etc.
   const result = await graphql(`
     {
       allWpPost(sort: { date: DESC }) {
         nodes {
           id
           slug
+          title
+          excerpt
           categories {
             nodes {
               slug
@@ -64,6 +66,16 @@ exports.createPages = async ({ graphql, actions }) => {
     });
   });
 
+  // Create search page (newly added)
+  createPage({
+    path: "/search",
+    component: path.resolve("./src/templates/search-page.js"), // The template for displaying search results
+    context: {
+      posts, // Pass all posts to the search page template
+    },
+  });
+
+  // Create category and author pages with pagination
   categories.forEach(category => {
     const categoryPosts = posts.filter(post =>
       post.categories.nodes.some(cat => cat.slug === category.slug)
@@ -87,38 +99,25 @@ exports.createPages = async ({ graphql, actions }) => {
     });
   });
 
-  // Create individual post pages
-  posts.forEach((post) => {
-    createPage({
-      path: `/${post.slug}`,
-      component: path.resolve("./src/templates/post-detail.js"),
-      context: {
-        id: post.id,
-      },
-    });
-  });
+  authors.forEach(author => {
+    const authorPosts = posts.filter(post =>
+      post.author.node.slug === author.slug
+    );
 
+    const numPages = Math.ceil(authorPosts.length / postsPerPage);
 
-    // Create author pages with pagination
-    authors.forEach(author => {
-      const authorPosts = posts.filter(post =>
-        post.author.node.slug === author.slug
-      );
-  
-      const numPages = Math.ceil(authorPosts.length / postsPerPage);
-  
-      Array.from({ length: numPages }).forEach((_, i) => {
-        createPage({
-          path: i === 0 ? `/author/${author.slug}/` : `/author/${author.slug}/${i + 1}`,
-          component: path.resolve("./src/templates/author-detail.js"),
-          context: {
-            limit: postsPerPage,
-            skip: i * postsPerPage,
-            authorSlug: author.slug,
-            currentPage: i + 1,
-            numPages,
-          },
-        });
+    Array.from({ length: numPages }).forEach((_, i) => {
+      createPage({
+        path: i === 0 ? `/author/${author.slug}/` : `/author/${author.slug}/${i + 1}`,
+        component: path.resolve("./src/templates/author-detail.js"),
+        context: {
+          limit: postsPerPage,
+          skip: i * postsPerPage,
+          authorSlug: author.slug,
+          currentPage: i + 1,
+          numPages,
+        },
       });
     });
+  });
 };
