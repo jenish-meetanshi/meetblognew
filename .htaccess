@@ -1,52 +1,65 @@
-# -----------------------------------
-# Redirect all 404s to the index.html
-# -----------------------------------
-<IfModule mod_rewrite.c>
-  RewriteEngine On
-  RewriteBase /blog/testwordpress/
-  RewriteRule ^index\.html$ - [L]
-  RewriteCond %{REQUEST_FILENAME} !-f
-  RewriteCond %{REQUEST_FILENAME} !-d
-  RewriteRule . /blog/testwordpress/index.html [L]
-</IfModule>
+# --------------------------------------------------------------
+# Force HTTPS
+# --------------------------------------------------------------
+RewriteEngine On
+RewriteCond %{HTTPS} off
+RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
 
-# -----------------------------------
-# Enable Gzip compression for faster loading
-# -----------------------------------
-<IfModule mod_deflate.c>
-  AddOutputFilterByType DEFLATE text/html text/plain text/xml text/css text/javascript application/javascript application/x-javascript application/json
-</IfModule>
+# --------------------------------------------------------------
+# Handle 404 Errors and Route All Unmatched Requests to index.html
+# --------------------------------------------------------------
+# Serve the Gatsby 404.html page for missing files
+ErrorDocument 404 /404.html
 
-# -----------------------------------
-# Cache static assets to improve performance
-# -----------------------------------
+# Redirect all requests to the Gatsby index.html (SPA routing)
+RewriteBase /
+RewriteRule ^index\.html$ - [L]
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule . /index.html [L]
+
+# --------------------------------------------------------------
+# Caching Headers (Optional)
+# --------------------------------------------------------------
 <IfModule mod_expires.c>
-  ExpiresActive On
-  ExpiresDefault "access plus 1 month"
-  ExpiresByType image/jpg "access plus 1 year"
-  ExpiresByType image/jpeg "access plus 1 year"
-  ExpiresByType image/gif "access plus 1 year"
-  ExpiresByType image/png "access plus 1 year"
-  ExpiresByType text/css "access plus 1 month"
-  ExpiresByType text/html "access plus 1 day"
-  ExpiresByType application/pdf "access plus 1 month"
-  ExpiresByType text/javascript "access plus 1 month"
-  ExpiresByType application/javascript "access plus 1 year"
-  ExpiresByType application/x-javascript "access plus 1 month"
-  ExpiresByType application/x-shockwave-flash "access plus 1 month"
-  ExpiresByType image/x-icon "access plus 1 year"
+    ExpiresActive On
+    ExpiresDefault "access plus 1 month"
+    ExpiresByType text/html "access plus 0 seconds"
+    ExpiresByType image/jpg "access plus 1 month"
+    ExpiresByType image/jpeg "access plus 1 month"
+    ExpiresByType image/gif "access plus 1 month"
+    ExpiresByType image/png "access plus 1 month"
+    ExpiresByType text/css "access plus 1 month"
+    ExpiresByType text/javascript "access plus 1 month"
+    ExpiresByType application/javascript "access plus 1 month"
+    ExpiresByType application/x-javascript "access plus 1 month"
+    ExpiresByType image/x-icon "access plus 1 year"
 </IfModule>
 
-# -----------------------------------
-# Disable directory browsing
-# -----------------------------------
-Options -Indexes
-
-# -----------------------------------
-# Set cache control headers
-# -----------------------------------
 <IfModule mod_headers.c>
-  <FilesMatch "\.(ico|jpe?g|png|gif|svg|css|js|woff|woff2|eot|ttf|otf|ttc|json|pdf|mp4|webm|ogg|txt|xml|html)$">
-    Header set Cache-Control "max-age=31536000, public"
-  </FilesMatch>
+    Header set Cache-Control "max-age=2592000, public"
 </IfModule>
+
+# --------------------------------------------------------------
+# Security Headers (Optional)
+# --------------------------------------------------------------
+<IfModule mod_headers.c>
+    Header set X-Frame-Options "DENY"
+    Header set X-Content-Type-Options "nosniff"
+    Header set X-XSS-Protection "1; mode=block"
+    Header set Strict-Transport-Security "max-age=31536000; includeSubDomains; preload"
+    Header set Referrer-Policy "strict-origin-when-cross-origin"
+    Header set Content-Security-Policy "default-src 'self' https: data: 'unsafe-inline' 'unsafe-eval'"
+</IfModule>
+
+# --------------------------------------------------------------
+# Gzip Compression (Optional)
+# --------------------------------------------------------------
+<IfModule mod_deflate.c>
+    AddOutputFilterByType DEFLATE text/html text/plain text/xml text/css text/javascript application/javascript application/x-javascript application/xml application/json image/svg+xml
+</IfModule>
+
+# --------------------------------------------------------------
+# Disable Directory Browsing
+# --------------------------------------------------------------
+Options -Indexes
