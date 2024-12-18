@@ -71,7 +71,12 @@ const AuthorDetail = ({ data, pageContext }) => {
           </div>
         </div>
       </div>
-      <div className="container blog-list-main-container">
+     <div className="container blog-list-main-container mt-5">
+        <div className="row">
+          <div className="col-md-12">
+          <span className="author-blogs-title">Articles by Author</span>
+          </div>
+        </div>
         {/* Post List */}
         <div className="row">
           {posts.map((post) => {
