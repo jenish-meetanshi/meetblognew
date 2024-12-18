@@ -73,21 +73,6 @@ const AuthorSlider = () => {
   return (
     <div className="author-slider-container">
       <h2 className="author-slider-title">Meet Our Authors</h2>
-
-      // <Slider {...settings}>
-      //   {authors.map((author) => (
-      //     <div key={author.id} className="author-card">
-      //       <Link to={`/author/${author.slug}`}>
-      //         <img
-      //           src={author.userImage}
-      //           alt={author.name}
-      //           className="author-avatar"
-      //         />
-      //         <span className="author-name">{author.name}</span>
-      //       </Link>
-      //     </div>
-      //   ))}
-      // </Slider>
       <div className="container">
         <div className="row">
         {authors.map((author) => (
