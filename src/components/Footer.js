@@ -1,6 +1,7 @@
 // src/components/Footer.js
 import React from "react";
 import { Link } from "gatsby";
+import { withPrefix } from "gatsby";
 
 const Footer = () => {
   return (
@@ -18,7 +19,7 @@ const Footer = () => {
                 <Link to="/">
                 {/* Use the static logo image URL here */}
                 <img
-                  src="/images/footer-logo.png" // Replace with the actual path to your static logo
+                  src={withPrefix("/images/footer-logo.png")}
                   alt="Site Logo"
                   style={{ width: "180px", height: "auto", marginBottom: "0" }}
                 />
@@ -27,7 +28,7 @@ const Footer = () => {
           
               <div className="footer-address">
                 <div className="d-flex align-items-start">
-                  <img className="address-icon" src="/images/location-icon.svg" alt="Location Icon" height="25" width="24" />
+                  <img className="address-icon" src={withPrefix("/images/location-icon1.svg")} alt="Location Icon" height="25" width="24" />
                   <div>
                     <p className="footer-address-title">Bhavnagar<sup>HQ</sup></p>
                     <p className="footer-address-text">305, Victoria Prime, Near Water Tank, Kaliyabid, Bhavnagar, Gujarat, India - 364002</p>
@@ -37,7 +38,7 @@ const Footer = () => {
           
               <div className="footer-address">
                 <div className="d-flex align-items-start">
-                  <img className="address-icon" src="/images/location-icon.svg" alt="Location Icon" height="25" width="24" />
+                  <img className="address-icon" src={withPrefix("/images/location-icon1.svg")} alt="Location Icon" height="25" width="24" />
                   <div>
                     <p className="footer-address-title">USA Representative Office</p>
                     <p className="footer-address-text">5564 Newpark Mall Rd, Newark, CA 94560, USA</p>
@@ -47,7 +48,7 @@ const Footer = () => {
            
               <div className="footer-phone">
                 <div className="d-flex align-items-start">
-                  <img className="address-icon" src="/images/phone-icon.svg" alt="Phone Icon" height="25" width="24" />
+                  <img className="address-icon" src={withPrefix("/images/phone-icon.svg")} alt="Phone Icon" height="25" width="24" />
                   <div>
                     <a className="footer-phone" src="tel:+917202997997">+91 7202 997997</a>
                   </div>
