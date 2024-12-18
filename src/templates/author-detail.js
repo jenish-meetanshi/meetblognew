@@ -47,43 +47,30 @@ const AuthorDetail = ({ data, pageContext }) => {
   return (
     <div>
       <Header />
-      <div className="container">
-        <div className="row">
-          <div className="col-md-12">
-            {/* Author Details */}
-            <div className="author-details text-center mb-4">
-            {/* {author.fullImage && (
-              <img
-                src={author.fullImage}
-                alt={`${author.name} Full Image`}
-                className="author-full-image"
-              />
-            )}
-              <h2>{author.name}</h2>
-              <p>{author.description}</p> */}
+     <div className="author-details-hero">
+        <div className="container">
+          <div className="row align-items-end justify-content-between">
+            <div className="col-lg-auto order-2 order-lg-1">
 
-              <h2>{author.name}</h2>
-              {author.fullImage && (
+            <div className="author-detailpage-wrapper">
+                <h2 className="single-author-title"> {author.name}</h2>
+                {author.designation && <span className="single-author-designation">{author.designation}</span>}
+                {author.descriptionText && <p>{author.descriptionText}</p>}
+            </div>
+            </div>
+
+            <div className="col-lg-auto order-1 order-lg-2">
+            {author.fullImage && (
                 <img
                   src={author.fullImage}
                   alt={`${author.name} Full Image`}
-                  className="author-full-image"
+                  className="single-author-image img-fluid"
                 />
-              )}
-              {author.userImage && (
-                <img
-                  src={author.userImage}
-                  alt={`${author.name}'s Image`}
-                  className="user-image"
-                />
-              )}
-              {author.designation && <h3>{author.designation}</h3>}
-              {author.descriptionText && <p>{author.descriptionText}</p>}
+              )}   
             </div>
           </div>
         </div>
       </div>
-
       <div className="container blog-list-main-container">
         {/* Post List */}
         <div className="row">
