@@ -88,22 +88,22 @@ const AuthorSlider = () => {
       //     </div>
       //   ))}
       // </Slider>
-    {typeof window !== "undefined" && (
-  <Slider {...settings}>
-    {authors.map((author) => (
-      <div key={author.id} className="author-card">
-        <Link to={`/author/${author.slug}`}>
-          <img
-            src={author.userImage}
-            alt={author.name}
-            className="author-avatar"
-          />
-          <span className="author-name">{author.name}</span>
-        </Link>
+      <div className="container">
+        <div className="row">
+        {authors.map((author) => (
+          <div className="col-md-3">
+            <Link to={`/author/${author.slug}`}>
+              <img
+                src={author.userImage}
+                alt={author.name}
+                className="author-avatar"
+              />
+              <span className="author-name">{author.name}</span>
+            </Link>
+          </div>
+           ))}
+        </div>
       </div>
-    ))}
-  </Slider>
-)}
     </div>
   );
 };
