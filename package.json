@@ -7,7 +7,6 @@
   "scripts": {
     "build": "gatsby build",
     "build:prefix": "gatsby build --prefix-paths",
-    "postbuild": "cp ./.htaccess ./public/.htaccess",
     "develop": "gatsby develop",
     "start": "gatsby develop",
     "serve": "gatsby serve",
