@@ -94,7 +94,6 @@ module.exports = {
         url: `https://mitfestival.app/meetanshiblog/graphql`,
       },
     },
-    plugins: [
     `gatsby-plugin-image`, 
     `gatsby-plugin-sharp`,
     `gatsby-transformer-sharp`,
