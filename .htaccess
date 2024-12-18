@@ -1,65 +1,75 @@
 # --------------------------------------------------------------
-# Force HTTPS
+# Force HTTPS (Optional — Remove if HTTPS is already handled by server/CDN)
 # --------------------------------------------------------------
 RewriteEngine On
-RewriteCond %{HTTPS} off
-RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+RewriteBase /pub/blog/testwordpress/public/
+
+# Force HTTPS (Only if required, otherwise comment out this block)
+RewriteCond %{HTTPS} !=on
+RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
 
 # --------------------------------------------------------------
-# Handle 404 Errors and Route All Unmatched Requests to index.html
+# Remove Trailing Slash (Optional — remove if unnecessary)
 # --------------------------------------------------------------
-# Serve the Gatsby 404.html page for missing files
-ErrorDocument 404 /404.html
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.*)/$ /$1 [L,R=301]
 
-# Redirect all requests to the Gatsby index.html (SPA routing)
-RewriteBase /
-RewriteRule ^index\.html$ - [L]
+# --------------------------------------------------------------
+# Redirect all requests to Gatsby's index.html (SPA)
+# --------------------------------------------------------------
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
-RewriteRule . /index.html [L]
+RewriteRule . /pub/blog/testwordpress/public/index.html [L]
 
 # --------------------------------------------------------------
-# Caching Headers (Optional)
+# Error Pages (404, 500, etc.)
 # --------------------------------------------------------------
-<IfModule mod_expires.c>
-    ExpiresActive On
-    ExpiresDefault "access plus 1 month"
-    ExpiresByType text/html "access plus 0 seconds"
-    ExpiresByType image/jpg "access plus 1 month"
-    ExpiresByType image/jpeg "access plus 1 month"
-    ExpiresByType image/gif "access plus 1 month"
-    ExpiresByType image/png "access plus 1 month"
-    ExpiresByType text/css "access plus 1 month"
-    ExpiresByType text/javascript "access plus 1 month"
-    ExpiresByType application/javascript "access plus 1 month"
-    ExpiresByType application/x-javascript "access plus 1 month"
-    ExpiresByType image/x-icon "access plus 1 year"
-</IfModule>
-
-<IfModule mod_headers.c>
-    Header set Cache-Control "max-age=2592000, public"
-</IfModule>
-
-# --------------------------------------------------------------
-# Security Headers (Optional)
-# --------------------------------------------------------------
-<IfModule mod_headers.c>
-    Header set X-Frame-Options "DENY"
-    Header set X-Content-Type-Options "nosniff"
-    Header set X-XSS-Protection "1; mode=block"
-    Header set Strict-Transport-Security "max-age=31536000; includeSubDomains; preload"
-    Header set Referrer-Policy "strict-origin-when-cross-origin"
-    Header set Content-Security-Policy "default-src 'self' https: data: 'unsafe-inline' 'unsafe-eval'"
-</IfModule>
-
-# --------------------------------------------------------------
-# Gzip Compression (Optional)
-# --------------------------------------------------------------
-<IfModule mod_deflate.c>
-    AddOutputFilterByType DEFLATE text/html text/plain text/xml text/css text/javascript application/javascript application/x-javascript application/xml application/json image/svg+xml
-</IfModule>
+ErrorDocument 404 /pub/blog/testwordpress/public/404.html
 
 # --------------------------------------------------------------
 # Disable Directory Browsing
 # --------------------------------------------------------------
 Options -Indexes
+
+# --------------------------------------------------------------
+# Leverage Browser Caching (Improves performance)
+# --------------------------------------------------------------
+<IfModule mod_expires.c>
+    ExpiresActive On
+    ExpiresByType image/jpg "access plus 1 year"
+    ExpiresByType image/jpeg "access plus 1 year"
+    ExpiresByType image/gif "access plus 1 year"
+    ExpiresByType image/png "access plus 1 year"
+    ExpiresByType text/css "access plus 1 month"
+    ExpiresByType text/html "access plus 1 hour"
+    ExpiresByType application/pdf "access plus 1 month"
+    ExpiresByType text/x-javascript "access plus 1 month"
+    ExpiresByType application/javascript "access plus 1 month"
+    ExpiresByType application/x-javascript "access plus 1 month"
+    ExpiresByType image/x-icon "access plus 1 year"
+    ExpiresDefault "access plus 1 month"
+</IfModule>
+
+# --------------------------------------------------------------
+# Gzip Compression (Improves performance)
+# --------------------------------------------------------------
+<IfModule mod_deflate.c>
+    AddOutputFilterByType DEFLATE text/html text/xml text/css text/javascript application/javascript application/x-javascript application/json
+</IfModule>
+
+# --------------------------------------------------------------
+# Cross-Origin Header for Fonts
+# --------------------------------------------------------------
+<FilesMatch "\.(ttf|otf|eot|woff|woff2|svg)$">
+    <IfModule mod_headers.c>
+        Header set Access-Control-Allow-Origin "*"
+    </IfModule>
+</FilesMatch>
+
+# --------------------------------------------------------------
+# Block access to .htaccess itself (security)
+# --------------------------------------------------------------
+<Files .htaccess>
+    Order Allow,Deny
+    Deny from all
+</Files>
