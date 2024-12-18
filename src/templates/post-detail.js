@@ -283,7 +283,7 @@ const PostDetail = ({ data }) => {
             </div>
           </div>
           
-          <div className="col-md-3">
+          <div className="col-md-3 blog-sidebar-main">
             <div className="sidebar-main">
               {ctaImage && ctaLink && (
                 <div className="cta-section">
