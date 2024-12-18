@@ -584,3 +584,7 @@
   font-size: 38px;
   line-height: 54px;
 }
+.listing-blog-info .user-image{
+  max-width:35px;
+  margin-right:10px;
+}
