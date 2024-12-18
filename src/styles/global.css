@@ -576,3 +576,11 @@
 .blog-sidebar-main{
   position: relative;
 }
+.home-hero-section.post-detail-banner{
+  padding: 60px 40px;
+  text-align: left;
+}
+.home-hero-section.post-detail-banner h1{
+  font-size: 38px;
+  line-height: 54px;
+}
