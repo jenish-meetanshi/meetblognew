@@ -15,8 +15,8 @@ const Header = () => {
             <div className="logo">
               <Link to="/">
                   {/* Use the static logo image URL here */}
-                  <img
-                  src="/images/logo.svg" // Replace with the actual path to your static logo
+                 <StaticImage
+                  src="../images/logo.svg" 
                   alt="Site Logo"
                   style={{ width: "250px", height: "auto", marginBottom: "0" }}
                 />
