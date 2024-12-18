@@ -1,10 +1,10 @@
 # --------------------------------------------------------------
-# Force HTTPS (Optional — Remove if HTTPS is already handled by server/CDN)
+# Force HTTPS (Optional — Use only if required)
 # --------------------------------------------------------------
 RewriteEngine On
 RewriteBase /pub/blog/testwordpress/public/
 
-# Force HTTPS (Only if required, otherwise comment out this block)
+# Force HTTPS (If your server does not already force HTTPS)
 RewriteCond %{HTTPS} !=on
 RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
 
