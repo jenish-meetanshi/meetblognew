@@ -57,8 +57,15 @@ const Home = ({ data, pageContext }) => {
             {stickyPosts.map((post) => (
               <div key={post.id} className="sticky-posts-main-container blog-list-content-wrapper text-center">
                 <div className="listing-blog-info">
+                {post.author.node.userImage && (
+                        <img
+                          src={post.author.node.userImage}
+                          alt={`${post.author.node.name}'s Image`}
+                          className="user-image"
+                        />
+                      )}
                   <span>
-                    By <Link to={`/author/${post.author.node.slug}`}>{post.author.node.name}</Link>
+                    <Link to={`/author/${post.author.node.slug}`}>{post.author.node.name}</Link>
                   </span>
                   <span>
                     {" | "}{post.date} 
@@ -89,8 +96,15 @@ const Home = ({ data, pageContext }) => {
                 </h3>
                 <div dangerouslySetInnerHTML={{ __html: post.excerpt.replace(/<a[^>]*class="read-more"[^>]*>.*?<\/a>/, "") }} />
                 <div className="listing-blog-info">
+                    {post.author.node.userImage && (
+                      <img
+                        src={post.author.node.userImage}
+                        alt={`${post.author.node.name}'s Image`}
+                        className="user-image"
+                      />
+                    )}
                   <span>
-                    By <Link to={`/author/${post.author.node.slug}`}>{post.author.node.name}</Link>
+                    <Link to={`/author/${post.author.node.slug}`}>{post.author.node.name}</Link>
                   </span>
                   <span>
                     {" | "}{post.date} 
@@ -192,6 +206,7 @@ export const query = graphql`
             avatar {
               url
             }
+            userImage
           }
         }
       }
@@ -210,6 +225,7 @@ export const query = graphql`
             avatar {
               url
             }
+            userImage
           }
         }
       }
