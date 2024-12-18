@@ -3,6 +3,7 @@ import { Link } from "gatsby";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
 import { StaticImage } from "gatsby-plugin-image";
+import { withPrefix } from "gatsby";
 
 const Header = () => {
   return (
@@ -15,8 +16,8 @@ const Header = () => {
             <div className="logo">
               <Link to="/">
                   {/* Use the static logo image URL here */}
-                 <StaticImage
-                  src="../images/logo.svg" 
+                 <img
+                  src={withPrefix("/images/logo.svg")}
                   alt="Site Logo"
                   style={{ width: "250px", height: "auto", marginBottom: "0" }}
                 />
