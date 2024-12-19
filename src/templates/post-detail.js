@@ -43,7 +43,7 @@ const PostDetail = ({ data }) => {
         .replace(/-+/g, '-')
         .replace(/^-|-$/g, '');
       
-      const headingId = heading-${headingText};
+      const headingId = `heading-${headingText}`;
   
       return {
         id: headingId,
@@ -94,7 +94,7 @@ const PostDetail = ({ data }) => {
       if (!response.ok) {
         const errorData = await response.json();
         console.error("Error:", errorData);
-        alert(An error occurred: ${errorData.message});
+        alert(`An error occurred: ${errorData.message}`);
         return;
       }
 
@@ -123,7 +123,7 @@ const PostDetail = ({ data }) => {
         block: "start" 
       });
     } else {
-      console.warn(Element with ID "${id}" not found.);
+      console.warn(`Element with ID "${id}" not found.`);
       
       const headingElements = document.querySelectorAll('h1, h2, h3');
       const matchingElement = Array.from(headingElements).find(el => 
@@ -137,7 +137,7 @@ const PostDetail = ({ data }) => {
           block: "start" 
         });
       } else {
-        console.error(Could not find heading matching "${id}");
+        console.error(`Could not find heading matching "${id}"`);
       }
     }
   };
@@ -297,7 +297,7 @@ const PostDetail = ({ data }) => {
                 <span className="toc-title">Table of Contents</span>
                 <ul>
                   {headings.map((heading) => (
-                    <li key={heading.id} className={toc-${heading.level}}>
+                    <li key={heading.id} className={`toc-${heading.level}`}>
                       <button onClick={() => scrollToSection(heading.id)}>{heading.text}</button>
                     </li>
                   ))}
@@ -312,7 +312,7 @@ const PostDetail = ({ data }) => {
   );
 };
 
-export const query = graphql
+export const query = graphql`
   query PostDetailQuery($id: String!) {
     wpPost(id: { eq: $id }) {
       databaseId
@@ -351,6 +351,6 @@ export const query = graphql
       }
     }
   }
-;
+`;
 
 export default PostDetail;
