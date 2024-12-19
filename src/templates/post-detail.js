@@ -150,8 +150,8 @@ const PostDetail = ({ data }) => {
           <div className="col-md-12">
             <div className="home-hero-section post-detail-banner">
               <h1>{post.title}</h1>
-              <p><strong>Published on:</strong> {post.date}</p>
-              <p><strong>By:</strong> {post.author.node.name}</p>
+              <p>Updated on: {post.date}</p>
+              <p>By: {post.author.node.name} / {post.reading_time} min read</p>
             </div>
           </div>
         </div>
@@ -318,6 +318,7 @@ export const query = graphql`
       databaseId
       title
       content
+      reading_time
       date(formatString: "MMMM DD, YYYY")
       author {
         node {
