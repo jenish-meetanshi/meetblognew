@@ -1,4 +1,14 @@
-  .home-hero-section{
+body {
+  font-family: 'Poppins', sans-serif; /* Apply Poppins font globally */
+  margin: 0;
+  padding: 0;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Poppins', sans-serif; /* Apply Poppins font to headings */
+}
+
+.home-hero-section{
     background: linear-gradient(140deg, #f8f7fd 0, #f7e9e9 55%, #ffaf5a 100%);
     padding: 101px 0 101px;
     background-repeat: no-repeat;
