@@ -140,7 +140,7 @@ const Header = () => {
             <img 
               src={withPrefix("/images/logo.svg")} 
               alt="Site Logo" 
-              style={{ width: "150px", height: "auto" }} 
+              style={{ max-width: "230px", height: "auto" }} 
             />
           </Navbar.Brand>
 
@@ -149,7 +149,7 @@ const Header = () => {
 
           {/* Menu items */}
           <Navbar.Collapse id="basic-navbar-nav">
-               <Nav className="me-auto">
+               <Nav className="me-auto ms-auto">
                 {/* Dropdown Menu for Extensions */}
                 <NavDropdown title="Extensions" id="extensions-dropdown">
                   <NavDropdown.Item as={Link} to="https://meetanshi.com/magento-2-extensions.html">Magento 2 Extensions</NavDropdown.Item>
