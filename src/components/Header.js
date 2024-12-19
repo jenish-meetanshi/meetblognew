@@ -183,7 +183,7 @@ const Header = () => {
                 value={searchQuery} 
                 onChange={handleSearchChange} 
               />
-              <Button type="submit" variant="outline-success">
+              <Button type="submit" variant="primary">
                 <FontAwesomeIcon icon={faSearch} />
               </Button>
             </Form>
