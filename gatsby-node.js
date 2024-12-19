@@ -1,8 +1,59 @@
 const path = require("path");
 
+// Add schema customization for reading time
+exports.createSchemaCustomization = ({ actions }) => {
+  const { createTypes } = actions;
+
+  const typeDefs = `
+    type WpPost implements Node {
+      reading_time: Int
+    }
+  `;
+
+  createTypes(typeDefs);
+};
+
+// Add resolver for reading time calculation
+exports.createResolvers = ({ createResolvers }) => {
+  createResolvers({
+    WpPost: {
+      reading_time: {
+        type: "Int",
+        resolve: (source) => {
+          // Get content and title
+          const content = source.content || "";
+          const title = source.title || "";
+          
+          // Strip HTML tags from content
+          const strippedContent = content.replace(/<[^>]*>/g, "");
+          
+          // Count words (split by whitespace and filter empty strings)
+          const words = `${title} ${strippedContent}`
+            .split(/\s+/)
+            .filter(word => word.length > 0);
+          
+          // Calculate reading time (238 words per minute)
+          const wordsPerMinute = 238;
+          const wordCount = words.length;
+          
+          // Count images (each image adds 12 seconds)
+          const imageCount = (content.match(/<img/g) || []).length;
+          const imageTime = Math.ceil(imageCount * 12 / 60);
+          
+          // Calculate total reading time
+          const readingTime = Math.ceil(wordCount / wordsPerMinute) + imageTime;
+          
+          // Ensure minimum of 1 minute
+          return Math.max(1, readingTime);
+        },
+      },
+    },
+  });
+};
+
+// Your existing createPages function
 exports.createPages = async ({ graphql, actions }) => {
   const { createPage } = actions;
-
   // Fetch posts
   const result = await graphql(`
     {
@@ -68,9 +119,7 @@ exports.createPages = async ({ graphql, actions }) => {
     const categoryPosts = posts.filter(post =>
       post.categories.nodes.some(cat => cat.slug === category.slug)
     );
-
     const numPages = Math.ceil(categoryPosts.length / postsPerPage);
-
     Array.from({ length: numPages }).forEach((_, i) => {
       createPage({
         path: i === 0 ? `/category/${category.slug}/` : `/category/${category.slug}/${i + 1}`,
@@ -98,27 +147,26 @@ exports.createPages = async ({ graphql, actions }) => {
     });
   });
 
+  // Create author pages with pagination
+  authors.forEach(author => {
+    const authorPosts = posts.filter(post =>
+      post.author.node.slug === author.slug
+    );
 
-    // Create author pages with pagination
-    authors.forEach(author => {
-      const authorPosts = posts.filter(post =>
-        post.author.node.slug === author.slug
-      );
-  
-      const numPages = Math.ceil(authorPosts.length / postsPerPage);
-  
-      Array.from({ length: numPages }).forEach((_, i) => {
-        createPage({
-          path: i === 0 ? `/author/${author.slug}/` : `/author/${author.slug}/${i + 1}`,
-          component: path.resolve("./src/templates/author-detail.js"),
-          context: {
-            limit: postsPerPage,
-            skip: i * postsPerPage,
-            authorSlug: author.slug,
-            currentPage: i + 1,
-            numPages,
-          },
-        });
+    const numPages = Math.ceil(authorPosts.length / postsPerPage);
+
+    Array.from({ length: numPages }).forEach((_, i) => {
+      createPage({
+        path: i === 0 ? `/author/${author.slug}/` : `/author/${author.slug}/${i + 1}`,
+        component: path.resolve("./src/templates/author-detail.js"),
+        context: {
+          limit: postsPerPage,
+          skip: i * postsPerPage,
+          authorSlug: author.slug,
+          currentPage: i + 1,
+          numPages,
+        },
       });
     });
+  });
 };
