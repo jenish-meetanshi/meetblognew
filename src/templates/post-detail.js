@@ -151,7 +151,7 @@ const PostDetail = ({ data }) => {
             <div className="home-hero-section post-detail-banner">
               <h1>{post.title}</h1>
               <p>Updated on: {post.date}</p>
-              <p>By: {post.author.node.name} / {post.reading_time} min read</p>
+              <p clasName="postdetail-heromain">By: {post.author.node.name} <span className="hero-ellipse"></span> {post.reading_time} min read</p>
             </div>
           </div>
         </div>
