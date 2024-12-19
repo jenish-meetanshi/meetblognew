@@ -697,3 +697,45 @@ header .btn-outline-success:hover {
   vertical-align: middle;
   font-size: 14px;
 }
+.wp-block-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.wp-block-table th, .wp-block-table td {
+  padding: 10px;
+  text-align: left;
+  border: 1px solid #ddd;
+  color: #333; /* Default text color */
+}
+
+.wp-block-table th {
+  background-color: #f47526; /* Table header background color */
+  color: #fff; /* Header text color */
+}
+
+.wp-block-table td {
+  background-color: #fff; /* Default cell background */
+}
+
+/* Hover effect for table rows */
+.wp-block-table tr:hover {
+  background-color: #ffb59a; /* Lightened hover color */
+}
+
+.wp-block-table th:hover {
+  background-color: #e65c16; /* Darker shade on header hover */
+}
+
+@media (max-width: 768px) {
+  .wp-block-table {
+    display: block;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .wp-block-table th, .wp-block-table td {
+    white-space: nowrap;
+  }
+}
+
