@@ -692,3 +692,8 @@ header .btn-outline-success:hover {
   border-color: #007bff;
   color: #fff;
 }
+.nav-item .dropdown-toggle:after{
+  border-top:0;
+  vertical-align: middle;
+  font-size: 14px;
+}
