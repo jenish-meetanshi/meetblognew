@@ -23,26 +23,38 @@ const Home = ({ data, pageContext }) => {
   //   return time;
   // };
 
-  const calculateReadingTime = (content, title) => {
-    // Remove HTML tags from content and title
-    const strippedContent = content.replace(/<[^>]+>/g, '');
-    
-    // Combine title and content for total reading time
-    const totalText = `${title} ${strippedContent}`;
-    
-    // Average reading speed (words per minute)
-    const wordsPerMinute = 200;
-    
-    // Count words by splitting on whitespace and filtering out empty strings
-    const wordCount = totalText
-      .split(/\s+/)
-      .filter(word => word.length > 0)
-      .length;
-    
-    // Calculate reading time in minutes, with a minimum of 1 minute
-    const readingTime = Math.max(1, Math.ceil(wordCount / wordsPerMinute));
-    
-    return readingTime;
+  const calculateReadingTime = (content, title, excerpt) => {
+    // Function to clean HTML and special characters
+    const cleanText = (text) => {
+      if (!text) return '';
+      return text
+        .replace(/<[^>]*>/g, '') // Remove HTML tags
+        .replace(/\s+/g, ' ') // Normalize whitespace
+        .replace(/[^\w\s]/g, '') // Remove special characters
+        .trim();
+    };
+
+    // Clean all text content
+    const cleanContent = cleanText(content);
+    const cleanTitle = cleanText(title);
+    const cleanExcerpt = cleanText(excerpt);
+
+    // Use the longest available text (content or excerpt)
+    const textToUse = cleanContent.length > cleanExcerpt.length ? cleanContent : cleanExcerpt;
+
+    // Combine with title
+    const totalText = `${cleanTitle} ${textToUse}`;
+
+    // Calculate reading time based on characters
+    // Average reading speed: 1000 characters per minute
+    const charCount = totalText.length;
+    const readingTime = Math.max(1, Math.ceil(charCount / 1000));
+
+    // Add time for images if present
+    const imageCount = (content.match(/<img/g) || []).length;
+    const imageTime = Math.ceil(imageCount * 0.2); // 12 seconds per image
+
+    return Math.max(1, readingTime + imageTime);
   };
 
   return (
