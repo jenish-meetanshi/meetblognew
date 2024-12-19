@@ -127,7 +127,7 @@ const Header = () => {
     e.preventDefault();
     if (searchQuery.trim() !== "") {
       // Use withPrefix to add a prefix to the search URL
-      window.location.href = withPrefix(`/search?query=${encodeURIComponent(searchQuery)}`);
+      window.location.href = withPrefix(`/search/index.html?query=${encodeURIComponent(searchQuery)}`);
     }
   };
 
