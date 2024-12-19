@@ -16,11 +16,30 @@ const Home = ({ data, pageContext }) => {
   const prevPage = currentPage === 2 ? `/` : `/page/${currentPage - 1}`;
   const nextPage = `/page/${currentPage + 1}`;
 
+  // const calculateReadingTime = (content) => {
+  //   const wordsPerMinute = 200; // Average reading speed
+  //   const textLength = content.split(' ').length;
+  //   const time = Math.ceil(textLength / wordsPerMinute);
+  //   return time;
+  // };
+
   const calculateReadingTime = (content) => {
-    const wordsPerMinute = 200; // Average reading speed
-    const textLength = content.split(' ').length;
-    const time = Math.ceil(textLength / wordsPerMinute);
-    return time;
+    // Remove HTML tags
+    const strippedContent = content.replace(/<[^>]+>/g, '');
+    
+    // Average reading speed (words per minute)
+    const wordsPerMinute = 200;
+    
+    // Count words by splitting on whitespace and filtering out empty strings
+    const wordCount = strippedContent
+      .split(/\s+/)
+      .filter(word => word.length > 0)
+      .length;
+    
+    // Calculate reading time in minutes, with a minimum of 1 minute
+    const readingTime = Math.max(1, Math.ceil(wordCount / wordsPerMinute));
+    
+    return readingTime;
   };
 
   return (
