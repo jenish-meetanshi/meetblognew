@@ -23,15 +23,18 @@ const Home = ({ data, pageContext }) => {
   //   return time;
   // };
 
-  const calculateReadingTime = (content) => {
-    // Remove HTML tags
+  const calculateReadingTime = (content, title) => {
+    // Remove HTML tags from content and title
     const strippedContent = content.replace(/<[^>]+>/g, '');
+    
+    // Combine title and content for total reading time
+    const totalText = `${title} ${strippedContent}`;
     
     // Average reading speed (words per minute)
     const wordsPerMinute = 200;
     
     // Count words by splitting on whitespace and filtering out empty strings
-    const wordCount = strippedContent
+    const wordCount = totalText
       .split(/\s+/)
       .filter(word => word.length > 0)
       .length;
