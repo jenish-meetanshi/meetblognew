@@ -754,4 +754,12 @@ header .btn-outline-success:hover {
     white-space: nowrap;
   }
 }
-
+.postdetail-heromain .hero-ellipse{
+  height: 4px;
+    width: 4px;
+    background-color: #333;
+    border-radius: 50%;
+    display: inline-block;
+    margin-left: 10px;
+    margin-right: 10px;
+}
