@@ -136,7 +136,7 @@ const Header = () => {
       <Navbar bg="light" expand="lg" className="py-3">
         <div className="container">
           {/* Logo */}
-          <Navbar.Brand as={Link} to={withPrefix("/")}>
+          <Navbar.Brand as={Link} to="/">
             <img 
               src={withPrefix("/images/logo.svg")} 
               alt="Site Logo" 
