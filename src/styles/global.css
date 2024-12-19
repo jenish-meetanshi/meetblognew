@@ -659,3 +659,36 @@
 }
 
 
+/* Custom Styles for Navbar */
+header .navbar {
+  background-color: #fff;
+  border-bottom: 1px solid #e5e5e5;
+}
+
+header .navbar-brand img {
+  max-width: 150px;
+  height: auto;
+}
+
+header .navbar-nav .nav-link {
+  font-weight: 500;
+  color: #333 !important;
+}
+
+header .nav-dropdown .dropdown-menu {
+  border-radius: 4px;
+}
+
+header .form-control {
+  border-radius: 4px 0 0 4px;
+}
+
+header .btn-outline-success {
+  border-radius: 0 4px 4px 0;
+}
+
+header .btn-outline-success:hover {
+  background-color: #007bff;
+  border-color: #007bff;
+  color: #fff;
+}
