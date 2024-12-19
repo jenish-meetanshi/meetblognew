@@ -121,7 +121,7 @@ const Home = ({ data, pageContext }) => {
                     {" | "}{post.date} 
                   </span>
                   <span>
-                    {" | "}{calculateReadingTime(post.excerpt)} min read
+                     {" | "}{post.reading_time} min read
                   </span>
                 </div>
                 <h2>
@@ -160,9 +160,8 @@ const Home = ({ data, pageContext }) => {
                     {" | "}{post.date} 
                   </span>
                   <span>
-                    {" | "}{calculateReadingTime(post.excerpt)} min read
+                     {" | "}{post.reading_time} min read
                   </span>
-                    <span>{post.reading_time} min read</span>
                 </div>
               </div>
             ))
