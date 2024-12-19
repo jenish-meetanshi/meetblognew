@@ -140,7 +140,7 @@ const Header = () => {
             <img 
               src={withPrefix("/images/logo.svg")} 
               alt="Site Logo" 
-              style={{ max-width: "230px", height: "auto" }} 
+              style={{ maxWidth: "230px", height: "auto" }} 
             />
           </Navbar.Brand>
 
