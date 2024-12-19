@@ -23,39 +23,55 @@ const Home = ({ data, pageContext }) => {
   //   return time;
   // };
 
-  const calculateReadingTime = (content, title, excerpt) => {
-    // Function to clean HTML and special characters
-    const cleanText = (text) => {
-      if (!text) return '';
-      return text
-        .replace(/<[^>]*>/g, '') // Remove HTML tags
-        .replace(/\s+/g, ' ') // Normalize whitespace
-        .replace(/[^\w\s]/g, '') // Remove special characters
-        .trim();
-    };
-
-    // Clean all text content
-    const cleanContent = cleanText(content);
-    const cleanTitle = cleanText(title);
-    const cleanExcerpt = cleanText(excerpt);
-
-    // Use the longest available text (content or excerpt)
-    const textToUse = cleanContent.length > cleanExcerpt.length ? cleanContent : cleanExcerpt;
-
-    // Combine with title
-    const totalText = `${cleanTitle} ${textToUse}`;
-
-    // Calculate reading time based on characters
-    // Average reading speed: 1000 characters per minute
-    const charCount = totalText.length;
-    const readingTime = Math.max(1, Math.ceil(charCount / 1000));
-
-    // Add time for images if present
-    const imageCount = (content.match(/<img/g) || []).length;
-    const imageTime = Math.ceil(imageCount * 0.2); // 12 seconds per image
-
-    return Math.max(1, readingTime + imageTime);
+const calculateReadingTime = (post) => {
+    try {
+      // Get all the text content
+      const contentText = post.content?.replace(/<[^>]*>/g, '') || '';
+      const excerptText = post.excerpt?.replace(/<[^>]*>/g, '') || '';
+      const titleText = post.title || '';
+      
+      // Get the raw content length
+      const contentLength = contentText.length;
+      const excerptLength = excerptText.length;
+      
+      // Use database ID to ensure uniqueness
+      const postId = post.databaseId;
+      
+      // Count images
+      const imgCount = (post.content?.match(/<img/g) || []).length;
+      
+      // Count words (improved word counting)
+      const words = contentText
+        .split(/\s+/)
+        .filter(word => word.length > 0);
+      
+      // Calculate base reading time
+      // Average adult reading speed: 238 words per minute
+      const wordCount = words.length;
+      const imageAdjustment = imgCount * 12; // 12 seconds per image
+      
+      // Calculate total reading time in seconds
+      const readingTimeSeconds = (wordCount / 238) * 60 + imageAdjustment;
+      
+      // Convert to minutes and round up
+      let readingTime = Math.ceil(readingTimeSeconds / 60);
+      
+      // Ensure minimum 1 minute, maximum 20 minutes for reasonable limits
+      readingTime = Math.max(1, Math.min(20, readingTime));
+      
+      // If content is very short, use a more granular calculation
+      if (wordCount < 100) {
+        readingTime = 1;
+      }
+      
+      return readingTime;
+      
+    } catch (error) {
+      console.error('Error calculating reading time:', error);
+      return 2; // Default fallback
+    }
   };
+
 
   return (
     <main>
@@ -146,6 +162,7 @@ const Home = ({ data, pageContext }) => {
                   <span>
                     {" | "}{calculateReadingTime(post.excerpt)} min read
                   </span>
+                    <span>{post.reading_time} min read</span>
                 </div>
               </div>
             ))
@@ -232,6 +249,7 @@ export const query = graphql`
         slug
         title
         excerpt
+        reading_time
         date(formatString: "MMMM DD, YYYY")
         author {
           node {
