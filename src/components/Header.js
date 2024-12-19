@@ -149,31 +149,29 @@ const Header = () => {
 
           {/* Menu items */}
           <Navbar.Collapse id="basic-navbar-nav">
-            <Nav className="me-auto">
-              <Nav.Link as={Link} to={withPrefix("/")}>Home</Nav.Link>
-
-              {/* Dropdown Menu for Extensions */}
-              <NavDropdown title="Extensions" id="extensions-dropdown">
-                <NavDropdown.Item as={Link} to={withPrefix("/magento-2-extensions.html")}>Magento 2 Extensions</NavDropdown.Item>
-                <NavDropdown.Item as={Link} to={withPrefix("/graphql-compatible-magento-2-extensions.html")}>GraphQL Compatible M2 Extensions</NavDropdown.Item>
-                <NavDropdown.Item as={Link} to={withPrefix("/magento-extensions.html")}>Magento Extensions</NavDropdown.Item>
-                <NavDropdown.Item as={Link} to={withPrefix("/free-magento-extensions.html")}>Free Magento Extensions</NavDropdown.Item>
-                <NavDropdown.Item as={Link} to={withPrefix("/hyva-theme-magento-2-extensions.html")}>Hyva Theme Extensions</NavDropdown.Item>
-                <NavDropdown.Item as={Link} to={withPrefix("/shopify-apps.html")}>Shopify Apps</NavDropdown.Item>
-              </NavDropdown>
-
-              {/* Dropdown Menu for Services */}
-              <NavDropdown title="Services" id="services-dropdown">
-                <NavDropdown.Item as={Link} to={withPrefix("/magento-development-services.html")}>Magento Development Services</NavDropdown.Item>
-                <NavDropdown.Item as={Link} to={withPrefix("/migration-services.html")}>Migration Services</NavDropdown.Item>
-                <NavDropdown.Item as={Link} to={withPrefix("/hire-us.html")}>Hire Us</NavDropdown.Item>
-                <NavDropdown.Item as={Link} to={withPrefix("/shopify-services.html")}>Shopify Services</NavDropdown.Item>
-                <NavDropdown.Item as={Link} to={withPrefix("/shopify-migration-service.html")}>Shopify Migration Service</NavDropdown.Item>
-              </NavDropdown>
-
-              <Nav.Link as={Link} to={withPrefix("/about")}>About</Nav.Link>
-              <Nav.Link as={Link} to={withPrefix("/contacts")}>Contact</Nav.Link>
-            </Nav>
+               <Nav className="me-auto">
+                {/* Dropdown Menu for Extensions */}
+                <NavDropdown title="Extensions" id="extensions-dropdown">
+                  <NavDropdown.Item as={Link} to="https://meetanshi.com/magento-2-extensions.html">Magento 2 Extensions</NavDropdown.Item>
+                  <NavDropdown.Item as={Link} to="https://meetanshi.com/graphql-compatible-magento-2-extensions.html">GraphQL Compatible M2 Extensions</NavDropdown.Item>
+                  <NavDropdown.Item as={Link} to="https://meetanshi.com/magento-extensions.html">Magento Extensions</NavDropdown.Item>
+                  <NavDropdown.Item as={Link} to="https://meetanshi.com/free-magento-extensions.html">Free Magento Extensions</NavDropdown.Item>
+                  <NavDropdown.Item as={Link} to="https://meetanshi.com/hyva-theme-magento-2-extensions.html">Hyva Theme Extensions</NavDropdown.Item>
+                  <NavDropdown.Item as={Link} to="https://meetanshi.com/shopify-apps.html">Shopify Apps</NavDropdown.Item>
+                </NavDropdown>
+            
+                {/* Dropdown Menu for Services */}
+                <NavDropdown title="Services" id="services-dropdown">
+                  <NavDropdown.Item as={Link} to="https://meetanshi.com/magento-development-services.html">Magento Development Services</NavDropdown.Item>
+                  <NavDropdown.Item as={Link} to="https://meetanshi.com/migration-services.html">Migration Services</NavDropdown.Item>
+                  <NavDropdown.Item as={Link} to="https://meetanshi.com/hire-us.html">Hire Us</NavDropdown.Item>
+                  <NavDropdown.Item as={Link} to="https://meetanshi.com/shopify-services.html">Shopify Services</NavDropdown.Item>
+                  <NavDropdown.Item as={Link} to="https://meetanshi.com/shopify-migration-service.html">Shopify Migration Service</NavDropdown.Item>
+                </NavDropdown>
+            
+                <Nav.Link as={Link} to="https://meetanshi.com/about">About</Nav.Link>
+                <Nav.Link as={Link} to="https://meetanshi.com/contacts">Contact</Nav.Link>
+              </Nav>
 
             {/* Search Box */}
             <Form className="d-flex" onSubmit={handleSearchSubmit}>
