@@ -765,4 +765,7 @@ header .btn-outline-success:hover {
 }
 .postdetail-heromain{
   margin-bottom:0;
+  align-items: center;
+  vertical-align: middle;
+  display: flex;
 }
