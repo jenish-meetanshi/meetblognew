@@ -7,8 +7,6 @@ const SearchPage = ({ location, data }) => {
   const [query, setQuery] = useState('');
   const [results, setResults] = useState([]);
 
-  
-
   useEffect(() => {
     const urlParams = new URLSearchParams(location.search);
     const searchQuery = urlParams.get('query') || '';
