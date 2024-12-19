@@ -23,54 +23,54 @@ const Home = ({ data, pageContext }) => {
   //   return time;
   // };
 
-const calculateReadingTime = (post) => {
-    try {
-      // Get all the text content
-      const contentText = post.content?.replace(/<[^>]*>/g, '') || '';
-      const excerptText = post.excerpt?.replace(/<[^>]*>/g, '') || '';
-      const titleText = post.title || '';
+// const calculateReadingTime = (post) => {
+//     try {
+//       // Get all the text content
+//       const contentText = post.content?.replace(/<[^>]*>/g, '') || '';
+//       const excerptText = post.excerpt?.replace(/<[^>]*>/g, '') || '';
+//       const titleText = post.title || '';
       
-      // Get the raw content length
-      const contentLength = contentText.length;
-      const excerptLength = excerptText.length;
+//       // Get the raw content length
+//       const contentLength = contentText.length;
+//       const excerptLength = excerptText.length;
       
-      // Use database ID to ensure uniqueness
-      const postId = post.databaseId;
+//       // Use database ID to ensure uniqueness
+//       const postId = post.databaseId;
       
-      // Count images
-      const imgCount = (post.content?.match(/<img/g) || []).length;
+//       // Count images
+//       const imgCount = (post.content?.match(/<img/g) || []).length;
       
-      // Count words (improved word counting)
-      const words = contentText
-        .split(/\s+/)
-        .filter(word => word.length > 0);
+//       // Count words (improved word counting)
+//       const words = contentText
+//         .split(/\s+/)
+//         .filter(word => word.length > 0);
       
-      // Calculate base reading time
-      // Average adult reading speed: 238 words per minute
-      const wordCount = words.length;
-      const imageAdjustment = imgCount * 12; // 12 seconds per image
+//       // Calculate base reading time
+//       // Average adult reading speed: 238 words per minute
+//       const wordCount = words.length;
+//       const imageAdjustment = imgCount * 12; // 12 seconds per image
       
-      // Calculate total reading time in seconds
-      const readingTimeSeconds = (wordCount / 238) * 60 + imageAdjustment;
+//       // Calculate total reading time in seconds
+//       const readingTimeSeconds = (wordCount / 238) * 60 + imageAdjustment;
       
-      // Convert to minutes and round up
-      let readingTime = Math.ceil(readingTimeSeconds / 60);
+//       // Convert to minutes and round up
+//       let readingTime = Math.ceil(readingTimeSeconds / 60);
       
-      // Ensure minimum 1 minute, maximum 20 minutes for reasonable limits
-      readingTime = Math.max(1, Math.min(20, readingTime));
+//       // Ensure minimum 1 minute, maximum 20 minutes for reasonable limits
+//       readingTime = Math.max(1, Math.min(20, readingTime));
       
-      // If content is very short, use a more granular calculation
-      if (wordCount < 100) {
-        readingTime = 1;
-      }
+//       // If content is very short, use a more granular calculation
+//       if (wordCount < 100) {
+//         readingTime = 1;
+//       }
       
-      return readingTime;
+//       return readingTime;
       
-    } catch (error) {
-      console.error('Error calculating reading time:', error);
-      return 2; // Default fallback
-    }
-  };
+//     } catch (error) {
+//       console.error('Error calculating reading time:', error);
+//       return 2; // Default fallback
+//     }
+//   };
 
 
   return (
@@ -269,6 +269,7 @@ export const query = graphql`
         slug
         title
         excerpt
+        reading_time
         date(formatString: "MMMM DD, YYYY")
         author {
           node {
