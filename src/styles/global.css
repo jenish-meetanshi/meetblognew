@@ -755,11 +755,14 @@ header .btn-outline-success:hover {
   }
 }
 .postdetail-heromain .hero-ellipse{
-  height: 4px;
+   height: 4px;
     width: 4px;
     background-color: #333;
     border-radius: 50%;
     display: inline-block;
     margin-left: 10px;
     margin-right: 10px;
+}
+.postdetail-heromain{
+  margin-bottom:0;
 }
