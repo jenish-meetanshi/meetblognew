@@ -146,165 +146,15 @@ const PostDetail = ({ data }) => {
     <div className="post-detail">
       <Header />
       <div className="container">
-        <div className="row">
-          <div className="col-md-12">
-            <div className="home-hero-section post-detail-banner">
-              <h1>{post.title}</h1>
-              <p><strong>Published on:</strong> {post.date}</p>
-              <p><strong>By:</strong> {post.author.node.name}</p>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div className="container">
-        <div className="row">
-          <div className="col-md-9">
-            <div className="post-content-main" dangerouslySetInnerHTML={{ __html: post.content }} />
-
-            <div className="comments-section">
-              <h3 className="mb-4">Comments</h3>
-              {processedComments.length === 0 ? (
-                <p>No comments yet.</p>
-              ) : (
-                <ul className="list-unstyled comments-list">
-                  {processedComments.map((comment) => (
-                    <li key={comment.id} className="comment-item mb-4 p-3 border rounded">
-                      <div className="comment-header d-flex align-items-center mb-2">
-                        <div className="comment-author fw-bold me-2">{comment.author.node.name}</div>
-                        <small className="text-muted comment-date">{comment.date}</small>
-                      </div>
-                      
-                      <div 
-                        className="comment-content mb-2" 
-                        dangerouslySetInnerHTML={{ __html: comment.content }}
-                      />
-                      
-                      <button 
-                        onClick={() => handleReply(comment.id)} 
-                        className="btn btn-sm btn-outline-primary"
-                      >
-                        Reply
-                      </button>
-
-                      {/* Nested replies */}
-                      {comment.replies && comment.replies.length > 0 && (
-                        <ul className="list-unstyled nested-comments mt-3 ms-4">
-                          {comment.replies.map((reply) => (
-                            <li key={reply.id} className="nested-comment-item mb-3 p-2 bg-light rounded">
-                              <div className="comment-header d-flex align-items-center mb-2">
-                                <div className="comment-author fw-bold me-2">{reply.author.node.name}</div>
-                                <small className="text-muted comment-date">{reply.date}</small>
-                              </div>
-                              
-                              <div 
-                                className="comment-content" 
-                                dangerouslySetInnerHTML={{ __html: reply.content }}
-                              />
-                              
-                              <button 
-                                onClick={() => handleReply(reply.id)} 
-                                className="btn btn-sm btn-outline-secondary mt-2"
-                              >
-                                Reply
-                              </button>
-                            </li>
-                          ))}
-                        </ul>
-                      )}
-                    </li>
-                  ))}
-                </ul>
-              )}
-            </div>
-
-            <div className="comment-form mt-4" id="commentForm">
-              <h4 className="mb-4">{parentCommentId ? "Reply to Comment" : "Leave a Comment"}</h4>
-              <form onSubmit={handleCommentSubmit} className="p-4 border rounded bg-light">
-                <div className="row mb-3">
-                  <div className="col-md-6">
-                    <label htmlFor="commentName" className="form-label">Your Name</label>
-                    <input
-                      type="text"
-                      id="commentName"
-                      className="form-control"
-                      value={commentName}
-                      onChange={(e) => setCommentName(e.target.value)}
-                      placeholder="Enter your name"
-                      required
-                    />
-                  </div>
-                  <div className="col-md-6">
-                    <label htmlFor="commentEmail" className="form-label">Your Email</label>
-                    <input
-                      type="email"
-                      id="commentEmail"
-                      className="form-control"
-                      value={commentEmail}
-                      onChange={(e) => setCommentEmail(e.target.value)}
-                      placeholder="Enter your email"
-                      required
-                    />
-                  </div>
-                </div>
-
-                <div className="mb-3">
-                  <label htmlFor="commentText" className="form-label">Your Comment</label>
-                  <textarea
-                    id="commentText"
-                    className="form-control"
-                    value={commentText}
-                    onChange={(e) => setCommentText(e.target.value)}
-                    placeholder="Write your comment..."
-                    rows="4"
-                    required
-                  ></textarea>
-                </div>
-
-                {parentCommentId && (
-                  <div className="alert alert-info mb-3">
-                    Replying to a comment. 
-                    <button 
-                      type="button" 
-                      className="btn btn-sm btn-link" 
-                      onClick={() => setParentCommentId(null)}
-                    >
-                      Cancel Reply
-                    </button>
-                  </div>
-                )}
-
-                <div className="d-grid">
-                  <button type="submit" className="btn btn-primary">
-                    {parentCommentId ? "Reply to Comment" : "Post Comment"}
-                  </button>
-                </div>
-              </form>
-            </div>
-          </div>
-          
-          <div className="col-md-3 blog-sidebar-main">
-            <div className="sidebar-main">
-              {ctaImage && ctaLink && (
-                <div className="cta-section">
-                  <a href={ctaLink} target="_blank" rel={ctaLinkNofollow ? "nofollow" : ""}>
-                    <img src={ctaImage} alt="CTA" style={{ maxWidth: "100%" }} />
-                  </a>
-                </div>
-              )}
-
-              <div className="table-of-contents">
-                <span className="toc-title">Table of Contents</span>
-                <ul>
-                  {headings.map((heading) => (
-                    <li key={heading.id} className={`toc-${heading.level}`}>
-                      <button onClick={() => scrollToSection(heading.id)}>{heading.text}</button>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            </div>
-          </div>
+        <div className="table-of-contents">
+          <span className="toc-title">Table of Contents</span>
+          <ul>
+            {headings.map((heading) => (
+              <li key={heading.id} className={`toc-${heading.level}`}>
+                <button onClick={() => scrollToSection(heading.id)}>{heading.text}</button>
+              </li>
+            ))}
+          </ul>
         </div>
       </div>
       <Footer />
@@ -318,14 +168,6 @@ export const query = graphql`
       databaseId
       title
       content
-      date(formatString: "MMMM DD, YYYY")
-      author {
-        node {
-          name
-          userImage
-          descriptionText
-        }
-      }
       comments {
         nodes {
           id
@@ -339,14 +181,6 @@ export const query = graphql`
             }
           }
           date(formatString: "MMMM DD, YYYY")
-        }
-      }
-      categories {
-        nodes {
-          name
-          ctaImage
-          ctaLink
-          ctaLinkNofollow
         }
       }
     }
