@@ -16,7 +16,7 @@ export const onRenderBody = ({ setHeadComponents }) => {
 };
 
 export const onClientEntry = () => {
-  document.addEventListener('DOMContentLoaded', () => {
+  window.onload = () => {
     const codeBlocks = document.querySelectorAll('pre.EnlighterJSRAW');
 
     codeBlocks.forEach((block) => {
@@ -28,5 +28,6 @@ export const onClientEntry = () => {
         });
       });
     });
-  });
+  };
 };
+
