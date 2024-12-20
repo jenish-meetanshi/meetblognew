@@ -769,3 +769,79 @@ header .btn-outline-success:hover {
   vertical-align: middle;
   display: flex;
 }
+
+
+/* Parent container */
+pre.EnlighterJSRAW {
+    background-color: #2d2d2d; /* Background color similar to Enlighter's dark theme */
+    color: #f8f8f2; /* Default text color */
+    padding: 16px; /* Space inside the block */
+    border-radius: 8px; /* Rounded corners */
+    border: 1px solid #44475a; /* Border color */
+    font-size: 14px; /* Font size */
+    line-height: 1.5; /* Line height */
+    overflow: auto; /* Scroll if content overflows */
+    font-family: 'Courier New', Courier, monospace; /* Monospace font */
+    white-space: pre-wrap; /* Keep line breaks */
+}
+
+/* Line numbers */
+pre.EnlighterJSRAW[data-enlighter-linenumbers="true"] {
+    counter-reset: line;
+    padding-left: 40px; /* Space for line numbers */
+    position: relative;
+}
+
+pre.EnlighterJSRAW[data-enlighter-linenumbers="true"] code::before {
+    counter-increment: line;
+    content: counter(line);
+    display: inline-block;
+    width: 30px;
+    text-align: right;
+    margin-right: 10px;
+    color: #75715e; /* Line number color */
+}
+
+/* Syntax highlighting */
+pre.EnlighterJSRAW .keyword { color: #66d9ef; font-weight: bold; }
+pre.EnlighterJSRAW .string { color: #a6e22e; }
+pre.EnlighterJSRAW .number { color: #ae81ff; }
+pre.EnlighterJSRAW .comment { color: #75715e; font-style: italic; }
+pre.EnlighterJSRAW .operator { color: #f92672; }
+pre.EnlighterJSRAW .function { color: #e6db74; }
+
+/* Scrollbar */
+pre.EnlighterJSRAW::-webkit-scrollbar {
+    width: 10px;
+}
+
+pre.EnlighterJSRAW::-webkit-scrollbar-thumb {
+    background-color: #44475a;
+    border-radius: 10px;
+}
+
+pre.EnlighterJSRAW::-webkit-scrollbar-track {
+    background-color: #2d2d2d;
+}
+
+/* Highlighted line (if applicable) */
+pre.EnlighterJSRAW[data-enlighter-highlight] .highlight {
+    background-color: #49483e;
+    display: block;
+    margin-left: -16px;
+    padding-left: 16px;
+    margin-right: -16px;
+    padding-right: 16px;
+}
+
+/* Optional: Add title to the top */
+pre.EnlighterJSRAW[data-enlighter-title]:before {
+    content: attr(data-enlighter-title);
+    display: block;
+    background-color: #44475a;
+    color: #f8f8f2;
+    padding: 8px 16px;
+    font-weight: bold;
+    border-radius: 8px 8px 0 0;
+    margin-bottom: 8px;
+}
