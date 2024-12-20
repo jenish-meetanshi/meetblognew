@@ -14,3 +14,19 @@ export const onRenderBody = ({ setHeadComponents }) => {
     />,
   ]);
 };
+
+export const onClientEntry = () => {
+  document.addEventListener('DOMContentLoaded', () => {
+    const codeBlocks = document.querySelectorAll('pre.EnlighterJSRAW');
+
+    codeBlocks.forEach((block) => {
+      block.addEventListener('click', () => {
+        const codeText = block.textContent; // Get the code text from the block
+        navigator.clipboard.writeText(codeText).then(() => {
+          block.classList.add('copied'); // Add 'copied' class for visual feedback
+          setTimeout(() => block.classList.remove('copied'), 2000); // Remove the 'copied' message after 2 seconds
+        });
+      });
+    });
+  });
+};
