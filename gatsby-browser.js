@@ -31,3 +31,11 @@ export const onClientEntry = () => {
   };
 };
 
+
+export const onRouteUpdate = ({ location, prevLocation }) => {
+  if (prevLocation && prevLocation.pathname === location.pathname) {
+    // Prevent scroll to top behavior when navigating to the same page
+    window.scrollTo(0, 0); // Optional: scroll to the top when navigating to a new page
+  }
+};
+
