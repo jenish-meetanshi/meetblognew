@@ -771,8 +771,9 @@ header .btn-outline-success:hover {
 }
 
 
-/* Parent container */
+/* Styles for the code block */
 pre.EnlighterJSRAW {
+    position: relative; /* To position the copy button */
     background-color: #2d2d2d; /* Background color similar to Enlighter's dark theme */
     color: #f8f8f2; /* Default text color */
     padding: 16px; /* Space inside the block */
@@ -834,14 +835,29 @@ pre.EnlighterJSRAW[data-enlighter-highlight] .highlight {
     padding-right: 16px;
 }
 
-/* Optional: Add title to the top */
-pre.EnlighterJSRAW[data-enlighter-title]:before {
-    content: attr(data-enlighter-title);
-    display: block;
+/* Copy button styles */
+pre.EnlighterJSRAW::before {
+    content: 'Copy';
+    position: absolute;
+    top: 8px;
+    right: 16px;
     background-color: #44475a;
     color: #f8f8f2;
-    padding: 8px 16px;
-    font-weight: bold;
-    border-radius: 8px 8px 0 0;
-    margin-bottom: 8px;
+    font-size: 12px;
+    padding: 5px 10px;
+    border-radius: 4px;
+    cursor: pointer;
+    opacity: 0;
+    transition: opacity 0.3s ease;
 }
+
+pre.EnlighterJSRAW:hover::before {
+    opacity: 1; /* Show the copy button on hover */
+}
+
+pre.EnlighterJSRAW.copied::before {
+    content: 'Copied!';
+    background-color: #50fa7b;
+    color: #2d2d2d;
+}
+
