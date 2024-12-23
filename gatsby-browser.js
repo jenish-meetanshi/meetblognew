@@ -63,12 +63,18 @@ export const onRouteUpdate = ({ location, prevLocation }) => {
 
     setTimeout(() => {
       document.body.classList.remove('page-enter');
+      // Reset scroll to top after fade-in completes
+      window.scrollTo(0, 0);
     }, 500); // Match the duration of your CSS transition
+  } else {
+    // For the first load, ensure the page is at the top
+    window.scrollTo(0, 0);
   }
 };
 
 export const shouldUpdateScroll = () => {
-  // Prevent default scroll behavior by returning false
+  // Prevent default scroll behavior
   return false;
 };
+
 
