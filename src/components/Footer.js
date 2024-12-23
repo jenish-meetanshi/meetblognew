@@ -10,7 +10,7 @@ const Footer = () => {
       <div className="container mb-5">
       <div className="row justify-content-between">
 
-          <div className="col-lg-auto col-md-6">
+          <div className="col-lg-auto col-md-6 mb-md-3">
 
               <div className="footer-logo">
                 <a src="/">
@@ -57,7 +57,7 @@ const Footer = () => {
            
           </div>
 
-          <div className="col-lg-auto col-md-6">
+          <div className="col-lg-auto col-md-6 mb-md-3">
             <div className="footer-col-wrapper">
               <p className="footer-menu-title">Quick Links</p>
               <ul className="footer-menu">
@@ -69,7 +69,7 @@ const Footer = () => {
             </div>
           </div>
 
-          <div className="col-lg-auto col-md-6">
+          <div className="col-lg-auto col-md-6 mb-md-3">
             <div className="footer-col-wrapper">
               <p className="footer-menu-title">Customer Service</p>
               <ul className="footer-menu">
@@ -81,7 +81,7 @@ const Footer = () => {
           </div>
 
           {/* Client's Love Section */}
-          <div className="col-lg-auto col-md-6">
+          <div className="col-lg-auto col-md-6 mb-md-3">
             <div className="footer-col-wrapper">
               <p className="footer-menu-title">Client's Love</p>
               <div className="social-media">
