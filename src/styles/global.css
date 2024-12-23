@@ -467,6 +467,9 @@ h1, h2, h3, h4, h5, h6 {
   }
   .post-content-main img{
     max-width: 100%;
+    border: 1px solid rgba(51, 51, 51, .3);
+    border-radius:6px;
+    padding:10px;
   }
 
   .comments-section {
