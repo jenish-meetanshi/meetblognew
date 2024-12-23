@@ -150,9 +150,9 @@ const PostDetail = ({ data }) => {
           <div className="col-md-12">
             <div className="home-hero-section post-detail-banner">
               <h1>{post.title}</h1>
-              <span>Updated on {post.date}</span>
               <span className="postdetail-heromain">by&nbsp;<Link className="blog-detail-author-link" to={`/author/${post.author.node.slug}`}>{post.author.node.name}</Link> <span className="hero-ellipse"></span> {post.reading_time} min read</span>
-            </div>
+              <span>Updated on {post.date}</span>          
+          </div>
           </div>
         </div>
       </div>
@@ -285,13 +285,7 @@ const PostDetail = ({ data }) => {
           
           <div className="col-md-3 blog-sidebar-main">
             <div className="sidebar-main">
-              {ctaImage && ctaLink && (
-                <div className="cta-section">
-                  <a href={ctaLink} target="_blank" rel={ctaLinkNofollow ? "nofollow" : ""}>
-                    <img src={ctaImage} alt="CTA" style={{ maxWidth: "100%" }} />
-                  </a>
-                </div>
-              )}
+              
 
               <div className="table-of-contents">
                 <span className="toc-title">Table of Contents</span>
@@ -303,6 +297,14 @@ const PostDetail = ({ data }) => {
                   ))}
                 </ul>
               </div>
+
+                  {ctaImage && ctaLink && (
+                <div className="cta-section">
+                  <a href={ctaLink} target="_blank" rel={ctaLinkNofollow ? "nofollow" : ""}>
+                    <img src={ctaImage} alt="CTA" style={{ maxWidth: "100%" }} />
+                  </a>
+                </div>
+              )}
             </div>
           </div>
         </div>
