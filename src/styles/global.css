@@ -879,18 +879,17 @@ pre.EnlighterJSRAW.copied::before {
   .home-hero-section.post-detail-banner h1 {
     font-size: 32px;
     line-height: 46px;
-}
+  }
   .home-hero-section p {
     font-size: 18px;
-}
+  }
   .table-of-contents{
     padding: 8px;
   }
-
 .post-content-main h2 {
     font-size: 28px;
     line-height: 38px;
-}
+  }
   .author-details-hero{
     padding-top: 15px;
   }
@@ -899,10 +898,10 @@ pre.EnlighterJSRAW.copied::before {
   .author-detailpage-wrapper {
     max-width: 585px;
     padding-bottom: 75px;
-}
+  }
   .single-author-image {
     max-width: 340px;
-}
+  }
 }
 @media (max-width: 991.98px) { 
   .single-author-image{
@@ -933,5 +932,42 @@ pre.EnlighterJSRAW.copied::before {
   }
   .blog-list-main-container{
     margin-top:15px !important;
+  }
+  .sticky-posts-main-container {
+    padding: 40px 45px;
+    margin-top: 0;
+  }
+}
+@media (max-width: 767.98px) {
+  .home-hero-section {
+    padding: 40px 15px;
+  }
+  .sticky-posts-main-container {
+    padding: 20px 30px;
+  }
+  .blog-list-main-container .blog-list-content-wrapper:nth-child(odd){
+    border-right: 0;
+  }
+  .author-slider-container{
+    display:none;
+  }
+  .home-hero-section.post-detail-banner {
+    padding: 25px 30px;
+    text-align: left;
+  }
+  .home-hero-section.post-detail-banner h1{
+    font-size: 26px;
+    line-height: 40px;
+  }
+  .post-detail-banner p{
+    font-size: 16px;
+  }
+  .post-content-main h2 {
+    font-size: 26px;
+    line-height: 34px;
+  }
+  .post-content-main h3 {
+    font-size: 24px;
+    line-height: 34px;
   }
 }
