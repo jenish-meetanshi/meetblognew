@@ -40,7 +40,7 @@ export const shouldUpdateScroll = ({
   if (prevRouterProps && location.pathname === prevRouterProps.location.pathname) {
     return false; // Disable scroll reset
   }
-  return true; // Allow default scroll behavior for new pages
+  return false; // Allow default scroll behavior for new pages
 };
 
 
