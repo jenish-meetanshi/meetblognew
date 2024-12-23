@@ -49,9 +49,12 @@ export const onPreRouteUpdate = ({ location, prevLocation }) => {
     document.body.classList.add('page-exit');
     document.body.classList.remove('page-enter');
 
+    // Temporarily hide scrolling
+    document.body.style.overflow = 'hidden';
+
     setTimeout(() => {
       document.body.classList.remove('page-exit');
-    }, 500); // Match the duration of your CSS transition
+    }, 500); // Match CSS transition duration
   }
 };
 
@@ -63,12 +66,9 @@ export const onRouteUpdate = ({ location, prevLocation }) => {
 
     setTimeout(() => {
       document.body.classList.remove('page-enter');
-      // Reset scroll to top after fade-in completes
-      window.scrollTo(0, 0);
-    }, 500); // Match the duration of your CSS transition
-  } else {
-    // For the first load, ensure the page is at the top
-    window.scrollTo(0, 0);
+      // Restore scrolling
+      document.body.style.overflow = '';
+    }, 500); // Match CSS transition duration
   }
 };
 
@@ -76,5 +76,6 @@ export const shouldUpdateScroll = () => {
   // Prevent default scroll behavior
   return false;
 };
+
 
 
