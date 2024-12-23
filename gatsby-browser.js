@@ -32,10 +32,15 @@ export const onClientEntry = () => {
 };
 
 
-export const onRouteUpdate = ({ location, prevLocation }) => {
-  if (prevLocation && prevLocation.pathname === location.pathname) {
-    // Prevent scroll to top behavior when navigating to the same page
-    window.scrollTo(0, 0); // Optional: scroll to the top when navigating to a new page
+export const shouldUpdateScroll = ({
+  routerProps: { location },
+  prevRouterProps,
+}) => {
+  // Prevent scroll reset when navigating between pages
+  if (prevRouterProps && location.pathname === prevRouterProps.location.pathname) {
+    return false; // Disable scroll reset
   }
+  return true; // Allow default scroll behavior for new pages
 };
+
 
