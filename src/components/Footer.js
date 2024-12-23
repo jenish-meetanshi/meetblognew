@@ -36,19 +36,11 @@ const Footer = () => {
                 </div>
               </div>
           
-              <div className="footer-address">
-                <div className="d-flex align-items-start">
-                  <img className="address-icon" src={withPrefix("/images/location-icon1.svg")} alt="Location Icon" height="25" width="24" />
-                  <div>
-                    <p className="footer-address-title">USA Representative Office</p>
-                    <p className="footer-address-text">5564 Newpark Mall Rd, Newark, CA 94560, USA</p>
-                  </div>
-                </div>
-              </div>
+             
            
               <div className="footer-phone">
                 <div className="d-flex align-items-start">
-                  <img className="address-icon" src={withPrefix("/images/phoneicon.svg")} alt="Phone Icon" height="25" width="24" />
+                  <img className="address-icon" src={withPrefix("/images/phone-icon.svg")} alt="Phone Icon" height="25" width="24" />
                   <div>
                     <a className="footer-phone" src="tel:+917202997997">+91 7202 997997</a>
                   </div>
