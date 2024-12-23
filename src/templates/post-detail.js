@@ -150,8 +150,8 @@ const PostDetail = ({ data }) => {
           <div className="col-md-12">
             <div className="home-hero-section post-detail-banner">
               <h1>{post.title}</h1>
-              <p>Updated on: {post.date}</p>
-              <p className="postdetail-heromain">By: {post.author.node.name} <span className="hero-ellipse"></span> {post.reading_time} min read</p>
+              <span>Updated on {post.date}</span>
+              <span className="postdetail-heromain">by <Link to={`/author/${post.author.node.slug}`}>{post.author.node.name}</Link> <span className="hero-ellipse"></span> {post.reading_time} min read</span>
             </div>
           </div>
         </div>
@@ -325,6 +325,7 @@ export const query = graphql`
           name
           userImage
           descriptionText
+          slug
         }
       }
       comments {
