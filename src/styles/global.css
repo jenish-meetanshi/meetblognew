@@ -861,3 +861,35 @@ pre.EnlighterJSRAW.copied::before {
     color: #2d2d2d;
 }
 
+// X-Large devices (large desktops, less than 1400px)
+@media (max-width: 1399.98px) { 
+.category-list-hero .list-inline-item{
+  margin-bottom: 10px;
+}
+  .home-hero-section{
+    padding: 80px 0;
+  }
+  .sticky-posts-main-container{
+    padding: 45px 60px;
+  }
+  .blog-list-main-container h3 a, .sticky-posts-main-container h2 a{
+    font-size: 26px;
+    line-height: 38px;
+    margin-bottom: 12px;
+  }
+  .home-hero-section.post-detail-banner h1 {
+    font-size: 32px;
+    line-height: 46px;
+}
+  .home-hero-section p {
+    font-size: 18px;
+}
+  .table-of-contents{
+    padding: 8px;
+  }
+}
+.post-content-main h2 {
+    font-size: 28px;
+    line-height: 38px;
+}
+
