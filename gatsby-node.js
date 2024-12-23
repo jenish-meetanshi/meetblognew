@@ -61,6 +61,7 @@ exports.createPages = async ({ graphql, actions }) => {
         nodes {
           id
           slug
+          url
           categories {
             nodes {
               slug
@@ -136,6 +137,30 @@ exports.createPages = async ({ graphql, actions }) => {
     });
   });
 
+
+  posts.forEach((post) => {
+    const breadcrumb = [
+      { pathname: "/", crumbLabel: "Home" },
+      { pathname: "/blog", crumbLabel: "Blog" },
+      ...post.categories.nodes.map((category) => ({
+        pathname: `/category/${category.slug}/`,
+        crumbLabel: category.name,
+      })),
+      { pathname: post.uri, crumbLabel: "Post" },
+    ];
+  
+    createPage({
+      path: post.uri,
+      component: path.resolve("./src/templates/post-detail.js"),
+      context: {
+        id: post.id,
+        breadcrumb: {
+          crumbs: breadcrumb,
+        },
+      },
+    });
+  });
+  
   // Create individual post pages
   posts.forEach((post) => {
     createPage({
