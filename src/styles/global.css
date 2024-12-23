@@ -38,8 +38,6 @@ body {
 h1, h2, h3, h4, h5, h6 {
   font-family: 'Poppins', sans-serif; /* Apply Poppins font to headings */
   font-weight: 600;
-    margin-top: 30px;
-    margin-bottom: 10px;
 }
 
 .blog-detail-author-link{
@@ -471,6 +469,10 @@ h1, h2, h3, h4, h5, h6 {
     border-radius:6px;
     padding:10px;
   }
+.post-content-main h1,.post-content-main h2,.post-content-main h3,.post-content-main h4,.post-content-main h5,.post-content-main h6{
+    margin-top: 30px;
+    margin-bottom: 10px;
+}
 
   .comments-section {
     background-color: #f8f9fa;
