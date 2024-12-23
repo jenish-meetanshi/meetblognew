@@ -15,34 +15,6 @@ export const onRenderBody = ({ setHeadComponents }) => {
   ]);
 };
 
-export const onClientEntry = () => {
-  window.onload = () => {
-    const codeBlocks = document.querySelectorAll('pre.EnlighterJSRAW');
-
-    codeBlocks.forEach((block) => {
-      block.addEventListener('click', () => {
-        const codeText = block.textContent; // Get the code text from the block
-        navigator.clipboard.writeText(codeText).then(() => {
-          block.classList.add('copied'); // Add 'copied' class for visual feedback
-          setTimeout(() => block.classList.remove('copied'), 2000); // Remove the 'copied' message after 2 seconds
-        });
-      });
-    });
-  };
-};
-
-
-// export const shouldUpdateScroll = ({
-//   routerProps: { location },
-//   prevRouterProps,
-// }) => {
-//   // Prevent scroll reset when navigating between pages
-//   if (prevRouterProps && location.pathname === prevRouterProps.location.pathname) {
-//     return false; // Disable scroll reset
-//   }
-//   return false; // Allow default scroll behavior for new pages
-// };
-
 export const onPreRouteUpdate = ({ location, prevLocation }) => {
   if (prevLocation) {
     // Add fade-out class before page transition
@@ -77,5 +49,18 @@ export const shouldUpdateScroll = () => {
   return false;
 };
 
+export const onClientEntry = () => {
+  window.onload = () => {
+    const codeBlocks = document.querySelectorAll('pre.EnlighterJSRAW');
 
-
+    codeBlocks.forEach((block) => {
+      block.addEventListener('click', () => {
+        const codeText = block.textContent; // Get the code text from the block
+        navigator.clipboard.writeText(codeText).then(() => {
+          block.classList.add('copied'); // Add 'copied' class for visual feedback
+          setTimeout(() => block.classList.remove('copied'), 2000); // Remove the 'copied' message after 2 seconds
+        });
+      });
+    });
+  };
+};
