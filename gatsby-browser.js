@@ -43,39 +43,48 @@ export const onClientEntry = () => {
 //   return false; // Allow default scroll behavior for new pages
 // };
 
-export const onPreRouteUpdate = ({ location, prevLocation }) => {
-  if (prevLocation) {
-    // Add fade-out class before page transition
-    document.body.classList.add('page-exit');
-    document.body.classList.remove('page-enter');
+// export const onPreRouteUpdate = ({ location, prevLocation }) => {
+//   if (prevLocation) {
+//     // Add fade-out class before page transition
+//     document.body.classList.add('page-exit');
+//     document.body.classList.remove('page-enter');
 
-    // Temporarily hide scrolling
-    document.body.style.overflow = 'hidden';
+//     // Temporarily hide scrolling
+//     document.body.style.overflow = 'hidden';
 
-    setTimeout(() => {
-      document.body.classList.remove('page-exit');
-    }, 500); // Match CSS transition duration
-  }
-};
+//     setTimeout(() => {
+//       document.body.classList.remove('page-exit');
+//     }, 500); // Match CSS transition duration
+//   }
+// };
 
-export const onRouteUpdate = ({ location, prevLocation }) => {
-  if (prevLocation) {
-    // Add fade-in class after page transition
-    document.body.classList.add('page-enter');
-    document.body.classList.remove('page-exit');
+// export const onRouteUpdate = ({ location, prevLocation }) => {
+//   if (prevLocation) {
+//     // Add fade-in class after page transition
+//     document.body.classList.add('page-enter');
+//     document.body.classList.remove('page-exit');
 
-    setTimeout(() => {
-      document.body.classList.remove('page-enter');
-      // Restore scrolling
-      document.body.style.overflow = '';
-    }, 500); // Match CSS transition duration
-  }
-};
+//     setTimeout(() => {
+//       document.body.classList.remove('page-enter');
+//       // Restore scrolling
+//       document.body.style.overflow = '';
+//     }, 500); // Match CSS transition duration
+//   }
+// };
+
+// export const shouldUpdateScroll = () => {
+//   // Prevent default scroll behavior
+//   return false;
+// };
+
 
 export const shouldUpdateScroll = () => {
-  // Prevent default scroll behavior
+  // Prevent scroll-to-top behavior
   return false;
 };
 
-
+export const onRouteUpdate = () => {
+  // Ensure the new page always starts at the top without scrolling
+  window.scrollTo(0, 0);
+};
 
