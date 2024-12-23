@@ -6,7 +6,7 @@ body {
 
 
 .page-enter {
-  opacity: 0;
+  opacity: 1;
   position: fixed; /* Keep the page fixed during fade-in */
   top: 0;
   left: 0;
@@ -15,7 +15,7 @@ body {
 }
 
 .page-enter-active {
-/*   opacity: 1; */
+  opacity: 1;
   position: static; /* Reset after the transition */
 }
 
