@@ -32,15 +32,43 @@ export const onClientEntry = () => {
 };
 
 
-export const shouldUpdateScroll = ({
-  routerProps: { location },
-  prevRouterProps,
-}) => {
-  // Prevent scroll reset when navigating between pages
-  if (prevRouterProps && location.pathname === prevRouterProps.location.pathname) {
-    return false; // Disable scroll reset
+// export const shouldUpdateScroll = ({
+//   routerProps: { location },
+//   prevRouterProps,
+// }) => {
+//   // Prevent scroll reset when navigating between pages
+//   if (prevRouterProps && location.pathname === prevRouterProps.location.pathname) {
+//     return false; // Disable scroll reset
+//   }
+//   return false; // Allow default scroll behavior for new pages
+// };
+
+export const onPreRouteUpdate = ({ location, prevLocation }) => {
+  if (prevLocation) {
+    // Add fade-out class before page transition
+    document.body.classList.add('page-exit');
+    document.body.classList.remove('page-enter');
+
+    setTimeout(() => {
+      document.body.classList.remove('page-exit');
+    }, 500); // Match the duration of your CSS transition
   }
-  return false; // Allow default scroll behavior for new pages
 };
 
+export const onRouteUpdate = ({ location, prevLocation }) => {
+  if (prevLocation) {
+    // Add fade-in class after page transition
+    document.body.classList.add('page-enter');
+    document.body.classList.remove('page-exit');
+
+    setTimeout(() => {
+      document.body.classList.remove('page-enter');
+    }, 500); // Match the duration of your CSS transition
+  }
+};
+
+export const shouldUpdateScroll = () => {
+  // Prevent default scroll behavior by returning false
+  return false;
+};
 
