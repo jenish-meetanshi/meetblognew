@@ -40,7 +40,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .home-hero-section{
-    background: linear-gradient(140deg, #f8f7fd 0, #f7e9e9 55%, #ffaf5a 100%);
+    background: linear-gradient(140deg, rgb(0 0 0 / 5%), #f7e9e9 55%, #ffaf5a);
     padding: 101px 0 101px;
     background-repeat: no-repeat;
     background-size: cover;
@@ -630,6 +630,7 @@ h1, h2, h3, h4, h5, h6 {
 .home-hero-section.post-detail-banner h1{
   font-size: 38px;
   line-height: 54px;
+  font-weight:600;
 }
 .listing-blog-info .user-image{
   max-width:35px;
