@@ -51,6 +51,7 @@ h1, h2, h3, h4, h5, h6 {
   }
   .home-hero-section h1{
     margin-bottom: 15px;
+    font-weight:600;
   }
   .home-hero-section p{
     font-size: 20px;
@@ -892,7 +893,9 @@ pre.EnlighterJSRAW.copied::before {
     background-color: #50fa7b;
     color: #2d2d2d;
 }
-
+.blog-list-main-container h3 a, .sticky-posts-main-container h2 a{
+  font-weight: 600;
+}
 @media (max-width: 1399.98px) { 
   .category-list-hero .list-inline-item{
     margin-bottom: 10px;
