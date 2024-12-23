@@ -174,7 +174,7 @@ const Header = () => {
               </Nav>
 
             {/* Search Box */}
-            <Form className="d-flex" onSubmit={handleSearchSubmit}>
+            <Form className="d-flex mt-md-3" onSubmit={handleSearchSubmit}>
               <FormControl 
                 type="search" 
                 placeholder="Search" 
