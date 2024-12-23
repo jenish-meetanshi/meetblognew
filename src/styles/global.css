@@ -891,4 +891,47 @@ pre.EnlighterJSRAW.copied::before {
     font-size: 28px;
     line-height: 38px;
 }
+  .author-details-hero{
+    padding-top: 15px;
+  }
+}
+@media (max-width: 1199.98px) {
+  .author-detailpage-wrapper {
+    max-width: 585px;
+    padding-bottom: 75px;
+}
+  .single-author-image {
+    max-width: 340px;
+}
+}
+@media (max-width: 991.98px) { 
+  .single-author-image{
+    margin-left: auto;
+    margin-right: auto;
+    width: 230px;
+    justify-content: center;
+    display: flex;
+  }
+  .author-detailpage-wrapper{
+    max-width: 100%;
+    text-align: center;
+    padding-bottom: 0;
+  }
+  .single-author-title{
+    font-size: 32px;
+  }
+  .single-author-designation{
+    font-size: 20px;
+    margin-bottom: 15px;
+  }
+  .author-blogs-title{
+    font-size: 30px;
+    font-weight: 600;
+    line-height: 50px;
+    margin-bottom: 20px;
+    margin-top: 0;
+  }
+  .blog-list-main-container{
+    margin-top:15px !important;
+  }
 }
