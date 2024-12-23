@@ -974,3 +974,35 @@ pre.EnlighterJSRAW.copied::before {
     display:none;
   }
 }
+@media (max-width: 575.98px) { 
+  .category-list-hero .btn.active, .category-list-hero .btn:hover{
+    font-size: 15px;
+    line-height: 22px;
+    padding: 6px;
+  }
+  .sticky-posts-main-container {
+    padding: 15px 15px;
+  }
+  .blog-list-main-container h3 a, .sticky-posts-main-container h2 a{
+    font-size: 22px;
+    line-height: 32px;
+  }
+  .sticky-posts-main-container {
+    margin-bottom: 15px;
+  }
+  .blog-list-main-container .blog-list-content-wrapper{
+    margin-bottom: 10px !important;
+  }
+  .home-hero-section.post-detail-banner h1 {
+    font-size: 24px;
+    line-height: 33px;
+  }
+      .post-content-main h2 {
+        font-size: 24px;
+        line-height: 32px;
+    }
+      .post-content-main h3 {
+        font-size: 22px;
+        line-height: 30px;
+    }
+}
