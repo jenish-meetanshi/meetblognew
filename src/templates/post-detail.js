@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { graphql, Link} from "gatsby";
+import { Breadcrumb } from "gatsby-plugin-breadcrumb"; // Import Breadcrumb
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 
-const PostDetail = ({ data }) => {
+const PostDetail = ({ data, pageContext }) => {
   const post = data.wpPost;
+  const { breadcrumb } = pageContext;
   const [headings, setHeadings] = useState([]);
   const [commentText, setCommentText] = useState("");
   const [commentName, setCommentName] = useState("");
@@ -149,6 +151,11 @@ const PostDetail = ({ data }) => {
         <div className="row">
           <div className="col-md-12">
             <div className="home-hero-section post-detail-banner">
+            <Breadcrumb className="post-detail-hero-breadcrumb"
+                  crumbs={breadcrumb.crumbs}
+                  crumbSeparator=" / "
+                  crumbLabel={breadcrumb.crumbs[breadcrumb.crumbs.length - 1].crumbLabel}
+                />
               <h1>{post.title}</h1>
               <span className="postdetail-heromain">by&nbsp;<Link className="blog-detail-author-link" to={`/author/${post.author.node.slug}`}>{post.author.node.name}</Link> <span className="hero-ellipse"></span> {post.reading_time} min read</span>
               <span>Updated on {post.date}</span>          
