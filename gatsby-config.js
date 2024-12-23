@@ -38,5 +38,18 @@ module.exports = {
         path: `${__dirname}/src/images`, // Path to your image folder
       },
     },
+     {
+      resolve: `gatsby-plugin-breadcrumb`,
+      options: {
+        useAutoGen: true, // Automatically generate breadcrumbs
+        exclude: [`/404`, `/404.html`], // Exclude pages from breadcrumbs
+        crumbLabelUpdates: [
+          {
+            pathname: "/blog",
+            crumbLabel: "Blog",
+          },
+        ],
+      },
+    },
   ],
 };
