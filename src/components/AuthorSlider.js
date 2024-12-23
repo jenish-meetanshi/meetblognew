@@ -76,7 +76,7 @@ const AuthorSlider = () => {
       <div className="container">
         <div className="row">
         {authors.map((author) => (
-          <div className="col-md-3 author-card mb-3">
+          <div className="col-lg-3 col-md-4 col-sm-2 author-card mb-3">
             <Link to={`/author/${author.slug}`}>
               <img
                 src={author.userImage}
