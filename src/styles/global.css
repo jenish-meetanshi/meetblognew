@@ -3,7 +3,8 @@ body {
   margin: 0;
   padding: 0;
 }
-/* Define a fade-in effect */
+
+
 .page-enter {
   opacity: 0;
   transition: opacity 0.5s ease-in;
@@ -21,6 +22,7 @@ body {
 .page-exit-active {
   opacity: 0;
 }
+
 
 h1, h2, h3, h4, h5, h6 {
   font-family: 'Poppins', sans-serif; /* Apply Poppins font to headings */
