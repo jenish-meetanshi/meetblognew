@@ -975,7 +975,7 @@ pre.EnlighterJSRAW.copied::before {
   }
 }
 @media (max-width: 575.98px) { 
-  .category-list-hero .btn.active, .category-list-hero .btn:hover{
+  .category-list-hero .btn.active, .category-list-hero .btn:hover, .category-list-hero .btn-category-link{
     font-size: 15px;
     line-height: 22px;
     padding: 6px;
