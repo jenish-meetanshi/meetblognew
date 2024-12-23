@@ -970,4 +970,7 @@ pre.EnlighterJSRAW.copied::before {
     font-size: 24px;
     line-height: 34px;
   }
+  .blog-sidebar-main{
+    display:none;
+  }
 }
