@@ -11,7 +11,7 @@
 const { createProxyMiddleware } = require("http-proxy-middleware");
 
 module.exports = {
-  pathPrefix: "/blog/testwordpress/public", 
+  pathPrefix: "/blog/testwordpress", 
   developMiddleware: app => {
     app.use(
       "/api/", // Replace with your API path
