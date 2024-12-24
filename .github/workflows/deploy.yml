@@ -30,7 +30,7 @@ jobs:
           host: 5d43103688.nxcli.io
           username: afd62358_7
           key: ${{ secrets.SSH_PRIVATE_KEY }}  # Using the private SSH key stored as a secret
-          source: ./public/*
-          target: /chroot/home/afd62358/5d43103688.nxcli.io/pub/blog/testwordpress
+          source: ./public/*  # Source: all content inside the 'public' folder
+          target: /chroot/home/afd62358/5d43103688.nxcli.io/pub/blog/testwordpress/  # Target without including 'public'
           rm: true
           debug: true
