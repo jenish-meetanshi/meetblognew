@@ -33,4 +33,5 @@ jobs:
           source: ./public/*  # Source: all content inside the 'public' folder
           target: /chroot/home/afd62358/5d43103688.nxcli.io/pub/blog/testwordpress/  # Target without including 'public'
           rm: true
+          recursive: true  # Ensure recursive transfer of contents
           debug: true
