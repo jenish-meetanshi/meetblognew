@@ -42,7 +42,7 @@ const Footer = () => {
                 <div className="d-flex align-items-start">
                   <img className="address-icon" src={withPrefix("/images/phone-icon.svg")} alt="Phone Icon" height="25" width="24" />
                   <div>
-                    <a className="footer-phone" src="tel:+917202997997">+91 7202 997997</a>
+                    <a className="footer-phone" href="tel:+917202997997">+91 7202 997997</a>
                   </div>
                 </div>
               </div>
@@ -53,10 +53,10 @@ const Footer = () => {
             <div className="footer-col-wrapper">
               <p className="footer-menu-title">Quick Links</p>
               <ul className="footer-menu">
-                <li><a src="#">Career</a></li>
-                <li><a src="#">Free Magento Extensions</a></li>
-                <li><a src="#">WooCommerce Plugins</a></li>
-                <li><a src="#">Sitemap</a></li>
+                <li><a href="https://meetanshi.com/career">Career</a></li>
+                <li><a href="https://meetanshi.com/free-magento-extensions.html">Free Magento Extensions</a></li>
+                <li><a href="https://meetanshi.com/woocommerce-plugins.html">WooCommerce Plugins</a></li>
+                <li><a href="https://meetanshi.com/blog/sitemap/">Sitemap</a></li>
               </ul>
             </div>
           </div>
@@ -65,9 +65,9 @@ const Footer = () => {
             <div className="footer-col-wrapper">
               <p className="footer-menu-title">Customer Service</p>
               <ul className="footer-menu">
-                <li><a src="#">About Us</a></li>
-                <li><a src="#">Contact</a></li>
-                <li><a src="#">Blog</a></li>
+                <li><a href="https://meetanshi.com/about">About Us</a></li>
+                <li><a href="https://meetanshi.com/contacts">Contact</a></li>
+                <li><a href="https://meetanshi.com/blog/">Blog</a></li>
               </ul>
             </div>
           </div>
@@ -121,16 +121,16 @@ const Footer = () => {
               <div className="col-md-6 text-end">
                 <ul className="footer-copy-links">
                   <li>
-                    <a src="https://meetanshi.com/refund-policy" target="_blank">Refund Policy</a>
+                    <a href="https://meetanshi.com/refund-policy" target="_blank">Refund Policy</a>
                   </li>
                   <li>
-                    <a src="https://meetanshi.com/end-user-license-agreement" target="_blank">EULA</a>
+                    <a href="https://meetanshi.com/end-user-license-agreement" target="_blank">EULA</a>
                   </li>
                   <li>
-                    <a src="https://meetanshi.com/terms-conditions" target="_blank">Terms &amp; Conditions</a>
+                    <a href="https://meetanshi.com/terms-conditions" target="_blank">Terms &amp; Conditions</a>
                   </li>
                   <li>
-                    <a src="https://meetanshi.com/privacy-policy" target="_blank">Privacy Policy</a>
+                    <a href="https://meetanshi.com/privacy-policy" target="_blank">Privacy Policy</a>
                   </li>
                 </ul>
               </div>
