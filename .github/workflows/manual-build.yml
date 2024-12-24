@@ -1,4 +1,5 @@
 name: Manual Gatsby Site Build
+
 on:
   repository_dispatch:
     types: [manual-build]
@@ -6,42 +7,21 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
-        with:
-          fetch-depth: 1
 
       - name: Set up Node.js
         uses: actions/setup-node@v3
         with:
           node-version: 18
-          # Removed cache option since we don't have package-lock.json
-
-      - name: Cache Gatsby files
-        uses: actions/cache@v3
-        with:
-          path: |
-            public
-            .cache
-            node_modules
-          key: ${{ runner.os }}-gatsby-build-${{ hashFiles('package.json') }}
-          restore-keys: |
-            ${{ runner.os }}-gatsby-build-
 
       - name: Install dependencies
-        run: |
-          npm install  # Using npm install instead of npm ci
-        env:
-          NODE_OPTIONS: "--max_old_space_size=4096"
+        run: npm install
 
-      - name: Build Gatsby site
-        run: |
-          npm run build
-        env:
-          GATSBY_EXPERIMENTAL_PAGE_BUILD_ON_DATA_CHANGES: true
-          CI: true
-          NODE_OPTIONS: "--max_old_space_size=4096"
+      - name: Build Gatsby site with prefix paths
+        run: npm run build -- --prefix-paths
 
       - name: Deploy to Nexcess
         uses: appleboy/scp-action@v0.1.4
@@ -50,7 +30,16 @@ jobs:
           username: afd62358_7
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           source: ./public/
-          target: /chroot/home/afd62358/5d43103688.nxcli.io/pub/blog/testwordpress
+          target: /chroot/home/afd62358/5d43103688.nxcli.io/pub/blog/testwordpress/
           rm: true
-          strip_components: 1
-          overwrite: true
+          debug: true
+
+      - name: Move files to correct location
+        uses: appleboy/ssh-action@v0.1.3
+        with:
+          host: 5d43103688.nxcli.io
+          username: afd62358_7
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          script: |
+            mv /chroot/home/afd62358/5d43103688.nxcli.io/pub/blog/testwordpress/public/* /chroot/home/afd62358/5d43103688.nxcli.io/pub/blog/testwordpress/
+            rmdir /chroot/home/afd62358/5d43103688.nxcli.io/pub/blog/testwordpress/public
