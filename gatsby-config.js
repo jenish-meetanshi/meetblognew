@@ -16,7 +16,7 @@ module.exports = {
     app.use(
       "/api/", // Replace with your API path
       createProxyMiddleware({
-        target: "https://5d43103688.nxcli.io/blog/", // Replace with your target API URL
+        target: "https://mitfestival.app/meetanshiblog/", // Replace with your target API URL
         changeOrigin: true,
       })
     );
@@ -25,7 +25,7 @@ module.exports = {
     {
       resolve: `gatsby-source-wordpress`,
       options: {
-        url: `https://5d43103688.nxcli.io/blog/graphql`,
+        url: `https://mitfestival.app/meetanshiblog/graphql`,
       },
     },
     `gatsby-plugin-image`, 
