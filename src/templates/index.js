@@ -1,5 +1,6 @@
 import React from "react";
 import { graphql, Link } from "gatsby";
+import { Helmet } from "react-helmet";
 import Header from "../components/Header";
 import Hero from "../components/Hero";
 import Footer from "../components/Footer";
@@ -16,65 +17,53 @@ const Home = ({ data, pageContext }) => {
   const prevPage = currentPage === 2 ? `/` : `/page/${currentPage - 1}`;
   const nextPage = `/page/${currentPage + 1}`;
 
-  // const calculateReadingTime = (content) => {
-  //   const wordsPerMinute = 200; // Average reading speed
-  //   const textLength = content.split(' ').length;
-  //   const time = Math.ceil(textLength / wordsPerMinute);
-  //   return time;
-  // };
+  
+const websiteSchema = {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "url": "https://meetanshi.com/blog/",
+    "potentialAction": {
+      "@type": "SearchAction",
+      "target": "https://meetanshi.com/blog/?s={search_term_string}",
+      "query-input": "required name=search_term_string",
+    },
+  };
 
-// const calculateReadingTime = (post) => {
-//     try {
-//       // Get all the text content
-//       const contentText = post.content?.replace(/<[^>]*>/g, '') || '';
-//       const excerptText = post.excerpt?.replace(/<[^>]*>/g, '') || '';
-//       const titleText = post.title || '';
-      
-//       // Get the raw content length
-//       const contentLength = contentText.length;
-//       const excerptLength = excerptText.length;
-      
-//       // Use database ID to ensure uniqueness
-//       const postId = post.databaseId;
-      
-//       // Count images
-//       const imgCount = (post.content?.match(/<img/g) || []).length;
-      
-//       // Count words (improved word counting)
-//       const words = contentText
-//         .split(/\s+/)
-//         .filter(word => word.length > 0);
-      
-//       // Calculate base reading time
-//       // Average adult reading speed: 238 words per minute
-//       const wordCount = words.length;
-//       const imageAdjustment = imgCount * 12; // 12 seconds per image
-      
-//       // Calculate total reading time in seconds
-//       const readingTimeSeconds = (wordCount / 238) * 60 + imageAdjustment;
-      
-//       // Convert to minutes and round up
-//       let readingTime = Math.ceil(readingTimeSeconds / 60);
-      
-//       // Ensure minimum 1 minute, maximum 20 minutes for reasonable limits
-//       readingTime = Math.max(1, Math.min(20, readingTime));
-      
-//       // If content is very short, use a more granular calculation
-//       if (wordCount < 100) {
-//         readingTime = 1;
-//       }
-      
-//       return readingTime;
-      
-//     } catch (error) {
-//       console.error('Error calculating reading time:', error);
-//       return 2; // Default fallback
-//     }
-//   };
+  const organizationSchema = {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "legalName": "Meetanshi Technologies LLP",
+    "name": "Meetanshi",
+    "url": "https://meetanshi.com/",
+    "sameAs": [
+      "https://in.linkedin.com/company/meetanshi",
+      "https://www.youtube.com/c/MeetanshiInc",
+      "https://www.facebook.com/MeetanshiInc/",
+      "https://www.instagram.com/meetanshiinc/",
+      "https://x.com/MeetanshiInc",
+      "https://github.com/MeetanshiInc",
+    ],
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "305, Victoria Prime, Near Water Tank, Kaliyabid",
+      "addressLocality": "Bhavnagar",
+      "addressRegion": "GJ",
+      "postalCode": "364002",
+      "addressCountry": "IN",
+    },
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://meetanshi.com/media/logo/stores/1/logo.png",
+    },
+  };
 
 
   return (
     <main>
+      <Helmet>
+        <script type="application/ld+json">{JSON.stringify(websiteSchema)}</script>
+        <script type="application/ld+json">{JSON.stringify(organizationSchema)}</script>
+      </Helmet>
       <Header />
       <Hero />
       {/* Categories List */}
