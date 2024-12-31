@@ -154,18 +154,24 @@ const PostDetail = ({ data, pageContext }) => {
             "@type": "Article",
             mainEntityOfPage: {
               "@type": "WebPage",
-              "@id": post.uri,
+              "@id": post.slug,
             },
             headline: post.title,
             description: post.excerpt,
             author: {
               "@type": "Person",
-              name: post.author.node.name,
-              jobTitle: author.designation || "Author",
-              knowsAbout: author.descriptionText || [],
+              name: post.nodes.author.node.name,
+              jobTitle: post.nodes.author.node.designation || "Author",
+              knowsAbout: post.nodes.author.node.descriptionText || [],
               image: {
                 "@type": "ImageObject",
-                url: post.author.node.slug || "",
+                _url: post.nodes.author.node.slug || "",
+                get url() {
+                  return this._url;
+                },
+                set url(value) {
+                  this._url = value;
+                },
               },
             },
             datePublished: post.date,
