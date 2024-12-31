@@ -17,52 +17,50 @@ const Home = ({ data, pageContext }) => {
   const prevPage = currentPage === 2 ? `/` : `/page/${currentPage - 1}`;
   const nextPage = `/page/${currentPage + 1}`;
 
-  
-const websiteSchema = {
-    "@context": "https://schema.org",
-    "@type": "WebSite",
-    "url": "https://meetanshi.com/blog/",
-    "potentialAction": {
-      "@type": "SearchAction",
-      "target": "https://meetanshi.com/blog/?s={search_term_string}",
-      "query-input": "required name=search_term_string",
-    },
-  };
-
-  const organizationSchema = {
-    "@context": "https://schema.org",
-    "@type": "Organization",
-    "legalName": "Meetanshi Technologies LLP",
-    "name": "Meetanshi",
-    "url": "https://meetanshi.com/",
-    "sameAs": [
-      "https://in.linkedin.com/company/meetanshi",
-      "https://www.youtube.com/c/MeetanshiInc",
-      "https://www.facebook.com/MeetanshiInc/",
-      "https://www.instagram.com/meetanshiinc/",
-      "https://x.com/MeetanshiInc",
-      "https://github.com/MeetanshiInc",
-    ],
-    "address": {
-      "@type": "PostalAddress",
-      "streetAddress": "305, Victoria Prime, Near Water Tank, Kaliyabid",
-      "addressLocality": "Bhavnagar",
-      "addressRegion": "GJ",
-      "postalCode": "364002",
-      "addressCountry": "IN",
-    },
-    "logo": {
-      "@type": "ImageObject",
-      "url": "https://meetanshi.com/media/logo/stores/1/logo.png",
-    },
-  };
-
-
   return (
     <main>
       <Helmet>
-        <script type="application/ld+json">{JSON.stringify(websiteSchema)}</script>
-        <script type="application/ld+json">{JSON.stringify(organizationSchema)}</script>
+        <script type="application/ld+json">
+          {JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "WebSite",
+            url: "https://meetanshi.com/blog/",
+            potentialAction: {
+              "@type": "SearchAction",
+              target: "https://meetanshi.com/blog/?s={search_term_string}",
+              "query-input": "required name=search_term_string",
+            },
+          })}
+        </script>
+        <script type="application/ld+json">
+          {JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "Organization",
+            legalName: "Meetanshi Technologies LLP",
+            name: "Meetanshi",
+            url: "https://meetanshi.com/",
+            sameAs: [
+              "https://in.linkedin.com/company/meetanshi",
+              "https://www.youtube.com/c/MeetanshiInc",
+              "https://www.facebook.com/MeetanshiInc/",
+              "https://www.instagram.com/meetanshiinc/",
+              "https://x.com/MeetanshiInc",
+              "https://github.com/MeetanshiInc",
+            ],
+            address: {
+              "@type": "PostalAddress",
+              streetAddress: "305, Victoria Prime, Near Water Tank, Kaliyabid",
+              addressLocality: "Bhavnagar",
+              addressRegion: "GJ",
+              postalCode: "364002",
+              addressCountry: "IN",
+            },
+            logo: {
+              "@type": "ImageObject",
+              url: "https://meetanshi.com/media/logo/stores/1/logo.png",
+            },
+          })}
+        </script>
       </Helmet>
       <Header />
       <Hero />
