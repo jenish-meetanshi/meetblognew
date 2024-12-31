@@ -1,6 +1,7 @@
 import React from "react";
 import Header from "../components/Header";
 import { graphql, Link } from "gatsby";
+import { Helmet } from "react-helmet";
 import Footer from "../components/Footer";
 
 const AuthorDetail = ({ data, pageContext }) => {
@@ -46,6 +47,54 @@ const AuthorDetail = ({ data, pageContext }) => {
 
   return (
     <div>
+    <Helmet>
+        <script type="application/ld+json">
+          {JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "ProfilePage",
+            "dateModified": new Date().toISOString(),
+            "mainEntity": {
+              "@type": "Person",
+              "name": author.name,
+              "description": author.descriptionText,
+              "jobTitle": author.designation,
+              "image": {
+                "@type": "ImageObject",
+                "url": author.fullImage,
+              },
+            },
+          })}
+        </script>
+        <script type="application/ld+json">
+          {JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "Organization",
+            legalName: "Meetanshi Technologies LLP",
+            name: "Meetanshi",
+            url: "https://meetanshi.com/",
+            sameAs: [
+              "https://in.linkedin.com/company/meetanshi",
+              "https://www.youtube.com/c/MeetanshiInc",
+              "https://www.facebook.com/MeetanshiInc/",
+              "https://www.instagram.com/meetanshiinc/",
+              "https://x.com/MeetanshiInc",
+              "https://github.com/MeetanshiInc",
+            ],
+            address: {
+              "@type": "PostalAddress",
+              streetAddress: "305, Victoria Prime, Near Water Tank, Kaliyabid",
+              addressLocality: "Bhavnagar",
+              addressRegion: "GJ",
+              postalCode: "364002",
+              addressCountry: "IN",
+            },
+            logo: {
+              "@type": "ImageObject",
+              url: "https://meetanshi.com/media/logo/stores/1/logo.png",
+            },
+          })}
+        </script>
+      </Helmet>
       <Header />
      <div className="author-details-hero">
         <div className="container">
