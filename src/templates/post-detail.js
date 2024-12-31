@@ -158,22 +158,6 @@ const PostDetail = ({ data, pageContext }) => {
             },
             headline: post.title,
             description: post.excerpt,
-            author: {
-              "@type": "Person",
-              name: post.nodes.author.node.name,
-              jobTitle: post.nodes.author.node.designation || "Author",
-              knowsAbout: post.nodes.author.node.descriptionText || [],
-              image: {
-                "@type": "ImageObject",
-                _url: post.nodes.author.node.slug || "",
-                get url() {
-                  return this._url;
-                },
-                set url(value) {
-                  this._url = value;
-                },
-              },
-            },
             datePublished: post.date,
             publisher: {
               "@type": "Organization",
