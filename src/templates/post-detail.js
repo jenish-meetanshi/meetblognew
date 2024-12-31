@@ -161,20 +161,14 @@ const PostDetail = ({ data, pageContext }) => {
             author: {
               "@type": "Person",
               name: post.author.node.name,
-              jobTitle: post.author.node.jobTitle || "Author",
-              knowsAbout: post.author.node.knowsAbout || [],
+              jobTitle: author.designation || "Author",
+              knowsAbout: author.descriptionText || [],
               image: {
                 "@type": "ImageObject",
-                url: post.author.node.avatar.url || "",
+                url: post.author.node.slug || "",
               },
-              sameAs: post.author.node.socialLinks || [],
             },
             datePublished: post.date,
-            dateModified: post.modified,
-            image: {
-              "@type": "ImageObject",
-              url: post.featuredImage?.node?.sourceUrl || "",
-            },
             publisher: {
               "@type": "Organization",
               legalName: "Meetanshi Technologies LLP",
@@ -379,6 +373,7 @@ export const query = graphql`
       databaseId
       title
       content
+      excerpt
       reading_time
       date(formatString: "MMMM DD, YYYY")
       author {
@@ -387,6 +382,7 @@ export const query = graphql`
           userImage
           descriptionText
           slug
+          designation
         }
       }
       comments {
