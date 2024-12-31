@@ -1,4 +1,5 @@
 import React from "react";
+import { Helmet } from "react-helmet";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import { graphql, Link } from "gatsby";
@@ -47,6 +48,58 @@ const CategoryDetail = ({ data, pageContext }) => {
 
   return (
     <div>
+
+    <Helmet>
+        <script type="application/ld+json">
+          {JSON.stringify({
+           "@context": "https://schema.org",
+            "@type": "ItemList",
+            "itemListElement": posts.map((post, index) => ({
+              "@type": "ListItem",
+              "position": index + 1,
+              "item": {
+                "@type": "Article",
+                "headline": post.title,
+                "url": `https://meetanshi.com/blog/${post.slug}`,
+                "author": {
+                  "@type": "Person",
+                  "name": post.author.node.name,
+                  "url": `https://meetanshi.com/blog/author/${post.author.node.slug}`,
+                },
+              },
+            })),
+          })}
+        </script>
+        <script type="application/ld+json">
+          {JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "Organization",
+            legalName: "Meetanshi Technologies LLP",
+            name: "Meetanshi",
+            url: "https://meetanshi.com/",
+            sameAs: [
+              "https://in.linkedin.com/company/meetanshi",
+              "https://www.youtube.com/c/MeetanshiInc",
+              "https://www.facebook.com/MeetanshiInc/",
+              "https://www.instagram.com/meetanshiinc/",
+              "https://x.com/MeetanshiInc",
+              "https://github.com/MeetanshiInc",
+            ],
+            address: {
+              "@type": "PostalAddress",
+              streetAddress: "305, Victoria Prime, Near Water Tank, Kaliyabid",
+              addressLocality: "Bhavnagar",
+              addressRegion: "GJ",
+              postalCode: "364002",
+              addressCountry: "IN",
+            },
+            logo: {
+              "@type": "ImageObject",
+              url: "https://meetanshi.com/media/logo/stores/1/logo.png",
+            },
+          })}
+        </script>
+      </Helmet>
       <Header />
       <section>
         <div className="container">
