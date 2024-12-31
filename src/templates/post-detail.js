@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { graphql, Link} from "gatsby";
 import { Breadcrumb } from "gatsby-plugin-breadcrumb"; // Import Breadcrumb
+import { Helmet } from "react-helmet";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 
@@ -145,6 +146,56 @@ const PostDetail = ({ data, pageContext }) => {
   };
 
   return (
+  <main>
+    <Helmet>
+        <script type="application/ld+json">
+          {JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "Article",
+            mainEntityOfPage: {
+              "@type": "WebPage",
+              "@id": post.uri,
+            },
+            headline: post.title,
+            description: post.excerpt,
+            author: {
+              "@type": "Person",
+              name: post.author.node.name,
+              jobTitle: post.author.node.jobTitle || "Author",
+              knowsAbout: post.author.node.knowsAbout || [],
+              image: {
+                "@type": "ImageObject",
+                url: post.author.node.avatar.url || "",
+              },
+              sameAs: post.author.node.socialLinks || [],
+            },
+            datePublished: post.date,
+            dateModified: post.modified,
+            image: {
+              "@type": "ImageObject",
+              url: post.featuredImage?.node?.sourceUrl || "",
+            },
+            publisher: {
+              "@type": "Organization",
+              legalName: "Meetanshi Technologies LLP",
+              name: "Meetanshi",
+              url: "https://meetanshi.com/",
+              sameAs: [
+                "https://in.linkedin.com/company/meetanshi",
+                "https://www.youtube.com/c/MeetanshiInc",
+                "https://www.facebook.com/MeetanshiInc/",
+                "https://www.instagram.com/meetanshiinc/",
+                "https://x.com/MeetanshiInc",
+                "https://github.com/MeetanshiInc",
+              ],
+              logo: {
+                "@type": "ImageObject",
+                url: "https://meetanshi.com/media/logo/stores/1/logo.png",
+              },
+            },
+          })}
+        </script>
+      </Helmet>
     <div className="post-detail">
       <Header />
       <div className="container">
@@ -318,6 +369,7 @@ const PostDetail = ({ data, pageContext }) => {
       </div>
       <Footer />
     </div>
+  </main>
   );
 };
 
