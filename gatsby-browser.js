@@ -65,9 +65,6 @@ export const onClientEntry = () => {
   };
 };
 
-
-const React = require("react");
-
 exports.onRenderBody = ({ setHeadComponents }) => {
   setHeadComponents([
     <meta name="robots" content="noindex, nofollow" />,
