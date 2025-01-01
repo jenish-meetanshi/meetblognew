@@ -43,37 +43,11 @@ const AuthorSlider = () => {
       },
     ],
   };
-
-  // const settings = {
-  //   dots: true,
-  //   infinite: true,
-  //   speed: 500,
-  //   slidesToShow: 1, // Doesn't matter when `variableWidth` is true
-  //   slidesToScroll: 1,
-  //   variableWidth: true, // Allows custom width for each slide
-  //   responsive: [
-  //     {
-  //       breakpoint: 1024,
-  //       settings: {
-  //         variableWidth: true,
-  //         slidesToScroll: 1,
-  //       },
-  //     },
-  //     {
-  //       breakpoint: 600,
-  //       settings: {
-  //         variableWidth: true,
-  //         slidesToScroll: 1,
-  //       },
-  //     },
-  //   ],
-  // };
   
-
   return (
     <div className="author-slider-container">
       <h2 className="author-slider-title mb-4">Meet Our Authors</h2>
-      <div className="container">
+      <div className="container-lg">
         <div className="row">
         {authors.map((author) => (
           <div className="col-xl-3 col-lg-4 col-md-6 col-sm-6 author-card mb-3">
