@@ -113,7 +113,7 @@ const PostDetail = ({ data, pageContext }) => {
       </Helmet>
     <div className="post-detail">
       <Header />
-      <div className="container">
+      <div className="container-lg">
         <div className="row">
           <div className="col-md-12">
             <div className="home-hero-section post-detail-banner">
@@ -130,7 +130,7 @@ const PostDetail = ({ data, pageContext }) => {
         </div>
       </div>
 
-      <div className="container">
+      <div className="container-lg">
         <div className="row">
           <div className="col-md-9">
             <div className="post-content-main" dangerouslySetInnerHTML={{ __html: post.content }} />
