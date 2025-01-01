@@ -1,4 +1,3 @@
-import React from "react";
 import "bootstrap/dist/css/bootstrap.min.css"; // Import Bootstrap CSS globally
 import "./src/styles/global.css"; // Import your custom global styles
 import { config } from '@fortawesome/fontawesome-svg-core'
@@ -63,10 +62,4 @@ export const onClientEntry = () => {
       });
     });
   };
-};
-
-export const onRenderBody = ({ setHeadComponents }) => {
-  setHeadComponents([
-    <meta name="robots" content="noindex, nofollow" key="meta-robots" />,
-  ]);
 };
