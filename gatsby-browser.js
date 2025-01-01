@@ -64,3 +64,9 @@ export const onClientEntry = () => {
     });
   };
 };
+
+export const onRenderBody = ({ setHeadComponents }) => {
+  setHeadComponents([
+    <meta name="robots" content="noindex, nofollow" key="meta-robots" />,
+  ]);
+};
