@@ -7,15 +7,10 @@ const Footer = () => {
   return (
    <>
    <footer className="site-footer">
-      <div className="container mb-5">
+      <div className="container-lg mb-5">
       <div className="row justify-content-between">
-
           <div className="col-lg-auto col-md-6 md-mb-3">
-
               <div className="footer-logo">
-                <a src="/">
-                  
-                </a>
                 <Link to="/">
                 {/* Use the static logo image URL here */}
                 <img
@@ -25,7 +20,6 @@ const Footer = () => {
                 />
               </Link>
               </div>
-          
               <div className="footer-address">
                 <div className="d-flex align-items-start">
                   <img className="address-icon" src={withPrefix("/images/location-icon1.svg")} alt="Location Icon" height="25" width="24" />
@@ -35,9 +29,6 @@ const Footer = () => {
                   </div>
                 </div>
               </div>
-          
-             
-           
               <div className="footer-phone">
                 <div className="d-flex align-items-start">
                   <img className="address-icon" src={withPrefix("/images/phone-icon.svg")} alt="Phone Icon" height="25" width="24" />
@@ -46,9 +37,7 @@ const Footer = () => {
                   </div>
                 </div>
               </div>
-           
           </div>
-
           <div className="col-lg-auto col-md-6 md-mb-3">
             <div className="footer-col-wrapper">
               <p className="footer-menu-title">Quick Links</p>
@@ -60,7 +49,6 @@ const Footer = () => {
               </ul>
             </div>
           </div>
-
           <div className="col-lg-auto col-md-6 md-mb-3">
             <div className="footer-col-wrapper">
               <p className="footer-menu-title">Customer Service</p>
@@ -71,47 +59,40 @@ const Footer = () => {
               </ul>
             </div>
           </div>
-
           {/* Client's Love Section */}
           <div className="col-lg-auto col-md-6 md-mb-3">
             <div className="footer-col-wrapper">
               <p className="footer-menu-title">Client's Love</p>
-              <div className="social-media">
-            <ul>
-                                    <li>
-                        <a target="_blank" href="https://www.facebook.com/MeetanshiInc/" title="Facebook"><i className="fab fa-classic fa-brands fa-facebook-f"></i></a>
-                    </li>
-                                    <li>
-                        <a target="_blank" href="https://x.com/MeetanshiInc" title="Twitter"><i className="fab fa-classic fa-brands fa-x-twitter"></i></a>
-                    </li>
-                                    <li>
-                        <a target="_blank" href="https://www.linkedin.com/company/meetanshi/" title="LinkedIn"><i className="fab fa-classic fa-brands fa-linkedin-in"></i></a>
-                    </li>
-                                    <li>
-                        <a target="_blank" href="https://www.youtube.com/channel/UCYsTAn7JerbeZK-KpGFuJWw" title="YouTube"><i className="fab fa-classic fa-brands fa-youtube"></i></a>
-                    </li>
-                                    <li>
-                        <a target="_blank" href="https://github.com/MeetanshiInc" title="GitHub"><i className="fab fa-classic fa-brands fa-github"></i></a>
-                    </li>
-                            </ul>
-        </div>
-
-        <div class="net-zero-website">
-                <Link to="https://tree-nation.com/profile/impact/meetanshi#co2">
-									<img 
-                   
-                   src="https://meetanshi.com/blog/wp-content/uploads/2024/07/net-zero.png" // Replace with the actual path to your static logo
-                   alt="Site Logo"
-                   />
-								 </Link>
-							</div>
+        	<div className="social-media">
+	        <ul>
+	        	<li>
+	        		<a target="_blank" href="https://www.facebook.com/MeetanshiInc/" title="Facebook"><i className="fab fa-classic fa-brands fa-facebook-f"></i></a>
+	                </li>
+	        	<li>
+	                	<a target="_blank" href="https://x.com/MeetanshiInc" title="Twitter"><i className="fab fa-classic fa-brands fa-x-twitter"></i></a>
+	                </li>
+	                <li>
+	                        <a target="_blank" href="https://www.linkedin.com/company/meetanshi/" title="LinkedIn"><i className="fab fa-classic fa-brands fa-linkedin-in"></i></a>
+	                </li>
+	        	<li>
+	                        <a target="_blank" href="https://www.youtube.com/channel/UCYsTAn7JerbeZK-KpGFuJWw" title="YouTube"><i className="fab fa-classic fa-brands fa-youtube"></i></a>
+	                </li>
+	                <li>
+	                        <a target="_blank" href="https://github.com/MeetanshiInc" title="GitHub"><i className="fab fa-classic fa-brands fa-github"></i></a>
+	                </li>
+	        </ul>
+        	</div>
+        	<div className="net-zero-website">
+	                <Link to="https://tree-nation.com/profile/impact/meetanshi#co2">
+				<img src="https://meetanshi.com/blog/wp-content/uploads/2024/07/net-zero.png" alt="Site Logo" />
+			</Link>
+		</div>
           </div>
         </div>
-
       </div>
       </div>
       <div className="footer-copy">
-          <div className="container">
+          <div className="container-lg">
             <div className="row align-items-center">
               <div className="col-md-6">
                   <div className="footer-copy-text">
@@ -137,7 +118,6 @@ const Footer = () => {
             </div>
           </div>
         </div>
-
     </footer>
    </>
   );
