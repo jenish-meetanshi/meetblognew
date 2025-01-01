@@ -34,7 +34,8 @@
     color:#000000;
   }
   .home-hero-section{
-      background: linear-gradient(140deg, rgb(0 0 0 / 5%), #f7e9e9 55%, #ffaf5a);
+    /* background: linear-gradient(140deg, rgb(0 0 0 / 5%), #f7e9e9 55%, #ffaf5a); */
+      background: linear-gradient(140deg, rgb(0 0 0 / 1%), #f7e9e9 55%, #ffaf5a);
       padding: 101px 0 101px;
       background-repeat: no-repeat;
       background-size: cover;
@@ -441,7 +442,6 @@
      line-height: 30px; */
     }
     .post-content-main a{
-      font-size: 18px;
       color: #f47526;
     }
     .post-content-main ul,.post-content-main ol{
@@ -580,6 +580,10 @@
     border-color: #f47526;
     background-color: transparent;
     color: #f47526;;
+  }
+  .btn-primary:active{
+   background-color: #f47526;
+    border-color: #f47526;
   }
   .sidebar-main{
     position: sticky;
