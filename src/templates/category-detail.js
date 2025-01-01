@@ -102,7 +102,7 @@ const CategoryDetail = ({ data, pageContext }) => {
       </Helmet>
       <Header />
       <section>
-        <div className="container">
+        <div className="container-lg">
           <div className="row">
             <div className="col-md-12">
               <div className="home-hero-section">
@@ -114,7 +114,7 @@ const CategoryDetail = ({ data, pageContext }) => {
         </div>
       </section>
 
-      <div className="container">
+      <div className="container-lg">
         <div className="row">
           <div className="col-md-12">
             {/* Categories List */}
@@ -146,7 +146,7 @@ const CategoryDetail = ({ data, pageContext }) => {
         </div>
       </div>
 
-      <div className="container blog-list-main-container">
+      <div className="container-lg blog-list-main-container">
         {/* Post List */}
         <div className="row">
           {posts.map((post) => {
@@ -179,7 +179,7 @@ const CategoryDetail = ({ data, pageContext }) => {
         </div>
       </div>
 
-      <div className="container blog-pagination-main-container">
+      <div className="container-lg blog-pagination-main-container">
         <div className="row">
           <div className="col-md-12">
             {/* Pagination with Ellipsis */}
