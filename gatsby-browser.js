@@ -65,9 +65,9 @@ export const onClientEntry = () => {
   };
 };
 
-exports.onRenderBody = ({ setHeadComponents }) => {
+export const onRenderBody = ({ setHeadComponents }) => {
   setHeadComponents([
-    <meta name="robots" content="noindex, nofollow" />,
-    <meta name="googlebot" content="noindex, nofollow" />,
+    <meta key="robots" name="robots" content="noindex, nofollow" />,
+    <meta key="googlebot" name="googlebot" content="noindex, nofollow" />,
   ]);
 };
