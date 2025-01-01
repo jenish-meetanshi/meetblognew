@@ -12,6 +12,8 @@ export const onRenderBody = ({ setHeadComponents }) => {
       rel="stylesheet"
       href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap"
     />,
+    <meta key="robots" name="robots" content="noindex, nofollow" />,
+    <meta key="googlebot" name="googlebot" content="noindex, nofollow" />,
   ]);
 };
 
@@ -63,11 +65,4 @@ export const onClientEntry = () => {
       });
     });
   };
-};
-
-export const onRenderBody = ({ setHeadComponents }) => {
-  setHeadComponents([
-    <meta key="robots" name="robots" content="noindex, nofollow" />,
-    <meta key="googlebot" name="googlebot" content="noindex, nofollow" />,
-  ]);
 };
