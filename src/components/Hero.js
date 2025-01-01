@@ -4,7 +4,7 @@ import React from "react";
 const Hero = () => {
   return (
     <section>
-      <div className="container">
+      <div className="container-lg">
           <div className="row">
             <div className="col-md-12">
                 <div className="home-hero-section">
