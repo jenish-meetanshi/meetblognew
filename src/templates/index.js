@@ -65,7 +65,7 @@ const Home = ({ data, pageContext }) => {
       <Header />
       <Hero />
       {/* Categories List */}
-      <div className="container">
+      <div className="container-lg">
         <div className="row">
           <div className="col-md-12">
             <ul className="category-list-hero list-inline text-center">
@@ -88,7 +88,7 @@ const Home = ({ data, pageContext }) => {
 
       {/* Sticky Posts */}
       {stickyPosts.length > 0 && (
-        <div className="container ">
+        <div className="container-lg">
           <div className="row">
             <div className="col-md-12">
             {stickyPosts.map((post) => (
@@ -123,7 +123,7 @@ const Home = ({ data, pageContext }) => {
       )}
 
       {/* Blog Posts */}
-      <div className="container blog-list-main-container">
+      <div className="container-lg blog-list-main-container">
         <div className="row">
           {posts.length > 0 ? (
             posts.map((post) => (
@@ -159,7 +159,7 @@ const Home = ({ data, pageContext }) => {
       </div>
 
       {/* Pagination */}
-      <div className="container blog-pagination-main-container">
+      <div className="container-lg blog-pagination-main-container">
         <div className="row">
           <div className="col-md-12">
               {numPages > 1 && (
@@ -208,15 +208,7 @@ const Home = ({ data, pageContext }) => {
           </div>
         </div>
       </div>
-
-      <div className="container">
-        <div className="row">
-          <div className="col-md-12">
-            <AuthorSlider />
-          </div>
-        </div>
-      </div>
-      
+      <AuthorSlider />
       <Footer />
     </main>
   );
