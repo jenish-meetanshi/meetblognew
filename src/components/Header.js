@@ -21,7 +21,7 @@ const Header = () => {
 
   return (
     <header>
-      <Navbar bg="light" expand="lg" className="py-3">
+      <Navbar expand="lg" className="py-3">
         <div className="container-lg">
           {/* Logo */}
           <Navbar.Brand as={Link} to="/">
