@@ -1031,3 +1031,109 @@
           line-height: 30px;
       }
   }
+
+.btn-primary:focus{
+  background-color: #f47526;
+  border-color: #f47526;
+}
+.cta-with-bg-pattern {
+    background-image: url(../images/pattern-image-cta-bg.png);
+    width: 100%;
+    background-repeat: no-repeat;
+    border: 1px solid #d9d9d9;
+    border-radius: 6px;
+    background-size: 100% auto;
+    text-align: center;
+    padding-bottom: 12px;
+    background-position: center center
+}
+.cta-with-bg-pattern span {
+    display: block;
+    font-size: 22px;
+    font-weight: 600;
+    line-height: 33px;
+    text-align: center;
+    color: #333;
+    margin-top: 15px;
+    margin-bottom: 12px
+}
+.bg-css-pattern-main p,.cta-with-bg-pattern p {
+    display: block;
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 25.36px;
+    text-align: center;
+    color: #656565;
+    margin-top: 0;
+    margin-bottom: 12px
+}
+.bg-css-pattern-main .middle-cta-link,.cta-with-bg-pattern .middle-cta-link {
+    display: inline-block;
+    color: #fff;
+    text-decoration: none;
+    background: linear-gradient(90deg,#f47526 0,#ff512f 100%);
+    transition: background .3s;
+    margin: 0 auto;
+    padding: 8px 38px;
+    border-radius: 6px;
+    font-weight: 600
+}
+.bg-css-pattern-main .middle-cta-link:hover,.cta-with-bg-pattern .middle-cta-link:hover,.middle-cta-btn:hover {
+    background: linear-gradient(90deg,#ff512f 0,#f47526 100%)
+}
+.bg-css-pattern-main {
+    border: 1px solid #d9d9d9;
+    border-radius: 6px;
+    width: 100%;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    background: linear-gradient(45deg,#0000 calc(25% / 3),#fff 0 calc(50% / 3),#0000 0 calc(250% / 3),#fff 0 calc(275% / 3),#0000 0),linear-gradient(45deg,#fff calc(25% / 3),#0000 0 calc(50% / 3),#fff 0 25%,#0000 0 75%,#fff 0 calc(250% / 3),#0000 0 calc(275% / 3),#fff 0),linear-gradient(-45deg,#0000 calc(25% / 3),#fff 0 calc(50% / 3),#0000 0 calc(250% / 3),#fff 0 calc(275% / 3),#0000 0),linear-gradient(-45deg,#fff calc(25% / 3),#0000 0 calc(50% / 3),#fff 0 25%,#0000 0 75%,#fff 0 calc(250% / 3),#0000 0 calc(275% / 3),#fff 0) #333;
+    background-size: 60px 60px;
+    background-position: 0 0,30px 30px
+}
+.bg-css-pattern-wrapper {
+    width: 100%;
+    height: 100%;
+    background: #fff;
+    background: linear-gradient(31deg,#fff 38%,rgba(255,255,255,.85) 100%)
+}
+.bg-css-pattern-main img {
+    border: 0;
+    padding: 2px;
+    border-radius: 0
+}
+.blog-main-content .bg-css-pattern-title {
+    font-size: 18px;
+    font-weight: 600;
+    line-height: 27px;
+    color: #333;
+    margin-bottom: 11px;
+    display: block
+}
+.blog-main-content .bg-css-pattern-desc {
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 24px;
+    color: #656565;
+    margin-bottom: 9px
+}
+.middle-cta-btn {
+    display: inline-block;
+    color: #fff!important;
+    text-decoration: none;
+    background: linear-gradient(90deg,#f47526 0,#ff512f 100%);
+    transition: background .3s;
+    margin: 0 auto;
+    padding: 8px 38px;
+    border-radius: 6px;
+    font-weight: 600
+}
+.bg-css-pattern-main span {
+    display: block;
+    font-size: 22px;
+    font-weight: 600;
+    line-height: 33px;
+    text-align: center;
+    color: #333;
+    margin-bottom: 12px
+}
