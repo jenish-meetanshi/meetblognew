@@ -97,10 +97,9 @@ const AuthorDetail = ({ data, pageContext }) => {
       </Helmet>
       <Header />
      <div className="author-details-hero">
-        <div className="container">
+        <div className="container-lg">
           <div className="row align-items-end justify-content-between">
             <div className="col-lg-auto order-2 order-lg-1">
-
             <div className="author-detailpage-wrapper">
                 <h2 className="single-author-title"> {author.name}</h2>
                 {author.designation && <span className="single-author-designation">{author.designation}</span>}
@@ -120,7 +119,7 @@ const AuthorDetail = ({ data, pageContext }) => {
           </div>
         </div>
       </div>
-     <div className="container blog-list-main-container mt-5">
+     <div className="container-lg blog-list-main-container mt-5">
         <div className="row">
           <div className="col-md-12">
           <span className="author-blogs-title">Articles by Author</span>
@@ -158,7 +157,7 @@ const AuthorDetail = ({ data, pageContext }) => {
         </div>
       </div>
 
-      <div className="container blog-pagination-main-container">
+      <div className="container-lg blog-pagination-main-container">
         <div className="row">
           <div className="col-md-12">
             {/* Pagination with Ellipsis */}
@@ -190,42 +189,6 @@ const AuthorDetail = ({ data, pageContext }) => {
     </div>
   );
 };
-
-// export const query = graphql`
-//   query ($authorSlug: String!, $skip: Int!, $limit: Int!) {
-//     wpUser(slug: { eq: $authorSlug }) {
-//       name
-//       avatar {
-//         url
-//       }
-//       description
-//       fullImage # Fetch the custom "full image" field
-//     }
-//     allWpPost(
-//       filter: { author: { node: { slug: { eq: $authorSlug } } } }
-//       sort: { fields: date, order: DESC }
-//       limit: $limit
-//       skip: $skip
-//     ) {
-//       nodes {
-//         id
-//         title
-//         slug
-//         excerpt
-//         date
-//         author {
-//           node {
-//             name
-//             slug
-//             avatar {
-//               url
-//             }
-//           }
-//         }
-//       }
-//     }
-//   }
-// `;
 
 export const query = graphql`
   query ($authorSlug: String!, $skip: Int!, $limit: Int!) {
