@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { Helmet } from "react-helmet";
 import { Link, withPrefix } from "gatsby"; // Import withPrefix
 import { Navbar, Nav, NavDropdown, Form, FormControl, Button } from "react-bootstrap";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -22,14 +21,6 @@ const Header = () => {
 
   return (
     <header>
-    <Helmet>
-        {noIndex && (
-          <>
-            <meta name="robots" content="noindex, nofollow" />
-            <meta name="googlebot" content="noindex, nofollow" />
-          </>
-        )}
-      </Helmet>
       <Navbar bg="light" expand="lg" className="py-3">
         <div className="container-lg">
           {/* Logo */}
