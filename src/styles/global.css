@@ -1037,7 +1037,7 @@
   border-color: #f47526;
 }
 .cta-with-bg-pattern {
-    background-image: url(../images/pattern-image-cta-bg.png);
+    /*  background-image: url(../images/pattern-image-cta-bg.png); */
     width: 100%;
     background-repeat: no-repeat;
     border: 1px solid #d9d9d9;
