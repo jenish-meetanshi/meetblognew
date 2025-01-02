@@ -8,6 +8,7 @@ import AuthorSlider from "../components/AuthorSlider";
 
 const Home = ({ data, pageContext }) => {
   const posts = data?.allWpPost?.nodes || [];
+  const canonicalURL = `https://mitfestival.app/meetblog/${posts.uri}`;
   const stickyPosts = data?.stickyPosts?.nodes || [];
   const categories = data.allWpCategory.nodes;
   const { currentPage, numPages } = pageContext;
@@ -20,6 +21,8 @@ const Home = ({ data, pageContext }) => {
   return (
     <main>
       <Helmet>
+        <title>{data.title}</title>
+        <link rel="canonical" href={canonicalURL} />
         <script type="application/ld+json">
           {JSON.stringify({
             "@context": "https://schema.org",
@@ -226,6 +229,7 @@ export const query = graphql`
         id
         slug
         title
+        uri
         excerpt
         reading_time
         date(formatString: "MMMM DD, YYYY")
