@@ -60,6 +60,7 @@ exports.createPages = async ({ graphql, actions }) => {
       allWpPost(sort: { date: DESC }) {
         nodes {
           id
+          title
           slug
           uri
           categories {
@@ -146,7 +147,7 @@ exports.createPages = async ({ graphql, actions }) => {
         pathname: `/category/${category.slug}/`,
         crumbLabel: category.name,
       })),
-      { pathname: post.uri, crumbLabel: "Post" },
+      { pathname: post.uri, crumbLabel: post.title },
     ];
   
     createPage({
