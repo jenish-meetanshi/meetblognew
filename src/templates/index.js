@@ -8,7 +8,7 @@ import AuthorSlider from "../components/AuthorSlider";
 
 const Home = ({ data, pageContext }) => {
   const posts = data?.allWpPost?.nodes || [];
-  const canonicalURL = `https://mitfestival.app/meetblog/${posts.uri}`;
+  const canonicalURL = `https://5d43103688.nxcli.io/blog/testwordpress/`;
   const stickyPosts = data?.stickyPosts?.nodes || [];
   const categories = data.allWpCategory.nodes;
   const { currentPage, numPages } = pageContext;
