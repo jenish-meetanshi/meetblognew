@@ -18,7 +18,9 @@ const AuthorSlider = () => {
     }
   `);
 
-  const authors = data.allWpUser.nodes;
+  const authors = data.allWpUser.nodes.filter(
+    (author) => author.slug !== "meetanshi-admin"
+  );
 
   const settings = {
     dots: true,
