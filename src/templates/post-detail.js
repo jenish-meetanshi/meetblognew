@@ -85,7 +85,7 @@ const PostDetail = ({ data, pageContext }) => {
             "@type": "Article",
             mainEntityOfPage: {
               "@type": "WebPage",
-              "@id": post.slug,
+              "@id": `https://meetanshi.com/blog/${post.slug}`,
             },
             headline: post.title,
             description: post.excerpt,
@@ -235,6 +235,7 @@ export const query = graphql`
       title
       content
       excerpt
+      slug
       reading_time
       date(formatString: "MMMM DD, YYYY")
       author {
