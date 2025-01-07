@@ -45,9 +45,14 @@ const AuthorDetail = ({ data, pageContext }) => {
       return time;
     };
 
+   const canonicalUrl = currentPage === 1 
+    ? `https://meetanshi.com/blog/author/${authorSlug}/` 
+    : `https://meetanshi.com/blog/author/${authorSlug}/page/${currentPage}/`;
+
   return (
     <div>
     <Helmet>
+        <link rel="canonical" href={canonicalUrl} />
         <script type="application/ld+json">
           {JSON.stringify({
             "@context": "https://schema.org",
