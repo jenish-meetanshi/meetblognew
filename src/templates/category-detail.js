@@ -53,8 +53,9 @@ const CategoryDetail = ({ data, pageContext }) => {
 
   return (
     <div>
-
     <Helmet>
+        <title>{categories.seoTitle || `${categories.name} - Category Page`}</title>
+        <meta name="description" content={categories.seoDescription || `${categories.name} posts and articles`} />
         <link rel="canonical" href={canonicalUrl} />
         <script type="application/ld+json">
           {JSON.stringify({
@@ -224,6 +225,8 @@ export const query = graphql`
         id
         name
         slug
+        seoTitle
+        seoDescription
       }
     }
     allWpPost(
