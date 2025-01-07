@@ -79,9 +79,20 @@ const PostDetail = ({ data, pageContext }) => {
   return (
   <main>
     <Helmet>
-        <title>{post.seoTitle}</title>
-        <meta name="description" content={post.seoDescription} />
+       
         <link rel="canonical" href={`https://meetanshi.com/blog/${post.slug}`} />
+        <meta property="og:locale" content="en_US" />
+        <meta property="og:type" content="article" />
+        <meta property="og:title" content={post.seoTitle} />
+        <meta property="og:description" content={post.seoDescription} />
+        <meta property="og:url" content="https://meetanshi.com/blog/${post.slug}" />
+        <meta property="og:site_name" content="Meetanshi Blog - Learn Magento &amp; Shopify" />
+        <meta property="article:publisher" content="https://www.facebook.com/MeetanshiInc/" />
+        <meta property="article:section" content="Statistics" />
+        <meta name="twitter:label1" content="Written by" />
+        <meta name="twitter:data1" content={post.author.node.name} />
+        <meta name="twitter:label2" content="Time to read" />
+        <meta name="twitter:data2" content="{post.reading_time}" />
         <script type="application/ld+json">
           {JSON.stringify({
             "@context": "https://schema.org",
