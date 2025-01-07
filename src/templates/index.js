@@ -8,11 +8,13 @@ import AuthorSlider from "../components/AuthorSlider";
 
 const Home = ({ data, pageContext }) => {
   const posts = data?.allWpPost?.nodes || [];
-  const canonicalURL = `https://5d43103688.nxcli.io/blog/testwordpress/`;
   const stickyPosts = data?.stickyPosts?.nodes || [];
   const categories = data.allWpCategory.nodes;
   const { currentPage, numPages } = pageContext;
 
+  const baseURL = `https://5d43103688.nxcli.io/blog/testwordpress/`;
+  const canonicalURL = currentPage === 1 ? baseURL : `${baseURL}page/${currentPage}/`;
+  
   const isFirst = currentPage === 1;
   const isLast = currentPage === numPages;
   const prevPage = currentPage === 2 ? `/` : `/page/${currentPage - 1}`;
