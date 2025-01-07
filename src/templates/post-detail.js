@@ -79,6 +79,8 @@ const PostDetail = ({ data, pageContext }) => {
   return (
   <main>
     <Helmet>
+        <title>{post.seoTitle}</title>
+        <meta name="description" content={post.seoDescription} />
         <link rel="canonical" href={`https://meetanshi.com/blog/${post.slug}`} />
         <script type="application/ld+json">
           {JSON.stringify({
@@ -245,6 +247,8 @@ export const query = graphql`
       excerpt
       slug
       reading_time
+      seoTitle
+      seoDescription
       date(formatString: "MMMM DD, YYYY")
       author {
         node {
