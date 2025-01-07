@@ -25,7 +25,7 @@ const Home = ({ data, pageContext }) => {
       <Helmet>
         <title>Meetanshi Blog: Magento, Shopify & Marketing</title>
         <link rel="canonical" href={canonicalURL} />
-        <meta name="description" content="Meetanshi's blog is a place to learn Magento, Shopify, E-commerce, and Marketing and gather new insights from experts.">
+        <meta name="description" content="Meetanshi's blog is a place to learn Magento, Shopify, E-commerce, and Marketing and gather new insights from experts."/>
         <script type="application/ld+json">
           {JSON.stringify({
             "@context": "https://schema.org",
