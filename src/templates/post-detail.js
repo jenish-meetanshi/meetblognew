@@ -79,6 +79,7 @@ const PostDetail = ({ data, pageContext }) => {
   return (
   <main>
     <Helmet>
+        <link rel="canonical" href={`https://meetanshi.com/blog/${post.slug}`} />
         <script type="application/ld+json">
           {JSON.stringify({
             "@context": "https://schema.org",
