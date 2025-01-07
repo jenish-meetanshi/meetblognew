@@ -56,7 +56,7 @@ const CategoryDetail = ({ data, pageContext }) => {
     <Helmet>
         <title>{categoriesdata.seoTitle || categoriesdata.name}</title>
         <link rel="canonical" href={canonicalUrl} />
-        <meta name="description" content="Meetanshi's blog is a place to learn Magento, Shopify, E-commerce, and Marketing and gather new insights from experts."/>
+        <meta name="description" content="{categoriesdata.seoDescription} "/>
         <script type="application/ld+json">
           {JSON.stringify({
            "@context": "https://schema.org",
