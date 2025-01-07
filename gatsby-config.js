@@ -52,5 +52,15 @@ module.exports = {
         ],
       },
     },
+    {
+      resolve: `gatsby-plugin-google-tagmanager`,
+      options: {
+        id: 'GTM-NPTMT2BT', // Replace this with your GTM container ID
+
+        // Optional settings
+        includeInDevelopment: false, // Set to true to include in development
+        routeChangeEvent: 'page', // Optional, for SPA or other use cases
+      },
+    },
   ],
 };
