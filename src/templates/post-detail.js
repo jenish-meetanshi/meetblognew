@@ -89,6 +89,13 @@ const PostDetail = ({ data, pageContext }) => {
             },
             headline: post.title,
             description: post.excerpt,
+            author: {
+              "@type": "Person",
+              name: post.author.node.name,
+              url: `https://meetanshi.com/blog/author/${post.author.node.slug}`,
+              image: post.author.node.userImage, // URL of the author's image
+              jobTitle: post.author.node.designation, // Author's designation
+            },
             datePublished: post.date,
             publisher: {
               "@type": "Organization",
