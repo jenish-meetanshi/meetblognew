@@ -138,29 +138,26 @@ exports.createPages = async ({ graphql, actions }) => {
     });
   });
 
-
   posts.forEach((post) => {
-  const breadcrumb = [
-    { pathname: "/", crumbLabel: "Home" },
-    { pathname: "/blog", crumbLabel: "Blog" },
-    ...post.categories.nodes.map((category) => ({
-      pathname: `/category/${category.slug}/`,
-      crumbLabel: category.name,
-    })),
-    { pathname: post.uri, crumbLabel: post.title }, // Make sure the post title is included here
-  ];
-
-  createPage({
-    path: post.uri,
-    component: path.resolve("./src/templates/post-detail.js"),
-    context: {
-      id: post.id,
-      breadcrumb: {
-        crumbs: breadcrumb,
+    const breadcrumb = [
+      { pathname: "/", crumbLabel: "Home" },
+      { pathname: "/blog", crumbLabel: "Blog" },
+      ...post.categories.nodes.map((category) => ({
+        pathname: `/category/${category.slug}/`,
+        crumbLabel: category.name,
+      })),
+      { pathname: post.uri, crumbLabel: post.title }, // Ensure this contains the title
+    ];
+  
+    createPage({
+      path: post.uri,
+      component: path.resolve("./src/templates/post-detail.js"),
+      context: {
+        id: post.id,
+        breadcrumb, // Pass breadcrumb directly here
       },
-    },
+    });
   });
-});
   
   // Create individual post pages
   posts.forEach((post) => {
