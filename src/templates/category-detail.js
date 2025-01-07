@@ -5,7 +5,7 @@ import Footer from "../components/Footer";
 import { graphql, Link } from "gatsby";
 
 const CategoryDetail = ({ data, pageContext }) => {
-  const categories = data.allWpCategory.nodes;
+  const categoriesdata = data.categories.nodes;
   const posts = data.allWpPost.nodes;
   const { categorySlug, categoryName, currentPage, numPages } = pageContext;
 
@@ -54,7 +54,9 @@ const CategoryDetail = ({ data, pageContext }) => {
   return (
     <div>
     <Helmet>
+        <title>{categoriesdata.seoTitle || categoriesdata.name}</title>
         <link rel="canonical" href={canonicalUrl} />
+        <meta name="description" content="Meetanshi's blog is a place to learn Magento, Shopify, E-commerce, and Marketing and gather new insights from experts."/>
         <script type="application/ld+json">
           {JSON.stringify({
            "@context": "https://schema.org",
@@ -225,11 +227,13 @@ const CategoryDetail = ({ data, pageContext }) => {
 
 export const query = graphql`
   query ($categorySlug: String!, $skip: Int!, $limit: Int!) {
-    allWpCategory {
+    categories {
       nodes {
         id
         name
         slug
+        seoTitle
+        seoDescription
       }
     }
     allWpPost(
