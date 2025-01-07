@@ -12,7 +12,7 @@ const Home = ({ data, pageContext }) => {
   const categories = data.allWpCategory.nodes;
   const { currentPage, numPages } = pageContext;
 
-  const baseURL = `https://5d43103688.nxcli.io/blog/testwordpress/`;
+  const baseURL = `https://meetanshi.com/blog/`;
   const canonicalURL = currentPage === 1 ? baseURL : `${baseURL}page/${currentPage}/`;
   
   const isFirst = currentPage === 1;
