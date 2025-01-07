@@ -125,10 +125,10 @@ const PostDetail = ({ data, pageContext }) => {
         <div className="row">
           <div className="col-md-12">
             <div className="home-hero-section post-detail-banner">
-              <Breadcrumb className="post-detail-hero-breadcrumb"
-                  crumbs={breadcrumb.crumbs}
+              <Breadcrumb
+                  className="post-detail-hero-breadcrumb"
+                  crumbs={breadcrumb.crumbs} // This should contain all breadcrumbs, including post title
                   crumbSeparator=" / "
-                  crumbLabel={breadcrumb.crumbs[breadcrumb.crumbs.length - 1].crumbLabel}
                 />
               <h1>{post.title}</h1>
               <span className="postdetail-heromain">by&nbsp;<Link className="blog-detail-author-link" to={`/author/${post.author.node.slug}`}>{post.author.node.name}</Link> <span className="hero-ellipse"></span> {post.reading_time} min read</span>
