@@ -9,6 +9,11 @@ const CategoryDetail = ({ data, pageContext }) => {
   const posts = data.allWpPost.nodes;
   const { categorySlug, categoryName, currentPage, numPages } = pageContext;
 
+ // Construct the canonical URL
+  const canonicalUrl = `https://meetanshi.com/blog/category/${categorySlug}/${
+    currentPage > 1 ? `${currentPage}/` : ""
+  }`;
+  
   // Helper function to create pagination with ellipses
   const getPagination = () => {
     const pageNumbers = [];
@@ -50,6 +55,7 @@ const CategoryDetail = ({ data, pageContext }) => {
     <div>
 
     <Helmet>
+        <link rel="canonical" href={canonicalUrl} />
         <script type="application/ld+json">
           {JSON.stringify({
            "@context": "https://schema.org",
