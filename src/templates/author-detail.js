@@ -52,8 +52,6 @@ const AuthorDetail = ({ data, pageContext }) => {
   return (
     <div>
     <Helmet>
-         <title>{author.seoTitle || `${author.name} - Author Page`}</title>
-        <meta name="description" content={author.seoDescription || `${author.name}'s articles and posts`} />
         <link rel="canonical" href={canonicalUrl} />
         <script type="application/ld+json">
           {JSON.stringify({
@@ -209,8 +207,6 @@ export const query = graphql`
       userImage  # Fetch the user image field
       designation  # Fetch the designation field
       descriptionText  # Fetch the description text field
-      seoTitle 
-      seoDescription
     }
     allWpPost(
       filter: { author: { node: { slug: { eq: $authorSlug } } } }
