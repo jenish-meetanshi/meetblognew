@@ -145,16 +145,22 @@ const AuthorDetail = ({ data, pageContext }) => {
                 </h3>
                 <div dangerouslySetInnerHTML={{ __html: post.excerpt.replace(/<a[^>]*class="read-more"[^>]*>.*?<\/a>/, "") }} />
                 <div className="listing-blog-info">
-                
+                    {post.author.node.userImage && (
+                      <img
+                        src={post.author.node.userImage}
+                        alt={`${post.author.node.name}'s Image`}
+                        className="user-image"
+                      />
+                    )}
                 <span>
                   <Link to={`/author/${post.author.node.slug}`}>{post.author.node.name}</Link>
                 </span>
                 <span>
-                  {" | "}{formatDate(post.date)}
-                </span>
-                <span>
-                  {" | "}{calculateReadingTime(post.excerpt)} min read
-                </span>
+                    {" | "}{post.date} 
+                  </span>
+                  <span>
+                     {" | "}{post.reading_time} min read
+                  </span>
               </div>
               </div>
             );
@@ -219,6 +225,7 @@ export const query = graphql`
         title
         slug
         excerpt
+        reading_time
         date
         author {
           node {
@@ -227,12 +234,11 @@ export const query = graphql`
             avatar {
               url
             }
+            userImage
           }
         }
       }
     }
   }
 `;
-
-
 export default AuthorDetail;
