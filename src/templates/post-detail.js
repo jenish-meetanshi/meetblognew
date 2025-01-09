@@ -79,7 +79,6 @@ const PostDetail = ({ data, pageContext }) => {
   return (
   <main>
     <Helmet>
-       
         <link rel="canonical" href={`https://meetanshi.com/blog/${post.slug}`} />
         <meta property="og:locale" content="en_US" />
         <meta property="og:type" content="article" />
@@ -92,7 +91,7 @@ const PostDetail = ({ data, pageContext }) => {
         <meta name="twitter:label1" content="Written by" />
         <meta name="twitter:data1" content={post.author.node.name} />
         <meta name="twitter:label2" content="Time to read" />
-        <meta name="twitter:data2" content="{post.reading_time}" />
+        <meta name="twitter:data2" content={post.reading_time} />
         <script type="application/ld+json">
           {JSON.stringify({
             "@context": "https://schema.org",
