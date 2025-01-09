@@ -5,7 +5,7 @@ import Footer from "../components/Footer";
 import { graphql, Link } from "gatsby";
 
 const CategoryDetail = ({ data, pageContext }) => {
-  const categoriesdata = data.categories.nodes;
+  const categoriesdata = data.allWpCategory.nodes;
   const posts = data.allWpPost.nodes;
   const { categorySlug, categoryName, currentPage, numPages } = pageContext;
 
@@ -227,7 +227,7 @@ const CategoryDetail = ({ data, pageContext }) => {
 
 export const query = graphql`
   query ($categorySlug: String!, $skip: Int!, $limit: Int!) {
-    categories {
+    allWpCategory {
       nodes {
         id
         name
