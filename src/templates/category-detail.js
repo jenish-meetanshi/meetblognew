@@ -5,7 +5,7 @@ import Footer from "../components/Footer";
 import { graphql, Link } from "gatsby";
 
 const CategoryDetail = ({ data, pageContext }) => {
-  const categoriesdata = data.allWpCategory.nodes;
+  const categories = data.allWpCategory.nodes;
   const posts = data.allWpPost.nodes;
   const { categorySlug, categoryName, currentPage, numPages } = pageContext;
 
@@ -54,9 +54,9 @@ const CategoryDetail = ({ data, pageContext }) => {
   return (
     <div>
     <Helmet>
-        <title>{categoriesdata.seoTitle || categoriesdata.name}</title>
+        <title>{categories.seoTitle || categories.name}</title>
         <link rel="canonical" href={canonicalUrl} />
-        <meta name="description" content="{categoriesdata.seoDescription} "/>
+        <meta name="description" content="{categories.seoDescription} "/>
         <script type="application/ld+json">
           {JSON.stringify({
            "@context": "https://schema.org",
@@ -238,7 +238,7 @@ export const query = graphql`
     }
     allWpPost(
       filter: {
-        allWpCategory: { nodes: { elemMatch: { slug: { eq: $categorySlug } } } }
+        categories: { nodes: { elemMatch: { slug: { eq: $categorySlug } } } }
       }
       sort: { fields: date, order: DESC }
       limit: $limit
