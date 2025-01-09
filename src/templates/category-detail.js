@@ -256,9 +256,6 @@ export const query = graphql`
           node {
             name
             slug
-            avatar {
-              url
-            }
             userImage
           }
         }
