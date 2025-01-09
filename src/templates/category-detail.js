@@ -238,7 +238,7 @@ export const query = graphql`
     }
     allWpPost(
       filter: {
-        categories: { nodes: { elemMatch: { slug: { eq: $categorySlug } } } }
+        allWpCategory: { nodes: { elemMatch: { slug: { eq: $categorySlug } } } }
       }
       sort: { fields: date, order: DESC }
       limit: $limit
