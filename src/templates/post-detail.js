@@ -88,6 +88,12 @@ const PostDetail = ({ data, pageContext }) => {
         <meta property="og:site_name" content="Meetanshi Blog - Learn Magento &amp; Shopify" />
         <meta property="article:publisher" content="https://www.facebook.com/MeetanshiInc/" />
         <meta property="article:section" content="Statistics" />
+        <meta property="og:image" content={post.seoImage} />
+        <meta property="og:image:secure_url" content={post.seoImage} />
+        <meta property="og:image:type" content="image/png" />
+        <meta name="twitter:title" content={post.seoTitle} />
+        <meta name="twitter:description" content="{post.seoDescription}/>
+        <meta name="twitter:image" content={post.seoImage} />
         <meta name="twitter:label1" content="Written by" />
         <meta name="twitter:data1" content={post.author.node.name} />
         <meta name="twitter:label2" content="Time to read" />
@@ -267,6 +273,7 @@ export const query = graphql`
       reading_time
       seoTitle
       seoDescription
+      seoImage
       date(formatString: "MMMM DD, YYYY")
       author {
         node {
