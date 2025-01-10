@@ -92,7 +92,7 @@ const PostDetail = ({ data, pageContext }) => {
         <meta property="og:image:secure_url" content={post.seoImage} />
         <meta property="og:image:type" content="image/png" />
         <meta name="twitter:title" content={post.seoTitle} />
-        <meta name="twitter:description" content="{post.seoDescription}/>
+        <meta name="twitter:description" content={post.seoDescription} />
         <meta name="twitter:image" content={post.seoImage} />
         <meta name="twitter:label1" content="Written by" />
         <meta name="twitter:data1" content={post.author.node.name} />
