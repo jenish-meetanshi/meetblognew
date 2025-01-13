@@ -28,7 +28,7 @@ const Header = () => {
             <img 
               src={withPrefix("/images/logo.svg")} 
               alt="Site Logo" 
-              style={{ maxWidth: "230px", height: "auto" }} 
+              style={{ width: "230px", height: "auto" }} 
             />
           </Navbar.Brand>
 
