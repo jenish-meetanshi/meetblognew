@@ -108,7 +108,7 @@
       border-right: 1px solid #d2d5d9;
     }
     .blog-pagination-main-container .page-number{
-      width: 38px;
+        min-width: 38px;
         height: 38px;
         border-radius: 6px;
         color: #333;
@@ -143,7 +143,7 @@
       font-size: 16px;
     }
     .listing-blog-info span a{
-      color: #333;
+      color: #0f0f0f;
       text-decoration: none;
     }
     .listing-blog-info span a:hover{
@@ -414,8 +414,8 @@
         padding: 10px 15px;
     }
     .author-slider-container .author-card a .author-avatar{
-        max-width: 69px;
-        max-height: 69px;
+        width: 69px;
+        height: 69px;
         border-radius: 50%;
         margin-right: 14px;
     }
