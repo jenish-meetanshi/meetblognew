@@ -31,12 +31,6 @@ const AuthorDetail = ({ data, pageContext }) => {
     return pageNumbers;
   };
 
-  // Function to format date
-  const formatDate = (date) => {
-    const options = { year: 'numeric', month: 'short', day: 'numeric' };
-    return new Date(date).toLocaleDateString('en-US', options);
-  };
-
     // Helper function to calculate reading time
     const calculateReadingTime = (content) => {
       const wordsPerMinute = 200; // Average reading speed
@@ -230,7 +224,7 @@ export const query = graphql`
         slug
         excerpt
         reading_time
-        date
+        date(formatString: "MMMM DD, YYYY")
         author {
           node {
             name
