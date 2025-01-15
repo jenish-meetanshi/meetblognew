@@ -6,6 +6,7 @@ import Footer from "../components/Footer";
 const SearchPage = ({ location, data }) => {
   const [query, setQuery] = useState('');
   const [results, setResults] = useState([]);
+  const [loading, setLoading] = useState(true); // Add loading state
 
   useEffect(() => {
     const urlParams = new URLSearchParams(location.search);
@@ -13,11 +14,17 @@ const SearchPage = ({ location, data }) => {
     setQuery(searchQuery);
 
     if (searchQuery) {
+      setLoading(true); // Start loading when search query is available
+
       const filteredResults = data.allWpPost.nodes.filter(post =>
         post.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
         post.excerpt.toLowerCase().includes(searchQuery.toLowerCase())
       );
+
       setResults(filteredResults);
+      setLoading(false); // Set loading to false once results are filtered
+    } else {
+      setLoading(false); // If no query, stop loading
     }
   }, [location.search, data.allWpPost.nodes]);
 
@@ -48,7 +55,11 @@ const SearchPage = ({ location, data }) => {
       {/* Blog Posts */}
       <div className="container blog-list-main-container">
         <div className="row">
-          {results.length > 0 ? (
+          {loading ? (
+            <div className="col-12">
+              <div className="loader">Loading...</div> {/* Simple loader */}
+            </div>
+          ) : results.length > 0 ? (
             results.map((post) => (
               <div key={post.id} className="col-md-6 mb-4 blog-list-content-wrapper">
                 <h3>
