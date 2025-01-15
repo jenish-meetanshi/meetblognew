@@ -79,7 +79,9 @@ const PostDetail = ({ data, pageContext }) => {
   return (
   <main>
     <Helmet>
-        <link rel="canonical" href={`https://meetanshi.com/blog/${post.slug}`} />
+        <title>{post.seoTitle ? post.seoTitle : post.title}</title>
+        <meta name="description" content={post.seoDescription} />
+        <link rel="canonical" href={`https://meetanshi.com/blog/${post.slug}/`} />
         <meta property="og:locale" content="en_US" />
         <meta property="og:type" content="article" />
         <meta property="og:title" content={post.seoTitle} />
@@ -152,7 +154,7 @@ const PostDetail = ({ data, pageContext }) => {
                   </li>
                   <span className="breadcrumb__separator" aria-hidden="true"> / </span>
                   <li className="breadcrumb__list__item">
-                   <Link to={`/${post.slug}`} className="post-detail-hero-breadcrumb">{post.title}</Link>
+                   <span className="post-detail-hero-breadcrumb">{post.title}</span>
                   </li>
                 </ol>
               </nav>
