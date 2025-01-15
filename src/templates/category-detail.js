@@ -36,6 +36,11 @@ const CategoryDetail = ({ data, pageContext }) => {
     return pageNumbers;
   };
 
+   // Function to format date
+   const formatDate = (date) => {
+    const options = { year: 'numeric', month: 'short', day: 'numeric' };
+    return new Date(date).toLocaleDateString('en-US', options);
+  };
 
   // Helper function to calculate reading time
   const calculateReadingTime = (content) => {
@@ -43,12 +48,6 @@ const CategoryDetail = ({ data, pageContext }) => {
     const textLength = content.split(' ').length;
     const time = Math.ceil(textLength / wordsPerMinute);
     return time;
-  };
-
-  // Function to format date
-  const formatDate = (date) => {
-    const options = { year: 'numeric', month: 'short', day: 'numeric' };
-    return new Date(date).toLocaleDateString('en-US', options);
   };
 
   return (
@@ -114,7 +113,7 @@ const CategoryDetail = ({ data, pageContext }) => {
             <div className="col-md-12">
               <div className="home-hero-section">
                 <h1>{categoryName}</h1>
-                <p>Find expert articles on Magento, Shopify, and Digital Marketing topics</p>
+                <p>{categories.description}</p>
               </div>
             </div>
           </div>
@@ -231,6 +230,7 @@ export const query = graphql`
       nodes {
         id
         name
+        description
         slug
         seoTitle
         seoDescription
