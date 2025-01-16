@@ -96,7 +96,7 @@ const Footer = () => {
             <div className="row align-items-center">
               <div className="col-md-6">
                   <div className="footer-copy-text">
-                    <p>Copyright © 2017-2024 by Meetanshi Technologies LLP. All Rights Reserved.</p>
+                    <p>Copyright © 2017-2025 by Meetanshi Technologies LLP. All Rights Reserved.</p>
                   </div>
               </div>
               <div className="col-md-6 text-end">
