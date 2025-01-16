@@ -49,7 +49,7 @@ const CategoryDetail = ({ data, pageContext }) => {
     <Helmet>
         <title>{categories.seoTitle || categories.name}</title>
         <link rel="canonical" href={canonicalUrl} />
-        <meta name="description" content="{categories.seoDescription} "/>
+        <meta name="description" content={categories.seoDescription} />
         <script type="application/ld+json">
           {JSON.stringify({
            "@context": "https://schema.org",
@@ -107,7 +107,9 @@ const CategoryDetail = ({ data, pageContext }) => {
             <div className="col-md-12">
               <div className="home-hero-section">
                 <h1>{categoryName}</h1>
-                <p>{categories.description}</p>
+                {categories.length > 0 && categories[0].description && (
+                  <p>{categories[0].description}</p>
+                )}
               </div>
             </div>
           </div>
