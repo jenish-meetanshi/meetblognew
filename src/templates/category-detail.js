@@ -7,7 +7,15 @@ import { graphql, Link } from "gatsby";
 const CategoryDetail = ({ data, pageContext }) => {
   const categories = data.allWpCategory.nodes;
   const posts = data.allWpPost.nodes;
-  const { categorySlug, categoryName, currentPage, numPages } = pageContext;
+   const { categorySlug, categoryName, currentPage, numPages } = pageContext;
+
+  // Find the category matching the categorySlug
+  const currentCategory = categories.find(
+    (category) => category.slug === categorySlug
+  );
+
+  // Get the description of the current category
+  const categoryDescription = currentCategory?.description || '';
 
  // Construct the canonical URL
   const canonicalUrl = `https://meetanshi.com/blog/category/${categorySlug}/${
@@ -107,9 +115,7 @@ const CategoryDetail = ({ data, pageContext }) => {
             <div className="col-md-12">
               <div className="home-hero-section">
                 <h1>{categoryName}</h1>
-                {categories.length > 0 && categories[0].description && (
-                  <p>{categories[0].description}</p>
-                )}
+                <p>{categoryDescription}</p>
               </div>
             </div>
           </div>
