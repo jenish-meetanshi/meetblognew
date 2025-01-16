@@ -449,8 +449,31 @@
     .categories .category-list-hero{
       margin-bottom: 30px;
     }
+    .post-content-main .wp-block-buttons.btn-orange .wp-block-button .wp-element-button{
+      display: inline-block;
+      line-height: 24px;
+      text-align: center;
+      transition: transform 3s;
+      margin-bottom: 20px;
+      font-size: 16px;
+      font-weight: 600;
+      padding: 10px 20px;
+      color: #fff;
+      background-color: #f47526;
+      border-radius: 6px;
+      border: 1px solid #f47526;
+      text-decoration: none;
+    }
+   .post-content-main .wp-block-buttons.btn-orange .wp-block-button .wp-element-button:hover{
+      border: 1px solid #f47526;
+      background-color: #fff;
+      color: #f47526;
+   }
     .post-content-main p{
       font-size: 18px;
+      word-wrap: break-word;
+      overflow-wrap: break-word;
+      white-space: normal;
       /* margin-bottom: 16px; 
      line-height: 30px; */
     }
