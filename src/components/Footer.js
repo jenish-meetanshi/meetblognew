@@ -64,27 +64,27 @@ const Footer = () => {
             <div className="footer-col-wrapper">
               <p className="footer-menu-title">Client's Love</p>
         	<div className="social-media">
-	        <ul>
-	        	<li>
-	        		<a target="_blank" href="https://www.facebook.com/MeetanshiInc/" title="Facebook"><i className="fab fa-classic fa-brands fa-facebook-f"></i></a>
-	                </li>
-	        	<li>
-	                	<a target="_blank" href="https://x.com/MeetanshiInc" title="Twitter"><i className="fab fa-classic fa-brands fa-x-twitter"></i></a>
-	                </li>
-	                <li>
-	                        <a target="_blank" href="https://www.linkedin.com/company/meetanshi/" title="LinkedIn"><i className="fab fa-classic fa-brands fa-linkedin-in"></i></a>
-	                </li>
-	        	<li>
-	                        <a target="_blank" href="https://www.youtube.com/channel/UCYsTAn7JerbeZK-KpGFuJWw" title="YouTube"><i className="fab fa-classic fa-brands fa-youtube"></i></a>
-	                </li>
-	                <li>
-	                        <a target="_blank" href="https://github.com/MeetanshiInc" title="GitHub"><i className="fab fa-classic fa-brands fa-github"></i></a>
-	                </li>
-	        </ul>
+		        <ul>
+		        	<li>
+		        		<a target="_blank" href="https://www.facebook.com/MeetanshiInc/" title="Facebook"><i className="fab fa-classic fa-brands fa-facebook-f"></i></a>
+		                </li>
+		        	<li>
+		                	<a target="_blank" href="https://x.com/MeetanshiInc" title="Twitter"><i className="fab fa-classic fa-brands fa-x-twitter"></i></a>
+		                </li>
+		                <li>
+		                        <a target="_blank" href="https://www.linkedin.com/company/meetanshi/" title="LinkedIn"><i className="fab fa-classic fa-brands fa-linkedin-in"></i></a>
+		                </li>
+		        	<li>
+		                        <a target="_blank" href="https://www.youtube.com/channel/UCYsTAn7JerbeZK-KpGFuJWw" title="YouTube"><i className="fab fa-classic fa-brands fa-youtube"></i></a>
+		                </li>
+		                <li>
+		                        <a target="_blank" href="https://github.com/MeetanshiInc" title="GitHub"><i className="fab fa-classic fa-brands fa-github"></i></a>
+		                </li>
+		        </ul>
         	</div>
         	<div className="net-zero-website">
-	                <Link to="https://tree-nation.com/profile/impact/meetanshi#co2">
-				<img src="https://meetanshi.com/blog/wp-content/uploads/2024/07/net-zero.png" alt="Site Logo" />
+	        	<Link to="https://tree-nation.com/profile/impact/meetanshi#co2">
+		    		<img className="net-zero-img" src={withPrefix("/images/net-zero.png")} alt="Net Zero Image" height="31" width="101" />
 			</Link>
 		</div>
           </div>
