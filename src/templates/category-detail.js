@@ -11,8 +11,8 @@ const CategoryDetail = ({ data, pageContext }) => {
 
   // Find the category matching the categorySlug
   const currentCategory = categories.find(
-    (category) => category.slug === categorySlug
-  );
+  (category) => category.slug === categorySlug
+  ) || {};
 
   // Get the description of the current category
   const categoryDescription = currentCategory?.description || '';
@@ -55,9 +55,9 @@ const CategoryDetail = ({ data, pageContext }) => {
   return (
     <div>
     <Helmet>
-        <title>{categories.seoTitle || categories.name}</title>
+        <title>{currentCategory.seoTitle || currentCategory.name}</title>
         <link rel="canonical" href={canonicalUrl} />
-        <meta name="description" content={categories.seoDescription} />
+        <meta name="description" content={currentCategory.seoDescription} />
         <script type="application/ld+json">
           {JSON.stringify({
            "@context": "https://schema.org",
