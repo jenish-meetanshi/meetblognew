@@ -11,13 +11,13 @@
 const { createProxyMiddleware } = require("http-proxy-middleware");
 
 module.exports = {
-  pathPrefix: "/blog/testwordpress", 
+  pathPrefix: "/blog/testwordpress", // Set path prefix for deployment if required
   developMiddleware: app => {
     app.use(
-      "/api/", // Replace with your API path
+      "/api/", // Proxy API requests during development
       createProxyMiddleware({
-        target: "https://mitfestival.app/meetblog/", // Replace with your target API URL
-        changeOrigin: true,
+        target: "https://mitfestival.app/meetblog/", // Target API URL
+        changeOrigin: true, // Enable changing origin header for CORS
       })
     );
   },
@@ -25,29 +25,29 @@ module.exports = {
     {
       resolve: `gatsby-source-wordpress`,
       options: {
-        url: `https://blog.meetanshi.com/graphql`,
+        url: `https://blog.meetanshi.com/graphql`, // WordPress GraphQL endpoint
       },
     },
-    `gatsby-plugin-image`, 
-    `gatsby-plugin-sharp`,
-    `gatsby-transformer-sharp`,
-    `gatsby-plugin-react-helmet`,
+    `gatsby-plugin-image`, // Enables optimized image handling
+    `gatsby-plugin-sharp`, // Image processing
+    `gatsby-transformer-sharp`, // Image transformation
+    `gatsby-plugin-react-helmet`, // Add metadata to HTML head
     {
       resolve: `gatsby-source-filesystem`,
       options: {
         name: `images`,
-        path: `${__dirname}/src/images`, // Path to your image folder
+        path: `${__dirname}/src/images`, // Directory for image files
       },
     },
-     {
+    {
       resolve: `gatsby-plugin-breadcrumb`,
       options: {
         useAutoGen: true, // Automatically generate breadcrumbs
-        exclude: [`/404`, `/404.html`], // Exclude pages from breadcrumbs
+        exclude: [`/404`, `/404.html`], // Exclude specific paths
         crumbLabelUpdates: [
           {
             pathname: "/blog",
-            crumbLabel: "Blog",
+            crumbLabel: "Blog", // Custom label for the /blog path
           },
         ],
       },
@@ -55,11 +55,19 @@ module.exports = {
     {
       resolve: `gatsby-plugin-google-tagmanager`,
       options: {
-        id: 'GTM-NPTMT2BT', // Replace this with your GTM container ID
-
+        id: "GTM-NPTMT2BT",
         // Optional settings
-        includeInDevelopment: false, // Set to true to include in development
-        routeChangeEvent: 'page', // Optional, for SPA or other use cases
+        includeInDevelopment: false, 
+        routeChangeEvent: "page",
+      },
+    },
+    {
+      resolve: `gatsby-plugin-manifest`,
+      options: {
+        name: `Meetanshi Blog: Magento, Shopify & Marketing`, // Name for the app
+        short_name: `Meetanshi Blog`, // Shortened app name
+        start_url: `https://meetanshi.com/blog/`, // Start URL of the app
+        icon: `static/favicon.ico`, // Path to favicon
       },
     },
   ],
