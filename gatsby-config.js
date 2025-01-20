@@ -27,6 +27,10 @@ module.exports = {
       options: {
         url: `https://blog.meetanshi.com/graphql`,
       },
+      auth: {
+          htaccess_user: `jenish.dholakiya@meetanshi.com`, // Replace with your WordPress username
+          htaccess_pass: `dwLPB#Mmm9IHXiMa)fy@ih(K`, // Replace with your application password or WordPress password
+        },
     },
     `gatsby-plugin-image`, 
     `gatsby-plugin-sharp`,
