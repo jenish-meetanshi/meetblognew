@@ -33,7 +33,6 @@ jobs:
           source: ./public/  # Copy the entire 'public' folder initially
           target: /chroot/home/afd62358/5d43103688.nxcli.io/pub/blog/testwordpress/  # Target directory
           rm: true
-          args: --exclude='.htaccess'
           debug: true
 
       - name: Move files to correct location
@@ -43,5 +42,5 @@ jobs:
           username: afd62358_7
           key: ${{ secrets.SSH_PRIVATE_KEY }}  # Using the private SSH key stored as a secret
           script: |
-            find /chroot/home/afd62358/5d43103688.nxcli.io/pub/blog/testwordpress/public/ -mindepth 1 ! -name '.htaccess' -exec mv {} /chroot/home/afd62358/5d43103688.nxcli.io/pub/blog/testwordpress/ \;
-            rmdir /chroot/home/afd62358/5d43103688.nxcli.io/pub/blog/testwordpress/public || true
+            mv /chroot/home/afd62358/5d43103688.nxcli.io/pub/blog/testwordpress/public/* /chroot/home/afd62358/5d43103688.nxcli.io/pub/blog/testwordpress/
+            rmdir /chroot/home/afd62358/5d43103688.nxcli.io/pub/blog/testwordpress/public
