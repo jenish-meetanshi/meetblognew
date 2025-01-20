@@ -27,6 +27,11 @@ module.exports = {
       options: {
         url: `https://blog.meetanshi.com/graphql`,
       },
+      protocol: 'https',
+        useACF: true,
+        https: {
+          rejectUnauthorized: false, // Disable SSL verification (only for testing)
+        },
     },
     `gatsby-plugin-image`, 
     `gatsby-plugin-sharp`,
