@@ -25,7 +25,7 @@ module.exports = {
     {
       resolve: `gatsby-source-wordpress`,
       options: {
-        url: `https://mitfestival.app/meetblog/graphql`,
+        url: `https://blog.meetanshi.com/graphql`,
       },
     },
     `gatsby-plugin-image`, 
