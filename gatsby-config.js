@@ -27,10 +27,9 @@ module.exports = {
       options: {
         url: `https://blog.meetanshi.com/graphql`,
       },
-      protocol: 'https',
-        useACF: true,
-        https: {
-          rejectUnauthorized: false, // Disable SSL verification (only for testing)
+       auth: {
+          htaccess_user: `jenish.dholakiya@meetanshi.com`, // Replace with your WordPress username
+          htaccess_pass: `DJGk qo52 KPtU g1JJ wPja sVQS`, // Replace with your application password or WordPress password
         },
     },
     `gatsby-plugin-image`, 
