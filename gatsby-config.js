@@ -67,7 +67,7 @@ module.exports = {
         name: `Meetanshi Blog: Magento, Shopify & Marketing`, // Name for the app
         short_name: `Meetanshi Blog`, // Shortened app name
         start_url: `https://meetanshi.com/blog/`, // Start URL of the app
-        icon: `static/favicon.ico`, // Path to favicon
+        icon: `static/favicon.png`, // Path to favicon
       },
     },
   ],
