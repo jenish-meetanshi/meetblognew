@@ -16,7 +16,7 @@ module.exports = {
     app.use(
       "/api/", // Proxy API requests during development
       createProxyMiddleware({
-        target: "https://mitfestival.app/meetblog/", // Target API URL
+        target: "https://blog.meetanshi.com/", // Target API URL
         changeOrigin: true, // Enable changing origin header for CORS
       })
     );
@@ -25,7 +25,7 @@ module.exports = {
     {
       resolve: `gatsby-source-wordpress`,
       options: {
-        url: `https://mitfestival.app/meetblog/graphql`, // WordPress GraphQL endpoint
+        url: `https://blog.meetanshi.com/graphql`, // WordPress GraphQL endpoint
       },
     },
     `gatsby-plugin-image`, // Enables optimized image handling
