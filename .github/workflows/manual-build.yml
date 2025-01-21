@@ -31,7 +31,8 @@ jobs:
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           source: ./public/
           target: /chroot/home/afd62358/5d43103688.nxcli.io/pub/blog/testwordpress/
-          rm: true
+          rm: false  # Prevents removing all files in the target directory
+          overwrite: true  # Overwrites existing files without removing the .htaccess
           debug: true
 
       - name: Move files to correct location
@@ -41,5 +42,5 @@ jobs:
           username: afd62358_7
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           script: |
-            mv /chroot/home/afd62358/5d43103688.nxcli.io/pub/blog/testwordpress/public/* /chroot/home/afd62358/5d43103688.nxcli.io/pub/blog/testwordpress/
-            rmdir /chroot/home/afd62358/5d43103688.nxcli.io/pub/blog/testwordpress/public
+            rsync -av --exclude '.htaccess' /chroot/home/afd62358/5d43103688.nxcli.io/pub/blog/testwordpress/public/ /chroot/home/afd62358/5d43103688.nxcli.io/pub/blog/testwordpress/
+            rm -rf /chroot/home/afd62358/5d43103688.nxcli.io/pub/blog/testwordpress/public
