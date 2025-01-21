@@ -9,6 +9,10 @@ const AuthorDetail = ({ data, pageContext }) => {
   const author = data.wpUser; // Author details from GraphQL
   const { authorSlug, currentPage, numPages } = pageContext;
 
+   const currentAuthor = author.find(
+    (author) => author.slug === authorSlug
+    ) || {};
+
   // Helper function to create pagination with ellipses
   const getPagination = () => {
     const pageNumbers = [];
@@ -46,8 +50,9 @@ const AuthorDetail = ({ data, pageContext }) => {
   return (
     <div>
     <Helmet>
+        <title>{currentAuthor.seoTitle || currentAuthor.name}</title>
         <title>{author.seoTitle}</title>
-        <meta name="description" content={author.seoDescription} />
+        <meta name="description" content={currentAuthor.seoDescription} />
         <link rel="canonical" href={canonicalUrl} />
         <script type="application/ld+json">
           {JSON.stringify({
