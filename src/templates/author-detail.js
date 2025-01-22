@@ -9,9 +9,7 @@ const AuthorDetail = ({ data, pageContext }) => {
   const author = data.wpUser; // Author details from GraphQL
   const { authorSlug, currentPage, numPages } = pageContext;
 
-   const currentAuthor = author.find(
-    (author) => author.slug === authorSlug
-    ) || {};
+   const currentAuthor = author || {};
 
   // Helper function to create pagination with ellipses
   const getPagination = () => {
