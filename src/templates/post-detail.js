@@ -9,6 +9,7 @@ const PostDetail = ({ data, pageContext }) => {
   const post = data.wpPost;
   const { breadcrumb } = pageContext;
   const [headings, setHeadings] = useState([]);
+  const [activeHeadingId, setActiveHeadingId] = useState(null);
  
   const ctaImage = post.categories.nodes[0]?.ctaImage;
   const ctaLink = post.categories.nodes[0]?.ctaLink;
@@ -17,62 +18,69 @@ const PostDetail = ({ data, pageContext }) => {
   useEffect(() => {
     const parser = new DOMParser();
     const doc = parser.parseFromString(post.content, "text/html");
-    
+
     const extractedHeadings = Array.from(doc.querySelectorAll("h1, h2, h3")).map((heading) => {
       const headingText = heading.innerText.toLowerCase()
-        .replace(/[^\w\s-]/g, '')
-        .replace(/\s+/g, '-')
-        .replace(/-+/g, '-')
-        .replace(/^-|-$/g, '');
-      
+        .replace(/[^\w\s-]/g, "")
+        .replace(/\s+/g, "-")
+        .replace(/-+/g, "-")
+        .replace(/^-|-$/g, "");
+
       const headingId = `heading-${headingText}`;
-  
       return {
         id: headingId,
         text: heading.innerText,
         level: heading.tagName.toLowerCase(),
       };
     });
-  
+
+    // Assign IDs to headings in the actual DOM
     setTimeout(() => {
-      extractedHeadings.forEach(heading => {
-        const matchingElement = Array.from(document.querySelectorAll('h1, h2, h3'))
-          .find(el => el.textContent.trim() === heading.text.trim());
-        
+      extractedHeadings.forEach((heading) => {
+        const matchingElement = Array.from(document.querySelectorAll("h1, h2, h3")).find(
+          (el) => el.textContent.trim() === heading.text.trim()
+        );
+
         if (matchingElement) {
           matchingElement.id = heading.id;
         }
       });
     }, 0);
-  
+
     setHeadings(extractedHeadings);
   }, [post.content]);
 
+   useEffect(() => {
+    const headingElements = document.querySelectorAll("h1, h2, h3");
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const visibleEntry = entries.find((entry) => entry.isIntersecting);
+        if (visibleEntry) {
+          setActiveHeadingId(visibleEntry.target.id);
+        }
+      },
+      {
+        root: null,
+        rootMargin: "0px",
+        threshold: 0.1, // Adjust the threshold as needed
+      }
+    );
+
+    headingElements.forEach((el) => observer.observe(el));
+
+    return () => {
+      headingElements.forEach((el) => observer.unobserve(el));
+    };
+  }, [headings]);
+
   const scrollToSection = (id) => {
     const element = document.getElementById(id);
-    
     if (element) {
-      element.scrollIntoView({ 
-        behavior: "smooth", 
-        block: "start" 
+      element.scrollIntoView({
+        behavior: "smooth",
+        block: "start",
       });
-    } else {
-      console.warn(`Element with ID "${id}" not found.`);
-      
-      const headingElements = document.querySelectorAll('h1, h2, h3');
-      const matchingElement = Array.from(headingElements).find(el => 
-        el.textContent.trim().toLowerCase() === 
-        decodeURIComponent(id).replace('heading-', '').replace(/-/g, ' ')
-      );
-  
-      if (matchingElement) {
-        matchingElement.scrollIntoView({ 
-          behavior: "smooth", 
-          block: "start" 
-        });
-      } else {
-        console.error(`Could not find heading matching "${id}"`);
-      }
     }
   };
 
@@ -239,13 +247,26 @@ const PostDetail = ({ data, pageContext }) => {
             <div className="sidebar-main">
               <div className="table-of-contents">
                 <span className="toc-title">Table of Contents</span>
-                <ul>
-                  {headings.map((heading) => (
-                    <li key={heading.id} className={`toc-${heading.level}`}>
-                      <a onClick={() => scrollToSection(heading.id)}>{heading.text}</a>
-                    </li>
-                  ))}
-                </ul>
+                  <ul>
+                    {headings.map((heading) => (
+                      <li
+                        key={heading.id}
+                        className={`toc-${heading.level} ${
+                          activeHeadingId === heading.id ? "active" : ""
+                        }`}
+                      >
+                        <a
+                          href={`#${heading.id}`}
+                          onClick={(e) => {
+                            e.preventDefault();
+                            scrollToSection(heading.id);
+                          }}
+                        >
+                          {heading.text}
+                        </a>
+                      </li>
+                    ))}
+                  </ul>
               </div>
               {ctaImage && ctaLink && (
                 <div className="cta-section">
