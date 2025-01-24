@@ -103,6 +103,16 @@ exports.createPages = async ({ graphql, actions }) => {
   const postsPerPage = 10;
   const numPages = Math.ceil(posts.length / postsPerPage);
 
+
+   createPage({
+    path: `/sitemap/`,
+    component: path.resolve("./src/templates/sitemap.js"),
+    context: {
+      posts,
+    },
+  });
+
+
   // Create homepage and paginated versions
   Array.from({ length: numPages }).forEach((_, i) => {
     createPage({
