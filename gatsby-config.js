@@ -23,24 +23,24 @@ module.exports = {
   },
   plugins: [
     {
-      resolve: gatsby-source-wordpress,
+      resolve: `gatsby-source-wordpress`,
       options: {
-        url: https://blog.meetanshi.com/graphql, // WordPress GraphQL endpoint
+        url: `https://blog.meetanshi.com/graphql`, // WordPress GraphQL endpoint
       },
     },
-    gatsby-plugin-react-helmet, // Add metadata to HTML head
+    `gatsby-plugin-react-helmet`, // Add metadata to HTML head
     {
-      resolve: gatsby-source-filesystem,
+      resolve: `gatsby-source-filesystem`,
       options: {
-        name: images,
-        path: ${__dirname}/src/images, // Directory for image files
+        name: `images`,
+        path: `${__dirname}/src/images`, // Directory for image files
       },
     },
     {
-      resolve: gatsby-plugin-breadcrumb,
+      resolve: `gatsby-plugin-breadcrumb`,
       options: {
         useAutoGen: true, // Automatically generate breadcrumbs
-        exclude: [/404, /404.html], // Exclude specific paths
+        exclude: [/404/, /404.html/], // Exclude specific paths
         crumbLabelUpdates: [
           {
             pathname: "/blog",
@@ -50,21 +50,21 @@ module.exports = {
       },
     },
     {
-      resolve: gatsby-plugin-google-tagmanager,
+      resolve: `gatsby-plugin-google-tagmanager`,
       options: {
         id: "GTM-NPTMT2BT",
         // Optional settings
-        includeInDevelopment: false, 
+        includeInDevelopment: false,
         routeChangeEvent: "page",
       },
     },
     {
-      resolve: gatsby-plugin-manifest,
+      resolve: `gatsby-plugin-manifest`,
       options: {
-        name: Meetanshi Blog: Magento, Shopify & Marketing, // Name for the app
-        short_name: Meetanshi Blog, // Shortened app name
-        start_url: https://meetanshi.com/blog/, // Start URL of the app
-        icon: static/favicon.png, // Path to favicon
+        name: `Meetanshi Blog: Magento, Shopify & Marketing`, // Name for the app
+        short_name: `Meetanshi Blog`, // Shortened app name
+        start_url: `/blog/`, // Start URL of the app
+        icon: `static/favicon.png`, // Path to favicon
       },
     },
   ],
