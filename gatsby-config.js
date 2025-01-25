@@ -37,10 +37,10 @@ module.exports = {
       },
     },
     {
-      resolve: `gatsby-plugin-breadcrumb`,
+    resolve: `gatsby-plugin-breadcrumb`,
       options: {
         useAutoGen: true, // Automatically generate breadcrumbs
-        exclude: [/404/, /404.html/], // Exclude specific paths
+        exclude: [`/404/`, `/404.html`], // Exclude specific paths
         crumbLabelUpdates: [
           {
             pathname: "/blog",
