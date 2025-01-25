@@ -21,6 +21,9 @@ jobs:
       - name: Install dependencies
         run: npm install
 
+      - name: Clean Gatsby cache and public folder
+        run: npm run clean
+
       - name: Build Gatsby site with prefix paths
         run: npm run build -- --prefix-paths
 
