@@ -26,11 +26,7 @@ module.exports = {
       resolve: gatsby-source-wordpress,
       options: {
         url: https://blog.meetanshi.com/graphql, // WordPress GraphQL endpoint
-        type: {
-          MediaItem: {
-          localFile: false, // Prevents downloading WordPress images
-        },
-        },
+       
       },
     },
     gatsby-plugin-react-helmet, // Add metadata to HTML head
