@@ -26,6 +26,9 @@ module.exports = {
       resolve: `gatsby-source-wordpress`,
       options: {
         url: `https://blog.meetanshi.com/graphql`, // WordPress GraphQL endpoint
+        develop: {
+          hardCacheMedia: true, // Enable this to cache media in develop mode
+        },
       },
     },
     `gatsby-plugin-react-helmet`, // Add metadata to HTML head
