@@ -68,5 +68,11 @@ module.exports = {
         icon: `static/favicon.png`, // Path to favicon
       },
     },
+    {
+      resolve: `gatsby-plugin-sitemap`,
+      options: {
+        output: `/sitemap.xml`, // Default sitemap URL
+      },
+    },
   ],
 };
