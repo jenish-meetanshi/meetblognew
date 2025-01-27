@@ -11,3 +11,18 @@ export const onRenderBody = ({ setHeadComponents }) => {
     />,
   ]);
 };
+
+exports.onRenderBody = ({ setPostBodyComponents }) => {
+  setPostBodyComponents([
+    <script
+      key="gatsby-script-loader"
+      dangerouslySetInnerHTML={{
+        __html: `
+          /*<![CDATA[*/
+          window.pagePath = "/blog" + window.pagePath;
+          /*]]>*/
+        `,
+      }}
+    />,
+  ]);
+};
