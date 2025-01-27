@@ -184,39 +184,23 @@ exports.createPages = async ({ graphql, actions }) => {
 };
 
 
-exports.onPostBuild = ({ graphql }) => {
-  graphql(`
-    {
-      allSitePage {
-        edges {
-          node {
-            path
-          }
-        }
-      }
-    }
-  `).then(result => {
-    if (result.errors) {
-      console.log(result.errors);
-      return;
-    }
+const staticSiteUrl = 'https://meetanshi.com/blog/';
+exports.onPostBuild = () => {
+  // Construct the sitemap index XML content
+  const sitemapIndexXml = `
+    <?xml version="1.0" encoding="UTF-8"?>
+    <sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+      <sitemap>
+        <loc>${staticSiteUrl}/sitemap.xml</loc>
+      </sitemap>
+      <sitemap>
+        <loc>${staticSiteUrl}/sitemap-posts.xml</loc>
+      </sitemap>
+      <!-- Add additional sitemaps here as needed -->
+    </sitemapindex>
+  `;
 
-    // Construct the sitemap index XML content
-    const sitemapIndexXml = `
-      <?xml version="1.0" encoding="UTF-8"?>
-      <sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-        <sitemap>
-          <loc>${process.env.GATSBY_SITE_URL}/sitemap.xml</loc>
-        </sitemap>
-        <sitemap>
-          <loc>${process.env.GATSBY_SITE_URL}/sitemap-posts.xml</loc>
-        </sitemap>
-        <!-- Add additional sitemaps here as needed -->
-      </sitemapindex>
-    `;
-
-    // Resolve the path to the public directory and write the sitemap index
-    const sitemapIndexPath = path.resolve('public/sitemap_index.xml');
-    fs.writeFileSync(sitemapIndexPath, sitemapIndexXml);
-  });
+  // Resolve the path to the public directory and write the sitemap index
+  const sitemapIndexPath = path.resolve('public/sitemap_index.xml');
+  fs.writeFileSync(sitemapIndexPath, sitemapIndexXml);
 };
