@@ -188,20 +188,18 @@ const staticSiteUrl = 'https://5d43103688.nxcli.io/blog/testwordpress/';
 
 exports.onPostBuild = () => {
   // Construct the sitemap index XML content
-  const sitemapIndexXml = `
-    <?xml version="1.0" encoding="UTF-8"?>
-    <sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-      <sitemap>
-        <loc>${staticSiteUrl}/sitemap.xml</loc>
-      </sitemap>
-      <sitemap>
-        <loc>${staticSiteUrl}/sitemap-posts.xml</loc>
-      </sitemap>
-      <!-- Add additional sitemaps here as needed -->
-    </sitemapindex>
-  `;
+  const sitemapIndexXml = `<?xml version="1.0" encoding="UTF-8"?>
+<sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <sitemap>
+    <loc>${staticSiteUrl}/sitemap.xml</loc>
+  </sitemap>
+  <sitemap>
+    <loc>${staticSiteUrl}/sitemap-posts.xml</loc>
+  </sitemap>
+  <!-- Add additional sitemaps here as needed -->
+</sitemapindex>`;
 
   // Resolve the path to the public directory and write the sitemap index
   const sitemapIndexPath = path.resolve('public/sitemap_index.xml');
-  fs.writeFileSync(sitemapIndexPath, sitemapIndexXml);
+  fs.writeFileSync(sitemapIndexPath, sitemapIndexXml.trim());
 };
