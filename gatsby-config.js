@@ -55,7 +55,6 @@ module.exports = {
         id: "GTM-NPTMT2BT",
         // Optional settings
         includeInDevelopment: false,
-        routeChangeEvent: "page",
       },
     },
     {
