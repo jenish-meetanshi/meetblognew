@@ -197,10 +197,11 @@ exports.onPostBuild = ({ graphql }) => {
     }
   `).then(result => {
     if (result.errors) {
-      console.log(result.errors)
-      return
+      console.log(result.errors);
+      return;
     }
 
+    // Construct the sitemap index XML content
     const sitemapIndexXml = `
       <?xml version="1.0" encoding="UTF-8"?>
       <sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
@@ -212,8 +213,10 @@ exports.onPostBuild = ({ graphql }) => {
         </sitemap>
         <!-- Add additional sitemaps here as needed -->
       </sitemapindex>
+    `;
 
-         const sitemapIndexPath = path.resolve(`public/sitemap_index.xml`)
-    fs.writeFileSync(sitemapIndexPath, sitemapIndexXml)
-  })
-}
+    // Resolve the path to the public directory and write the sitemap index
+    const sitemapIndexPath = path.resolve('public/sitemap_index.xml');
+    fs.writeFileSync(sitemapIndexPath, sitemapIndexXml);
+  });
+};
