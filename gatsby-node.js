@@ -184,7 +184,7 @@ exports.createPages = async ({ graphql, actions }) => {
 };
 
 
-const staticSiteUrl = 'https://5d43103688.nxcli.io/blog/testwordpress';
+const staticSiteUrl = 'https://5d43103688.nxcli.io/blog/testwordpress/';
 exports.onPostBuild = () => {
   // Construct the sitemap index XML content
   const sitemapIndexXml = `
