@@ -12,7 +12,6 @@ export const onRenderBody = ({ setHeadComponents }) => {
   ]);
 };
 
-// gatsby-ssr.js
 exports.onRenderBody = ({ setPostBodyComponents }) => {
   setPostBodyComponents([
     <script
@@ -21,7 +20,7 @@ exports.onRenderBody = ({ setPostBodyComponents }) => {
       dangerouslySetInnerHTML={{
         __html: `
           /*<![CDATA[*/
-          window.pagePath = "${process.env.SITE_URL || 'https://meetanshi.com/blog/'}" + "${window.location.pathname}";
+          window.pagePath = "${'https://meetanshi.com/blog/'}" + "${window.location.pathname}";
           /*]]>*/
         `,
       }}
