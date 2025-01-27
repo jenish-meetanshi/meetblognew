@@ -187,19 +187,67 @@ exports.createPages = async ({ graphql, actions }) => {
 const staticSiteUrl = 'https://5d43103688.nxcli.io/blog/testwordpress/';
 
 exports.onPostBuild = () => {
-  // Construct the sitemap index XML content
-  const sitemapIndexXml = `<?xml version="1.0" encoding="UTF-8"?>
-<sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <sitemap>
-    <loc>${staticSiteUrl}/sitemap.xml</loc>
-  </sitemap>
-  <sitemap>
-    <loc>${staticSiteUrl}/sitemap-posts.xml</loc>
-  </sitemap>
-  <!-- Add additional sitemaps here as needed -->
-</sitemapindex>`;
+ 
 
-  // Resolve the path to the public directory and write the sitemap index
-  const sitemapIndexPath = path.resolve('public/sitemap_index.xml');
-  fs.writeFileSync(sitemapIndexPath, sitemapIndexXml.trim());
+   // Query GraphQL for all posts
+  const result = await graphql(`
+    {
+      allMarkdownRemark {
+        nodes {
+          frontmatter {
+            slug
+          }
+        }
+      }
+    }
+  `);
+
+  if (result.errors) {
+    reporter.panicOnBuild(`Error while generating sitemaps`, result.errors);
+    return;
+  }
+
+  // Extract post URLs
+  const posts = result.data.allMarkdownRemark.nodes.map(
+    (node) => `/blog/${node.frontmatter.slug}`
+  );
+
+  // Generate the `sitemap-posts.xml`
+  const sitemapPostsXml = `
+    <?xml version="1.0" encoding="UTF-8"?>
+    <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+      ${posts
+        .map(
+          (path) => `
+      <url>
+        <loc>${siteUrl}${path}</loc>
+      </url>
+    `
+        )
+        .join('')}
+    </urlset>
+  `;
+
+  // Write the `sitemap-posts.xml`
+  fs.writeFileSync(
+    path.resolve('public/sitemap-posts.xml'),
+    sitemapPostsXml.trim()
+  );
+
+  // Generate the `sitemap_index.xml`
+  const sitemapIndexXml = `
+    <?xml version="1.0" encoding="UTF-8"?>
+    <sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+      <sitemap>
+        <loc>${siteUrl}/sitemap-posts.xml</loc>
+      </sitemap>
+    </sitemapindex>
+  `;
+
+  // Write the `sitemap_index.xml`
+  fs.writeFileSync(
+    path.resolve('public/sitemap_index.xml'),
+    sitemapIndexXml.trim()
+  );
+  
 };
