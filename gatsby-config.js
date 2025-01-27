@@ -55,6 +55,8 @@ module.exports = {
         id: "GTM-NPTMT2BT",
         // Optional settings
         includeInDevelopment: false,
+        defaultDataLayer: { platform: "gatsby" },
+        enableWebVitalsTracking: true, 
       },
     },
     {
