@@ -44,6 +44,11 @@ export const onRouteUpdate = ({ location, prevLocation }) => {
       document.body.style.overflow = '';
     }, 500); // Match CSS transition duration
   }
+
+   if (typeof window !== 'undefined') {
+    // Update pagePath for client-side routing
+    window.pagePath = '/blog' + window.location.pathname;
+  }
 };
 
 export const shouldUpdateScroll = () => {
@@ -65,11 +70,4 @@ export const onClientEntry = () => {
       });
     });
   };
-};
-
-export const onRouteUpdate = () => {
-  if (typeof window !== 'undefined') {
-    // Update pagePath for client-side routing
-    window.pagePath = '/blog' + window.location.pathname;
-  }
 };
