@@ -188,14 +188,12 @@ exports.onPostBuild = async ({ graphql, reporter }) => {
   // Define the base site URL
   const siteUrl = 'https://5d43103688.nxcli.io/blog/testwordpress';
 
-  // Query GraphQL for all posts
+  // Query GraphQL for all WordPress posts (use allWpPost)
   const result = await graphql(`
     {
-      allMarkdownRemark {
+      allWpPost {
         nodes {
-          frontmatter {
-            slug
-          }
+          slug
         }
       }
     }
@@ -207,8 +205,8 @@ exports.onPostBuild = async ({ graphql, reporter }) => {
   }
 
   // Extract post URLs
-  const posts = result.data.allMarkdownRemark.nodes.map(
-    (node) => `/blog/${node.frontmatter.slug}`
+  const posts = result.data.allWpPost.nodes.map(
+    (node) => `/blog/${node.slug}`
   );
 
   // Generate the `sitemap-posts.xml`
@@ -229,7 +227,7 @@ exports.onPostBuild = async ({ graphql, reporter }) => {
 
   // Write the `sitemap-posts.xml`
   fs.writeFileSync(
-    path.resolve('/sitemap-posts.xml'),
+    path.resolve('public/sitemap-posts.xml'),
     sitemapPostsXml.trim()
   );
 
@@ -245,7 +243,7 @@ exports.onPostBuild = async ({ graphql, reporter }) => {
 
   // Write the `sitemap_index.xml`
   fs.writeFileSync(
-    path.resolve('/sitemap_index.xml'),
+    path.resolve('public/sitemap_index.xml'),
     sitemapIndexXml.trim()
   );
 };
