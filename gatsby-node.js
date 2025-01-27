@@ -1,3 +1,4 @@
+const fs = require('fs')
 const path = require("path");
 
 // Add schema customization for reading time
@@ -9,7 +10,6 @@ exports.createSchemaCustomization = ({ actions }) => {
       reading_time: Int
     }
   `;
-
   createTypes(typeDefs);
 };
 
@@ -182,3 +182,38 @@ exports.createPages = async ({ graphql, actions }) => {
     });
   });
 };
+
+
+exports.onPostBuild = ({ graphql }) => {
+  graphql(`
+    {
+      allSitePage {
+        edges {
+          node {
+            path
+          }
+        }
+      }
+    }
+  `).then(result => {
+    if (result.errors) {
+      console.log(result.errors)
+      return
+    }
+
+    const sitemapIndexXml = `
+      <?xml version="1.0" encoding="UTF-8"?>
+      <sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+        <sitemap>
+          <loc>${process.env.GATSBY_SITE_URL}/sitemap.xml</loc>
+        </sitemap>
+        <sitemap>
+          <loc>${process.env.GATSBY_SITE_URL}/sitemap-posts.xml</loc>
+        </sitemap>
+        <!-- Add additional sitemaps here as needed -->
+      </sitemapindex>
+
+         const sitemapIndexPath = path.resolve(`public/sitemap_index.xml`)
+    fs.writeFileSync(sitemapIndexPath, sitemapIndexXml)
+  })
+}
