@@ -9,5 +9,18 @@ export const onRenderBody = ({ setHeadComponents }) => {
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
     />,
+
+    <script
+      key="gatsby-script-loader"
+      dangerouslySetInnerHTML={{
+        __html: `
+          /*<![CDATA[*/
+          if (typeof window !== "undefined") {
+            window.pagePath = window.location.origin + window.location.pathname;
+          }
+          /*]]>*/
+        `,
+      }}
+    />,
   ]);
 };
