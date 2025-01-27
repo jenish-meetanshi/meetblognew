@@ -12,13 +12,13 @@ export const onRenderBody = ({ setHeadComponents }) => {
 
     <script
       key="gatsby-script-loader"
+      id="gatsby-script-loader"
       dangerouslySetInnerHTML={{
         __html: `
-          /*<![CDATA[*/
-          if (typeof window !== "undefined") {
-            window.pagePath = window.location.origin + window.location.pathname;
+          // Ensure pagePath is updated with /blog
+          if (typeof window !== 'undefined') {
+            window.pagePath = '/blog' + window.location.pathname;
           }
-          /*]]>*/
         `,
       }}
     />,
