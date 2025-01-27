@@ -184,12 +184,11 @@ exports.createPages = async ({ graphql, actions }) => {
 };
 
 
-const staticSiteUrl = 'https://5d43103688.nxcli.io/blog/testwordpress/';
+exports.onPostBuild = async ({ graphql, reporter }) => {
+  // Define the base site URL
+  const siteUrl = 'https://5d43103688.nxcli.io/blog/testwordpress';
 
-exports.onPostBuild = () => {
- 
-
-   // Query GraphQL for all posts
+  // Query GraphQL for all posts
   const result = await graphql(`
     {
       allMarkdownRemark {
@@ -230,7 +229,7 @@ exports.onPostBuild = () => {
 
   // Write the `sitemap-posts.xml`
   fs.writeFileSync(
-    path.resolve('public/sitemap-posts.xml'),
+    path.resolve('/sitemap-posts.xml'),
     sitemapPostsXml.trim()
   );
 
@@ -246,8 +245,7 @@ exports.onPostBuild = () => {
 
   // Write the `sitemap_index.xml`
   fs.writeFileSync(
-    path.resolve('public/sitemap_index.xml'),
+    path.resolve('/sitemap_index.xml'),
     sitemapIndexXml.trim()
   );
-  
 };
