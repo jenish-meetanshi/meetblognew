@@ -71,3 +71,10 @@ export const onClientEntry = () => {
   }  
 };
 
+
+export const onRouteUpdate = () => {
+  if (typeof window !== 'undefined') {
+    // Update pagePath for client-side routing
+    window.pagePath = '/blog' + window.location.pathname;
+  }
+};
