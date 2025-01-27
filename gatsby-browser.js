@@ -65,10 +65,9 @@ export const onClientEntry = () => {
       });
     });
   };
-};
 
-export const onClientEntry = () => {
   if (typeof window !== "undefined") {
     window.pagePath = "/blog" + window.location.pathname;
-  }
+  }  
 };
+
