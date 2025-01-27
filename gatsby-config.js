@@ -11,6 +11,9 @@
 const { createProxyMiddleware } = require("http-proxy-middleware");
 
 module.exports = {
+  siteMetadata: {
+    siteUrl: 'https://5d43103688.nxcli.io/blog/testwordpress', // Make sure this URL is correct
+  },
   pathPrefix: "/blog/testwordpress", // Set path prefix for deployment if required
   developMiddleware: app => {
     app.use(
@@ -71,9 +74,6 @@ module.exports = {
     {
       resolve: `gatsby-plugin-sitemap`,
       options: {
-        resolveSiteUrl: () => {
-          return `https://5d43103688.nxcli.io/blog/testwordpress`; // Replace with dynamic logic if necessary
-        },
         output: `/sitemap.xml`, // Default sitemap URL
       },
     },
