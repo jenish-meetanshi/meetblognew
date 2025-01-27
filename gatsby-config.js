@@ -53,16 +53,6 @@ module.exports = {
       },
     },
     {
-      resolve: `gatsby-plugin-google-tagmanager`,
-      options: {
-        id: "GTM-NPTMT2BT",
-        // Optional settings
-        includeInDevelopment: false,
-        defaultDataLayer: { platform: "gatsby" },
-        enableWebVitalsTracking: true, 
-      },
-    },
-    {
       resolve: `gatsby-plugin-manifest`,
       options: {
         name: `Meetanshi Blog: Magento, Shopify & Marketing`, // Name for the app
