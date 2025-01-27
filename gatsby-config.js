@@ -71,6 +71,9 @@ module.exports = {
     {
       resolve: `gatsby-plugin-sitemap`,
       options: {
+        resolveSiteUrl: () => {
+          return `https://meetanshi.com/blog/`; // Replace with dynamic logic if necessary
+        },
         output: `/sitemap.xml`, // Default sitemap URL
       },
     },
