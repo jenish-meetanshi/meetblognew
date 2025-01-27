@@ -11,3 +11,20 @@ export const onRenderBody = ({ setHeadComponents }) => {
     />,
   ]);
 };
+
+// gatsby-ssr.js
+exports.onRenderBody = ({ setPostBodyComponents }) => {
+  setPostBodyComponents([
+    <script
+      key="gatsby-script-loader"
+      id="gatsby-script-loader"
+      dangerouslySetInnerHTML={{
+        __html: `
+          /*<![CDATA[*/
+          window.pagePath = "${process.env.SITE_URL || 'https://meetanshi.com/blog/'}" + "${window.location.pathname}";
+          /*]]>*/
+        `,
+      }}
+    />,
+  ]);
+};
