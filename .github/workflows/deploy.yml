@@ -25,7 +25,7 @@ jobs:
         run: npm run clean
 
       - name: Build Gatsby site with prefix paths
-        run: npm run build -- --prefix-paths
+        run: npm run build -- --prefix-paths --verbose
 
       - name: Deploy to Nexcess
         uses: appleboy/scp-action@v0.1.4
