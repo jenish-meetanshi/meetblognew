@@ -73,14 +73,21 @@ export const onClientEntry = () => {
 };
 
 export const onClientEntry = () => {
-  if (typeof window !== "undefined") {
-    const script = document.createElement("script");
-    script.id = "gatsby-script-loader";
-    script.key = "gatsby-script-loader";
-    script.innerHTML = `
-      // Your JavaScript code here
-      console.log("Custom script dynamically loaded via gatsby-browser.js");
-    `;
-    document.body.appendChild(script);
-  }
+  // Wait for the DOM to load
+  window.addEventListener("DOMContentLoaded", () => {
+    // Remove the original script by its ID
+    const scriptToRemove = document.getElementById("gatsby-script-loader");
+    if (scriptToRemove) {
+      scriptToRemove.remove();
+    }
+
+    // Create and append the modified script
+    const modifiedScript = document.createElement("script");
+    modifiedScript.id = "gatsby-script-loader";
+    modifiedScript.setAttribute("key", "gatsby-script-loader");
+    modifiedScript.textContent = `/*<![CDATA[*/window.pagePath="/";/*]]>*/`;
+
+    document.body.appendChild(modifiedScript);
+  });
 };
+
