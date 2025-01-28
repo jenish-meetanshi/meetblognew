@@ -151,7 +151,7 @@ exports.createPages = async ({ graphql, actions }) => {
   // Create individual post pages
   posts.forEach((post) => {
     createPage({
-      path: `/${post.slug}`,
+      path: `/blog/${post.slug}`,
       component: path.resolve("./src/templates/post-detail.js"),
       context: {
         id: post.id,
