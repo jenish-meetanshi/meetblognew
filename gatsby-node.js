@@ -150,16 +150,14 @@ exports.createPages = async ({ graphql, actions }) => {
   
   // Create individual post pages
  posts.forEach((post) => {
-  const pagePath = `${post.slug}` // Store the path
-  createPage({
-    path: pagePath,
-    component: path.resolve("./src/templates/post-detail.js"),
-    context: {
-      id: post.id,
-      pagePath, // Pass the path to the context
-    },
+    createPage({
+      path: `/${post.slug}`,
+      component: path.resolve("./src/templates/post-detail.js"),
+      context: {
+        id: post.id,
+      },
+    });
   });
-});
 
   // Create author pages with pagination
   authors.forEach(author => {
