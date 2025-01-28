@@ -108,9 +108,6 @@ const PostDetail = ({ data, pageContext }) => {
         <meta name="twitter:data1" content={post.author.node.name} />
         <meta name="twitter:label2" content="Time to read" />
         <meta name="twitter:data2" content={post.reading_time} />
-         <script type="text/javascript">
-          {`window.pagePath="${pageContext.pagePath}";`}
-        </script>
         <script type="application/ld+json">
           {JSON.stringify({
             "@context": "https://schema.org",
