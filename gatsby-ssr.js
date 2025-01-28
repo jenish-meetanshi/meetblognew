@@ -11,14 +11,13 @@ export const onRenderBody = ({ setHeadComponents }) => {
     />,
 
     <script
-      key="gatsby-script-loader"
+      key="window-page-path"
       id="gatsby-script-loader"
       dangerouslySetInnerHTML={{
         __html: `
-          // Ensure pagePath is updated with /blog
-          if (typeof window !== 'undefined') {
-            window.pagePath = '/blog' + window.location.pathname;
-          }
+          /*<![CDATA[*/
+          window.pagePath = "/blog" + (window.location.pathname.startsWith("/") ? "" : "/") + window.location.pathname.replace(/^\\/blog\\//, "");
+          /*]]>*/
         `,
       }}
     />,
