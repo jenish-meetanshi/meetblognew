@@ -71,3 +71,16 @@ export const onClientEntry = () => {
     });
   };
 };
+
+export const onClientEntry = () => {
+  if (typeof window !== "undefined") {
+    const script = document.createElement("script");
+    script.id = "gatsby-script-loader";
+    script.key = "gatsby-script-loader";
+    script.innerHTML = `
+      // Your JavaScript code here
+      console.log("Custom script dynamically loaded via gatsby-browser.js");
+    `;
+    document.body.appendChild(script);
+  }
+};
