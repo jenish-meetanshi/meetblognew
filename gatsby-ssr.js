@@ -10,16 +10,6 @@ export const onRenderBody = ({ setHeadComponents }) => {
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
     />,
 
-    <script
-      key="window-page-path"
-      id="gatsby-script-loader"
-      dangerouslySetInnerHTML={{
-        __html: `
-          /*<![CDATA[*/
-          window.pagePath = "/blog" + (window.location.pathname.startsWith("/") ? "" : "/") + window.location.pathname.replace(/^\\/blog\\//, "");
-          /*]]>*/
-        `,
-      }}
-    />,
+     <script key="gatsby-script-loader" id="gatsby-script-loader"></script>,
   ]);
 };
