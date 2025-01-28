@@ -57,7 +57,8 @@ export const shouldUpdateScroll = () => {
 };
 
 export const onClientEntry = () => {
-  window.onload = () => {
+
+    window.onload = () => {
     const codeBlocks = document.querySelectorAll('pre.EnlighterJSRAW');
 
     codeBlocks.forEach((block) => {
@@ -70,9 +71,8 @@ export const onClientEntry = () => {
       });
     });
   };
-};
 
-export const onClientEntry = () => {
+  
   // Wait for the DOM to load
   window.addEventListener("DOMContentLoaded", () => {
     // Remove the original script by its ID
