@@ -1,5 +1,5 @@
 
-import React from "react";
+// import React from "react";
 
 // export const onRenderBody = ({ setHeadComponents}) => {
 //   setHeadComponents([
@@ -34,7 +34,33 @@ import React from "react";
 // };
 
 
+// export const onRenderBody = ({ setPostBodyComponents }) => {
+//   // Don't add the script during SSR - we'll handle it client-side only
+//   return null;
+// }
+
+
+import React from 'react';
+
+// Remove default scripts
+export const onPreRenderHTML = ({ getHeadComponents, replaceHeadComponents }) => {
+  const headComponents = getHeadComponents();
+  
+  // Filter out Gatsby's default script loader
+  const filteredComponents = headComponents.filter(component => {
+    return !(
+      component.type === 'script' && 
+      component.props && 
+      component.props.id === 'gatsby-script-loader'
+    );
+  });
+  
+  replaceHeadComponents(filteredComponents);
+};
+
+// Add our blank script
 export const onRenderBody = ({ setPostBodyComponents }) => {
-  // Don't add the script during SSR - we'll handle it client-side only
-  return null;
-}
+  setPostBodyComponents([
+    <script key="gatsby-script-loader" id="gatsby-script-loader" />,
+  ]);
+};
