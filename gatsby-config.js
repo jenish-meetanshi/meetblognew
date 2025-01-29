@@ -11,9 +11,11 @@
 const { createProxyMiddleware } = require("http-proxy-middleware");
 
 module.exports = {
-   flags: {
-    DEV_SSR: true
+    flags: {
+    DEV_SSR: true,
+    FAST_DEV: true,
   },
+  polyfill: false,
   siteMetadata: {
     siteUrl: 'https://5d43103688.nxcli.io/blog/testwordpress', // Make sure this URL is correct
   },
