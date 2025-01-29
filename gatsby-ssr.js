@@ -34,32 +34,9 @@ import React from "react";
 // };
 
 
-export const onPreRenderHTML = ({ 
-  getPostBodyComponents,
-  replacePostBodyComponents,
-}) => {
-  let postBodyComponents = getPostBodyComponents();
-  
-  // Remove the existing Gatsby script
-  postBodyComponents = postBodyComponents.filter(
-    (component) =>
-      !(
-        component.type === "script" &&
-        component.props.id === "gatsby-script-loader"
-      )
-  );
-  
-  // Add the modified script
-  postBodyComponents.push(
-    <script key="gatsby-script-loader" id="gatsby-script-loader"></script>
-  );
-  
-  replacePostBodyComponents(postBodyComponents);
-};
-
-// Alternative approach using onRenderBody if above doesn't work
 export const onRenderBody = ({ setPostBodyComponents }) => {
+  // Add blank script during SSR
   setPostBodyComponents([
     <script key="gatsby-script-loader" id="gatsby-script-loader" />
   ]);
-};
+}
