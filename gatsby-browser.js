@@ -74,15 +74,16 @@ export const onClientEntry = () => {
 };
 
 export const onInitialClientRender = () => {
-  // Remove the existing script content
-  const scriptElement = document.getElementById('gatsby-script-loader');
-  if (scriptElement) {
-    // Create new blank script element
-    const newScript = document.createElement('script');
-    newScript.id = 'gatsby-script-loader';
-    newScript.key = 'gatsby-script-loader';
-    
-    // Replace old script with new blank one
-    scriptElement.parentNode.replaceChild(newScript, scriptElement);
-  }
+  // Get all gatsby script loader elements
+  const scriptElements = document.querySelectorAll('#gatsby-script-loader');
+  
+  // Remove all existing script elements with this ID
+  scriptElements.forEach(script => script.remove());
+  
+  // Create single new blank script element
+  const newScript = document.createElement('script');
+  newScript.id = 'gatsby-script-loader';
+  
+  // Add the blank script to the document
+  document.body.appendChild(newScript);
 }
