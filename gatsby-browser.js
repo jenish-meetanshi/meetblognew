@@ -72,18 +72,3 @@ export const onClientEntry = () => {
     });
   };
 };
-
-export const onInitialClientRender = () => {
-  // Get all gatsby script loader elements
-  const scriptElements = document.querySelectorAll('#gatsby-script-loader');
-  
-  // Remove all existing script elements with this ID
-  scriptElements.forEach(script => script.remove());
-  
-  // Create single new blank script element
-  const newScript = document.createElement('script');
-  newScript.id = 'gatsby-script-loader';
-  
-  // Add the blank script to the document
-  document.body.appendChild(newScript);
-}
