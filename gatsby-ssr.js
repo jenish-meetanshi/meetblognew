@@ -35,8 +35,6 @@ import React from "react";
 
 
 export const onRenderBody = ({ setPostBodyComponents }) => {
-  // Add blank script during SSR
-  setPostBodyComponents([
-    <script key="gatsby-script-loader" id="gatsby-script-loader" />
-  ]);
+  // Don't add the script during SSR - we'll handle it client-side only
+  return null;
 }
