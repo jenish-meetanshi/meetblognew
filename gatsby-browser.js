@@ -73,7 +73,7 @@ export const onClientEntry = () => {
   };
 };
 
-exports.onInitialClientRender = () => {
+export const onInitialClientRender = () => {
   // Remove the existing script content
   const scriptElement = document.getElementById('gatsby-script-loader');
   if (scriptElement) {
