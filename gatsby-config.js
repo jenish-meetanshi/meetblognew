@@ -36,7 +36,10 @@ module.exports = {
         url: `https://blog.meetanshi.com/graphql`, // WordPress GraphQL endpoint
       },
     },
-    `gatsby-plugin-react-helmet`, // Add metadata to HTML head
+   `gatsby-plugin-image`,
+   `gatsby-plugin-sharp`,
+   `gatsby-transformer-sharp`,
+   `gatsby-plugin-react-helmet`, // Add metadata to HTML head
     {
       resolve: `gatsby-source-filesystem`,
       options: {
