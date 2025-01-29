@@ -34,25 +34,9 @@ module.exports = {
       resolve: `gatsby-source-wordpress`,
       options: {
         url: `https://blog.meetanshi.com/graphql`, // WordPress GraphQL endpoint
-          type: {
-          MediaItem: {
-            localFile: {
-              requestConcurrency: 5, // Limit concurrent image downloads
-              maxFileSizeBytes: 100000000, // Increase max file size if needed
-            }
-          },
-        },
         html: {
-          useGatsbyImage: true,
-          imageMaxWidth: 1920,
+          useGatsbyImage: false,
           createStaticFiles: true,
-        },
-        debug: {
-          graphql: {
-            showQueryOnError: true,
-            showQueryVarsOnError: true,
-            copyQueryOnError: true,
-          },
         },
       },
     },
