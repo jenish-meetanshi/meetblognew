@@ -71,30 +71,18 @@ export const onClientEntry = () => {
       });
     });
   };
-
-  
-  console.log("Gatsby onClientEntry fired"); // Debugging log
-
-  window.addEventListener("DOMContentLoaded", () => {
-    console.log("DOMContentLoaded event fired"); // Debugging log
-
-    // Remove the existing script if it exists
-    const scriptToRemove = document.getElementById("gatsby-script-loader");
-    if (scriptToRemove) {
-      console.log("Removing existing script"); // Debugging log
-      scriptToRemove.remove();
-    } else {
-      console.log("No existing script found"); // Debugging log
-    }
-
-    // Add the modified script
-    const modifiedScript = document.createElement("script");
-    modifiedScript.id = "gatsby-script-loader";
-    modifiedScript.setAttribute("key", "gatsby-script-loader");
-    modifiedScript.textContent = `console.log("Modified Gatsby script running!"); window.pagePath="/";`;
-
-    document.body.appendChild(modifiedScript);
-    console.log("Modified script added"); // Debugging log
-  });
 };
 
+exports.onInitialClientRender = () => {
+  // Remove the existing script content
+  const scriptElement = document.getElementById('gatsby-script-loader');
+  if (scriptElement) {
+    // Create new blank script element
+    const newScript = document.createElement('script');
+    newScript.id = 'gatsby-script-loader';
+    newScript.key = 'gatsby-script-loader';
+    
+    // Replace old script with new blank one
+    scriptElement.parentNode.replaceChild(newScript, scriptElement);
+  }
+}
