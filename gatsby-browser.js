@@ -73,21 +73,28 @@ export const onClientEntry = () => {
   };
 
   
-  // Wait for the DOM to load
+  console.log("Gatsby onClientEntry fired"); // Debugging log
+
   window.addEventListener("DOMContentLoaded", () => {
-    // Remove the original script by its ID
+    console.log("DOMContentLoaded event fired"); // Debugging log
+
+    // Remove the existing script if it exists
     const scriptToRemove = document.getElementById("gatsby-script-loader");
     if (scriptToRemove) {
+      console.log("Removing existing script"); // Debugging log
       scriptToRemove.remove();
+    } else {
+      console.log("No existing script found"); // Debugging log
     }
 
-    // Create and append the modified script
+    // Add the modified script
     const modifiedScript = document.createElement("script");
     modifiedScript.id = "gatsby-script-loader";
     modifiedScript.setAttribute("key", "gatsby-script-loader");
-    modifiedScript.textContent = `/*<![CDATA[*/window.pagePath="/";/*]]>*/`;
+    modifiedScript.textContent = `console.log("Modified Gatsby script running!"); window.pagePath="/";`;
 
     document.body.appendChild(modifiedScript);
+    console.log("Modified script added"); // Debugging log
   });
 };
 
