@@ -45,6 +45,26 @@ module.exports = {
       options: {
         name: `images`,
         path: `${__dirname}/src/images`, // Directory for image files
+        type: {
+          MediaItem: {
+            localFile: {
+              requestConcurrency: 5, // Limit concurrent image downloads
+              maxFileSizeBytes: 100000000, // Increase max file size if needed
+            }
+          },
+        },
+        html: {
+          useGatsbyImage: true,
+          imageMaxWidth: 1920,
+          createStaticFiles: true,
+        },
+        debug: {
+          graphql: {
+            showQueryOnError: true,
+            showQueryVarsOnError: true,
+            copyQueryOnError: true,
+          },
+        },
       },
     },
     {
