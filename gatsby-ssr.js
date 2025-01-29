@@ -40,27 +40,62 @@
 // }
 
 
+// import React from 'react';
+
+// // Remove default scripts
+// export const onPreRenderHTML = ({ getHeadComponents, replaceHeadComponents }) => {
+//   const headComponents = getHeadComponents();
+  
+//   // Filter out Gatsby's default script loader
+//   const filteredComponents = headComponents.filter(component => {
+//     return !(
+//       component.type === 'script' && 
+//       component.props && 
+//       component.props.id === 'gatsby-script-loader'
+//     );
+//   });
+  
+//   replaceHeadComponents(filteredComponents);
+// };
+
+// // Add our blank script
+// export const onRenderBody = ({ setPostBodyComponents }) => {
+//   setPostBodyComponents([
+//     <script key="gatsby-script-loader" id="gatsby-script-loader" />,
+//   ]);
+// };
+
+
 import React from 'react';
 
-// Remove default scripts
-export const onPreRenderHTML = ({ getHeadComponents, replaceHeadComponents }) => {
+// Remove scripts from both head and body
+export const onPreRenderHTML = ({ getHeadComponents, replaceHeadComponents, getPostBodyComponents, replacePostBodyComponents }) => {
+  // Clean head components
   const headComponents = getHeadComponents();
-  
-  // Filter out Gatsby's default script loader
-  const filteredComponents = headComponents.filter(component => {
+  const filteredHeadComponents = headComponents.filter(component => {
     return !(
-      component.type === 'script' && 
-      component.props && 
-      component.props.id === 'gatsby-script-loader'
+      component?.type === 'script' && 
+      component?.props?.id === 'gatsby-script-loader'
+    );
+  });
+  replaceHeadComponents(filteredHeadComponents);
+
+  // Clean body components
+  const bodyComponents = getPostBodyComponents();
+  const filteredBodyComponents = bodyComponents.filter(component => {
+    return !(
+      component?.type === 'script' && 
+      component?.props?.id === 'gatsby-script-loader'
     );
   });
   
-  replaceHeadComponents(filteredComponents);
+  // Add single empty script to body components
+  filteredBodyComponents.push(
+    <script key="gatsby-script-loader" id="gatsby-script-loader" />
+  );
+  
+  replacePostBodyComponents(filteredBodyComponents);
 };
 
-// Add our blank script
-export const onRenderBody = ({ setPostBodyComponents }) => {
-  setPostBodyComponents([
-    <script key="gatsby-script-loader" id="gatsby-script-loader" />,
-  ]);
-};
+// Disable the default script injection
+export const onRenderBody = () => null;
