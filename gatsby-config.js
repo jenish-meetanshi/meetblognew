@@ -16,8 +16,6 @@ module.exports = {
     FAST_DEV: true,
   },
   polyfill: false,
-  // Add this to disable default script injection
-  scripts: [],
   siteMetadata: {
     siteUrl: 'https://5d43103688.nxcli.io/blog/testwordpress', // Make sure this URL is correct
   },
