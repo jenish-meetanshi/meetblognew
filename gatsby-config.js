@@ -34,18 +34,7 @@ module.exports = {
       resolve: `gatsby-source-wordpress`,
       options: {
         url: `https://blog.meetanshi.com/graphql`, // WordPress GraphQL endpoint
-      },
-    },
-   `gatsby-plugin-image`,
-   `gatsby-plugin-sharp`,
-   `gatsby-transformer-sharp`,
-   `gatsby-plugin-react-helmet`, // Add metadata to HTML head
-    {
-      resolve: `gatsby-source-filesystem`,
-      options: {
-        name: `images`,
-        path: `${__dirname}/src/images`, // Directory for image files
-        type: {
+          type: {
           MediaItem: {
             localFile: {
               requestConcurrency: 5, // Limit concurrent image downloads
@@ -65,6 +54,17 @@ module.exports = {
             copyQueryOnError: true,
           },
         },
+      },
+    },
+   `gatsby-plugin-image`,
+   `gatsby-plugin-sharp`,
+   `gatsby-transformer-sharp`,
+   `gatsby-plugin-react-helmet`, // Add metadata to HTML head
+    {
+      resolve: `gatsby-source-filesystem`,
+      options: {
+        name: `images`,
+        path: `${__dirname}/src/images`, // Directory for image files
       },
     },
     {
