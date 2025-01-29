@@ -34,15 +34,15 @@ module.exports = {
       resolve: `gatsby-source-wordpress`,
       options: {
         url: `https://blog.meetanshi.com/graphql`, // WordPress GraphQL endpoint
-        html: {
-          useGatsbyImage: false,
-          createStaticFiles: true,
-        },
+       type: {
+         MediaItem: {
+           localFile: {
+             excludeByMimeTypes: ['image/jpeg', 'image/png', 'image/gif']
+           }
+         }
+       }
       },
     },
-   `gatsby-plugin-image`,
-   `gatsby-plugin-sharp`,
-   `gatsby-transformer-sharp`,
    `gatsby-plugin-react-helmet`, // Add metadata to HTML head
     {
       resolve: `gatsby-source-filesystem`,
