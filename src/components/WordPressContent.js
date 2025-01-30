@@ -41,3 +41,13 @@ const WordPressContent = ({ content }) => {
 
     return processedContent;
   };
+
+  return (
+    <div
+      className="wordpress-content"
+      dangerouslySetInnerHTML={{ __html: processContent(content) }}
+    />
+  );
+};
+
+export default WordPressContent;
