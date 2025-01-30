@@ -14,9 +14,7 @@ const PostDetail = ({ data, pageContext }) => {
  
   const ctaImage = post.categories.nodes[0]?.ctaImage;
   const ctaLink = post.categories.nodes[0]?.ctaLink;
-  const ctaLinkNofollow = post.categories.nodes[0]?.ctaLinkNofollow;
-  const cleanContent = cleanWordPressContent(post.content);
-  
+  const ctaLinkNofollow = post.categories.nodes[0]?.ctaLinkNofollow;  
   useEffect(() => {
     const parser = new DOMParser();
     const doc = parser.parseFromString(post.content, "text/html");
