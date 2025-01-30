@@ -4,7 +4,7 @@ import { Breadcrumb } from "gatsby-plugin-breadcrumb"; // Import Breadcrumb
 import { Helmet } from "react-helmet";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
-import { cleanWordPressContent } from '../utils/contentCleaner';
+import WordPressContent from '../components/WordPressContent';
 
 const PostDetail = ({ data, pageContext }) => {
   const post = data.wpPost;
@@ -179,7 +179,11 @@ const PostDetail = ({ data, pageContext }) => {
       <div className="container-lg">
         <div className="row">
           <div className="col-md-9">
-            <div className="post-content-main" dangerouslySetInnerHTML={{ __html: cleanContent }} />
+            <div className="post-content-main">
+              <article>
+                <WordPressContent content={post.content} />
+              </article>
+            </div>
             {/* <div className="comment-form mt-4" id="commentForm">
               <h4 className="mb-4">{parentCommentId ? "Reply to Comment" : "Leave a Comment"}</h4>
               <form onSubmit={handleCommentSubmit} className="p-4 border rounded bg-light">
