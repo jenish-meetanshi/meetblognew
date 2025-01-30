@@ -247,3 +247,14 @@ exports.onPostBuild = async ({ graphql, reporter }) => {
     sitemapIndexXml.trim()
   );
 };
+
+exports.onCreateWebpackConfig = ({ actions }) => {
+  actions.setWebpackConfig({
+    resolve: {
+      alias: {
+        // Disable gatsby-plugin-sharp
+        'gatsby-plugin-sharp': false,
+      },
+    },
+  })
+}
