@@ -253,22 +253,11 @@ exports.onCreateWebpackConfig = ({ stage, actions }) => {
     actions.setWebpackConfig({
       resolve: {
         alias: {
+          // Disable sharp-related modules
           'gatsby-plugin-sharp': false,
           'gatsby-transformer-sharp': false,
         },
       },
-    });
-  }
-};
-
-exports.onCreateNode = ({ node, actions }) => {
-  const { createNodeField } = actions;
-  if (node.internal.type === 'WpPost' && node.content) {
-    // Store the original content
-    createNodeField({
-      node,
-      name: 'originalContent',
-      value: node.content,
     });
   }
 };
