@@ -34,7 +34,7 @@ module.exports = {
         url: `https://blog.meetanshi.com/graphql`,
         html: {
           useGatsbyImage: false,
-          imageMaxWidth: false,
+          imageMaxWidth: null,
           createStaticFiles: false,
         },
         type: {
