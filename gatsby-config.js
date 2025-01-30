@@ -32,32 +32,11 @@ module.exports = {
       resolve: `gatsby-source-wordpress`,
       options: {
         url: `https://blog.meetanshi.com/graphql`,
-        html: {
-          useGatsbyImage: false,
-          imageMaxWidth: null,
-          createStaticFiles: false,
-          generateWebpImages: false
-        },
-        type: {
-          MediaItem: {
-            createFileNodes: false,
-          },
-          Post: {
-            excludeFieldNames: ['guid']
-          },
-        },
         schema: {
           timeout: 3000000,
           perPage: 20,
           requestConcurrency: 5,
         },
-        develop: {
-          nodeUpdateInterval: 300,
-          hardCacheMediaFiles: false
-        },
-        production: {
-          hardCacheMediaFiles: false
-        }
       },
     },
     `gatsby-plugin-react-helmet`,
