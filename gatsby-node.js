@@ -248,36 +248,27 @@ exports.onPostBuild = async ({ graphql, reporter }) => {
   );
 };
 
-exports.createSchemaCustomization = ({ actions }) => {
-  const { createTypes } = actions;
-  createTypes(`
-    type WpPost implements Node {
-      content: String
-    }
-  `);
+exports.onCreateWebpackConfig = ({ stage, actions }) => {
+  if (stage === 'build-javascript' || stage === 'develop') {
+    actions.setWebpackConfig({
+      resolve: {
+        alias: {
+          'gatsby-plugin-sharp': false,
+          'gatsby-transformer-sharp': false,
+        },
+      },
+    });
+  }
 };
 
 exports.onCreateNode = ({ node, actions }) => {
   const { createNodeField } = actions;
-  
   if (node.internal.type === 'WpPost' && node.content) {
-    // Clean up any Gatsby image processing
-    const cleanContent = node.content
-      .replace(/data-gatsby-image-wrapper=""/g, '')
-      .replace(/class="gatsby-image-wrapper[^"]*"/g, '')
-      .replace(/class="inline-gatsby-image-wrapper[^"]*"/g, '')
-      .replace(
-        /src="[^"]*\/_gatsby\/image\/[^"]*"/g,
-        (match) => {
-          const originalUrl = match.match(/u=(.*?)&/);
-          return originalUrl ? `src="${decodeURIComponent(originalUrl[1])}"` : match;
-        }
-      );
-
+    // Store the original content
     createNodeField({
       node,
-      name: 'cleanContent',
-      value: cleanContent,
+      name: 'originalContent',
+      value: node.content,
     });
   }
 };
