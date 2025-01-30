@@ -3,11 +3,9 @@
  *
  * See: https://www.gatsbyjs.com/docs/reference/config-files/gatsby-config/
  */
-
 /**
  * @type {import('gatsby').GatsbyConfig}
  */
-
 const { createProxyMiddleware } = require("http-proxy-middleware");
 
 module.exports = {
@@ -38,15 +36,14 @@ module.exports = {
           useGatsbyImage: false,
           imageMaxWidth: null,
           createStaticFiles: false,
+          generateWebpImages: false
         },
         type: {
           MediaItem: {
             createFileNodes: false,
-            lazyNodes: true,
           },
           Post: {
-            excludeFieldNames: ['guid'],
-            // Remove beforeChangeNode from here
+            excludeFieldNames: ['guid']
           },
         },
         schema: {
@@ -56,11 +53,11 @@ module.exports = {
         },
         develop: {
           nodeUpdateInterval: 300,
-          hardCacheMediaFiles: false,
+          hardCacheMediaFiles: false
         },
         production: {
-          hardCacheMediaFiles: false,
-        },
+          hardCacheMediaFiles: false
+        }
       },
     },
     `gatsby-plugin-react-helmet`,
