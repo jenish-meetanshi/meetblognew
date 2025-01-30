@@ -50,7 +50,7 @@ jobs:
           username: afd62358_7
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           source: "./public/"
-          target: "/chroot/home/afd62358/5d43103688.nxcli.io/pub/blog/testwordpress/"
+          target: "/chroot/home/afd62358/5d43103688.nxcli.io/pub/blog/testwordpress-new/"
           rm: false
           overwrite: true
           strip_components: 1
@@ -62,5 +62,5 @@ jobs:
           username: afd62358_7
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           script: |
-            chmod -R 755 /chroot/home/afd62358/5d43103688.nxcli.io/pub/blog/testwordpress/
-            find /chroot/home/afd62358/5d43103688.nxcli.io/pub/blog/testwordpress/ -type f -exec chmod 644 {} \;
+            chmod -R 755 /chroot/home/afd62358/5d43103688.nxcli.io/pub/blog/testwordpress-new/
+            find /chroot/home/afd62358/5d43103688.nxcli.io/pub/blog/testwordpress-new/ -type f -exec chmod 644 {} \;
