@@ -43,5 +43,9 @@
   },
   "bugs": {
     "url": "https://github.com/gatsbyjs/gatsby/issues"
+  },
+  "scripts": {
+    "build": "GATSBY_SKIP_IMAGE_PROCESSING=true gatsby build --no-uglify",
+    "clean": "gatsby clean"
   }
 }
