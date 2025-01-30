@@ -32,10 +32,21 @@ module.exports = {
       resolve: `gatsby-source-wordpress`,
       options: {
         url: `https://blog.meetanshi.com/graphql`,
-        schema: {
-          timeout: 3000000,
-          perPage: 20,
-          requestConcurrency: 5,
+        html: {
+          useGatsbyImage: false,
+          imageMaxWidth: false,
+          createStaticFiles: false,
+        },
+        type: {
+          MediaItem: {
+            createFileNodes: false,
+          },
+        },
+        develop: {
+          hardCacheMediaFiles: false,
+        },
+        production: {
+          hardCacheMediaFiles: false,
         },
       },
     },
