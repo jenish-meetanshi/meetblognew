@@ -33,14 +33,18 @@ module.exports = {
     {
       resolve: `gatsby-source-wordpress`,
       options: {
-        url: `https://blog.meetanshi.com/graphql`, // WordPress GraphQL endpoint
-       type: {
+      url: `https://blog.meetanshi.com/graphql`, // WordPress GraphQL endpoint
+      html: {
+          imageMaxWidth: null, // Disable image processing
+          createStaticFiles: false, // Disable static file creation
+      },
+      type: {
          MediaItem: {
-           localFile: {
-             excludeByMimeTypes: ['image/jpeg', 'image/png', 'image/gif']
-           }
-         }
-       }
+            localFile: {
+              excludeByMimeTypes: ['image/jpeg', 'image/png', 'image/gif', 'image/webp']
+            }
+          }
+        }
       },
     },
    `gatsby-plugin-react-helmet`, // Add metadata to HTML head
