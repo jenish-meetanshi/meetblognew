@@ -248,13 +248,33 @@ exports.onPostBuild = async ({ graphql, reporter }) => {
   );
 };
 
-exports.onCreateWebpackConfig = ({ actions }) => {
-  actions.setWebpackConfig({
-    resolve: {
-      alias: {
-        // Disable gatsby-plugin-sharp
-        'gatsby-plugin-sharp': false,
+exports.onCreateWebpackConfig = ({ stage, actions, getConfig }) => {
+  // Disable image optimization plugins
+  if (stage === 'build-javascript' || stage === 'develop') {
+    const config = getConfig()
+    const newConfig = {
+      ...config,
+      module: {
+        ...config.module,
+        rules: config.module.rules.map(rule => {
+          if (String(rule.test) === String(/\.(png|jpg|jpeg|webp|avif)$/i)) {
+            return {
+              ...rule,
+              use: [
+                {
+                  loader: 'url-loader',
+                  options: {
+                    limit: 1, // Force all images to be copied as-is
+                    name: 'static/[name].[hash:8].[ext]',
+                  },
+                },
+              ],
+            }
+          }
+          return rule
+        }),
       },
-    },
-  })
+    }
+    actions.replaceWebpackConfig(newConfig)
+  }
 }
