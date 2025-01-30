@@ -248,33 +248,36 @@ exports.onPostBuild = async ({ graphql, reporter }) => {
   );
 };
 
-exports.onCreateWebpackConfig = ({ stage, actions, getConfig }) => {
-  // Disable image optimization plugins
-  if (stage === 'build-javascript' || stage === 'develop') {
-    const config = getConfig()
-    const newConfig = {
-      ...config,
-      module: {
-        ...config.module,
-        rules: config.module.rules.map(rule => {
-          if (String(rule.test) === String(/\.(png|jpg|jpeg|webp|avif)$/i)) {
-            return {
-              ...rule,
-              use: [
-                {
-                  loader: 'url-loader',
-                  options: {
-                    limit: 1, // Force all images to be copied as-is
-                    name: 'static/[name].[hash:8].[ext]',
-                  },
-                },
-              ],
-            }
-          }
-          return rule
-        }),
-      },
+exports.createSchemaCustomization = ({ actions }) => {
+  const { createTypes } = actions;
+  createTypes(`
+    type WpPost implements Node {
+      content: String
     }
-    actions.replaceWebpackConfig(newConfig)
+  `);
+};
+
+exports.onCreateNode = ({ node, actions }) => {
+  const { createNodeField } = actions;
+  
+  if (node.internal.type === 'WpPost' && node.content) {
+    // Clean up any Gatsby image processing
+    const cleanContent = node.content
+      .replace(/data-gatsby-image-wrapper=""/g, '')
+      .replace(/class="gatsby-image-wrapper[^"]*"/g, '')
+      .replace(/class="inline-gatsby-image-wrapper[^"]*"/g, '')
+      .replace(
+        /src="[^"]*\/_gatsby\/image\/[^"]*"/g,
+        (match) => {
+          const originalUrl = match.match(/u=(.*?)&/);
+          return originalUrl ? `src="${decodeURIComponent(originalUrl[1])}"` : match;
+        }
+      );
+
+    createNodeField({
+      node,
+      name: 'cleanContent',
+      value: cleanContent,
+    });
   }
-}
+};
