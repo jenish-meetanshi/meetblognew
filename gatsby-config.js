@@ -11,21 +11,21 @@
 const { createProxyMiddleware } = require("http-proxy-middleware");
 
 module.exports = {
-   flags: {
+  flags: {
     DEV_SSR: true,
     FAST_DEV: true,
   },
   polyfill: false,
   siteMetadata: {
-    siteUrl: 'https://5d43103688.nxcli.io/blog/testwordpress', // Make sure this URL is correct
+    siteUrl: 'https://5d43103688.nxcli.io/blog/testwordpress',
   },
-  pathPrefix: "/blog/testwordpress", // Set path prefix for deployment if required
+  pathPrefix: "/blog/testwordpress",
   developMiddleware: app => {
     app.use(
-      "/api/", // Proxy API requests during development
+      "/api/",
       createProxyMiddleware({
-        target: "https://blog.meetanshi.com/", // Target API URL
-        changeOrigin: true, // Enable changing origin header for CORS
+        target: "https://blog.meetanshi.com/",
+        changeOrigin: true,
       })
     );
   },
@@ -33,48 +33,53 @@ module.exports = {
     {
       resolve: `gatsby-source-wordpress`,
       options: {
-      url: `https://blog.meetanshi.com/graphql`, // WordPress GraphQL endpoint
-      html: {
-          imageMaxWidth: null, // Disable image processing
-          createStaticFiles: false, // Disable static file creation
-      },
-      type: {
-         MediaItem: {
-            createFileNodes: false, // Prevent file node creation
+        url: `https://blog.meetanshi.com/graphql`,
+        html: {
+          useGatsbyImage: false,
+          imageMaxWidth: null,
+          createStaticFiles: false,
+        },
+        type: {
+          MediaItem: {
+            createFileNodes: false,
+            lazyNodes: true,
           },
           Post: {
-            beforeChangeNode: async ({ remoteNode, actionOptions }) => {
-              // Preserve original HTML without Gatsby image transformations
-              if (remoteNode.content) {
-                // Remove any Gatsby image processing attributes
-                remoteNode.content = remoteNode.content.replace(
-                  /data-gatsby-image-wrapper=""/g,
-                  ''
-                );
-              }
-              return remoteNode;
-            },
+            excludeFieldNames: ['guid'],
+            // Remove beforeChangeNode from here
           },
+        },
+        schema: {
+          timeout: 3000000,
+          perPage: 20,
+          requestConcurrency: 5,
+        },
+        develop: {
+          nodeUpdateInterval: 300,
+          hardCacheMediaFiles: false,
+        },
+        production: {
+          hardCacheMediaFiles: false,
         },
       },
     },
-   `gatsby-plugin-react-helmet`, // Add metadata to HTML head
+    `gatsby-plugin-react-helmet`,
     {
       resolve: `gatsby-source-filesystem`,
       options: {
         name: `images`,
-        path: `${__dirname}/src/images`, // Directory for image files
+        path: `${__dirname}/src/images`,
       },
     },
     {
-    resolve: `gatsby-plugin-breadcrumb`,
+      resolve: `gatsby-plugin-breadcrumb`,
       options: {
-        useAutoGen: true, // Automatically generate breadcrumbs
-        exclude: [`/404/`, `/404.html`], // Exclude specific paths
+        useAutoGen: true,
+        exclude: [`/404/`, `/404.html`],
         crumbLabelUpdates: [
           {
             pathname: "/blog",
-            crumbLabel: "Blog", // Custom label for the /blog path
+            crumbLabel: "Blog",
           },
         ],
       },
@@ -82,16 +87,16 @@ module.exports = {
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
-        name: `Meetanshi Blog: Magento, Shopify & Marketing`, // Name for the app
-        short_name: `Meetanshi Blog`, // Shortened app name
-        start_url: `/blog/`, // Start URL of the app
-        icon: `static/favicon.png`, // Path to favicon
+        name: `Meetanshi Blog: Magento, Shopify & Marketing`,
+        short_name: `Meetanshi Blog`,
+        start_url: `/blog/`,
+        icon: `static/favicon.png`,
       },
     },
     {
       resolve: `gatsby-plugin-sitemap`,
       options: {
-        output: `/sitemap.xml`, // Default sitemap URL
+        output: `/sitemap.xml`,
       },
     },
   ],
