@@ -30,8 +30,8 @@ jobs:
         env:
           NODE_OPTIONS: "--max-old-space-size=4096"
           GATSBY_CONCURRENT_DOWNLOAD: "5"
-          # Add environment variable to skip image processing
           GATSBY_SKIP_IMAGE_PROCESSING: "true"
+          GATSBY_DISABLE_SHARP: "true"
         run: |
           GATSBY_CPU_COUNT=1 npm run build -- --prefix-paths
           
