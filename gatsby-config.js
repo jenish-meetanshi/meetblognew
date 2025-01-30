@@ -40,11 +40,22 @@ module.exports = {
       },
       type: {
          MediaItem: {
-            localFile: {
-              excludeByMimeTypes: ['image/jpeg', 'image/png', 'image/gif', 'image/webp']
-            }
-          }
-        }
+            createFileNodes: false, // Prevent file node creation
+          },
+          Post: {
+            beforeChangeNode: async ({ remoteNode, actionOptions }) => {
+              // Preserve original HTML without Gatsby image transformations
+              if (remoteNode.content) {
+                // Remove any Gatsby image processing attributes
+                remoteNode.content = remoteNode.content.replace(
+                  /data-gatsby-image-wrapper=""/g,
+                  ''
+                );
+              }
+              return remoteNode;
+            },
+          },
+        },
       },
     },
    `gatsby-plugin-react-helmet`, // Add metadata to HTML head
