@@ -5,6 +5,7 @@ import { Helmet } from "react-helmet";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import WordPressContent from '../components/WordPressContent';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronDown, faChevronUp } from "@fortawesome/free-solid-svg-icons";
 
 const PostDetail = ({ data, pageContext }) => {
