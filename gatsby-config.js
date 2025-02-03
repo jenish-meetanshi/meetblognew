@@ -17,7 +17,7 @@ module.exports = {
   siteMetadata: {
     siteUrl: 'https://5d43103688.nxcli.io/blog/testwordpress',
   },
-  pathPrefix: "/blog/testwordpress-new",
+  pathPrefix: "/blog/testwordpress",
   developMiddleware: app => {
     app.use(
       "/api/",
