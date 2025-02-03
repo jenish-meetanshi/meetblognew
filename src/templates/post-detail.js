@@ -5,13 +5,15 @@ import { Helmet } from "react-helmet";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import WordPressContent from '../components/WordPressContent';
+import { faChevronDown, faChevronUp } from "@fortawesome/free-solid-svg-icons";
 
 const PostDetail = ({ data, pageContext }) => {
   const post = data.wpPost;
   const { breadcrumb } = pageContext;
   const [headings, setHeadings] = useState([]);
   const [activeHeadingId, setActiveHeadingId] = useState(null);
- 
+  const [isVisible, setIsVisible] = useState(false);
+  
   const ctaImage = post.categories.nodes[0]?.ctaImage;
   const ctaLink = post.categories.nodes[0]?.ctaLink;
   const ctaLinkNofollow = post.categories.nodes[0]?.ctaLinkNofollow;  
@@ -177,6 +179,42 @@ const PostDetail = ({ data, pageContext }) => {
       <div className="container-lg">
         <div className="row">
           <div className="col-md-9">
+              <div className="toc-container">
+                {/* Toggle Button */}
+                <button className="toc-toggle" onClick={() => setIsVisible(!isVisible)}>
+                  {isVisible ? "Hide TOC" : "Show TOC"}
+                  <FontAwesomeIcon icon={isVisible ? faChevronUp : faChevronDown} className="icon" />
+                </button>
+          
+                {/* TOC Content */}
+                {isVisible && (
+                  <div>
+                  <div className="table-of-contents">
+                <span className="toc-title">Table of Contents</span>
+                  <ul>
+                    {headings.map((heading) => (
+                      <li
+                        key={heading.id}
+                        className={`toc-${heading.level} ${
+                          activeHeadingId === heading.id ? "active" : ""
+                        }`}
+                      >
+                        <a
+                          href={`#${heading.id}`}
+                          onClick={(e) => {
+                            e.preventDefault();
+                            scrollToSection(heading.id);
+                          }}
+                        >
+                          {heading.text}
+                        </a>
+                      </li>
+                    ))}
+                  </ul>
+              </div>
+          	      </div>
+                )}
+              </div>
             <div className="post-content-main">
               <article>
                 <WordPressContent content={post.content} />
