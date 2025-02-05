@@ -6,6 +6,9 @@ import '@fortawesome/fontawesome-svg-core/styles.css'
 config.autoAddCss = false
 
 export const onRenderBody = ({ setHeadComponents }) => {
+
+  setHtmlAttributes({ lang: 'en' });
+  
   setHeadComponents([
     <link
       key="google-fonts"
