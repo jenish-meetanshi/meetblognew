@@ -11,6 +11,17 @@ const AuthorDetail = ({ data, pageContext }) => {
 
    const currentAuthor = author || {};
 
+  const baseTitle = currentAuthor.seoTitle || currentAuthor.name;
+  const baseDescription = currentAuthor.seoDescription;
+  
+  const pageTitle = currentPage === 1 
+    ? baseTitle 
+    : `Page ${currentPage} of ${numPages} - ${baseTitle}`;
+    
+  const pageDescription = currentPage === 1
+    ? baseDescription
+    : `Page ${currentPage} of ${numPages} - ${baseDescription}`;
+
   // Helper function to create pagination with ellipses
   const getPagination = () => {
     const pageNumbers = [];
@@ -48,9 +59,8 @@ const AuthorDetail = ({ data, pageContext }) => {
   return (
     <div>
     <Helmet>
-        <title>{currentAuthor.seoTitle || currentAuthor.name}</title>
-        <title>{author.seoTitle}</title>
-        <meta name="description" content={currentAuthor.seoDescription} />
+        <title>{pageTitle}</title>
+        <meta name="description" content={pageDescription} />
         <link rel="canonical" href={canonicalUrl} />
         <script type="application/ld+json">
           {JSON.stringify({
