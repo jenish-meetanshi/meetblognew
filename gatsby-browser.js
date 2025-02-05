@@ -1,7 +1,7 @@
 import "bootstrap/dist/css/bootstrap.min.css"; // Import Bootstrap CSS globally
 import "./src/styles/global.css"; // Import your custom global styles
 import { config } from '@fortawesome/fontawesome-svg-core'
-import React, { useEffect } from "react";
+import React from "react";
 import '@fortawesome/fontawesome-svg-core/styles.css'
 config.autoAddCss = false
 
@@ -49,14 +49,6 @@ export const onRouteUpdate = ({ location, prevLocation }) => {
     // Update pagePath for client-side routing
     window.pagePath = '/blog' + window.location.pathname;
   }
-
-    useEffect(() => {
-    const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
-    if (isIOS) {
-      document.body.classList.add("ios-scroll-fix");
-    }
-  }, []);
-  
 };
 
 export const shouldUpdateScroll = () => {
