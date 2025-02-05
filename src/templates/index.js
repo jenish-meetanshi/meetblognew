@@ -14,6 +14,19 @@ const Home = ({ data, pageContext }) => {
 
   const baseURL = `https://meetanshi.com/blog/`;
   const canonicalURL = currentPage === 1 ? baseURL : `${baseURL}page/${currentPage}/`;
+
+  // Create page title and description with pagination info
+  const baseTitle = "Meetanshi Blog: Magento, Shopify & Marketing";
+  const baseDescription = "Meetanshi's blog is a place to learn Magento, Shopify, E-commerce, and Marketing and gather new insights from experts.";
+  
+   const pageTitle = currentPage === 1 
+    ? baseTitle 
+    : `Page ${currentPage} of ${numPages} - ${baseTitle}`;
+    
+  const pageDescription = currentPage === 1
+    ? baseDescription
+    : `Page ${currentPage} of ${numPages} - ${baseDescription}`;
+
   
   const isFirst = currentPage === 1;
   const isLast = currentPage === numPages;
@@ -23,9 +36,9 @@ const Home = ({ data, pageContext }) => {
   return (
     <main>
       <Helmet>
-        <title>Meetanshi Blog: Magento, Shopify & Marketing</title>
+        <title>{pageTitle}</title>
         <link rel="canonical" href={canonicalURL} />
-        <meta name="description" content="Meetanshi's blog is a place to learn Magento, Shopify, E-commerce, and Marketing and gather new insights from experts."/>
+        <meta name="description" content={pageDescription} />
         <script type="application/ld+json">
           {JSON.stringify({
             "@context": "https://schema.org",
