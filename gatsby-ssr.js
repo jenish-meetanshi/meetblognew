@@ -97,5 +97,8 @@ export const onPreRenderHTML = ({ getHeadComponents, replaceHeadComponents, getP
   replacePostBodyComponents(filteredBodyComponents);
 };
 
-// Disable the default script injection
-export const onRenderBody = () => null;
+
+// Add language attribute and re-enable body rendering
+export const onRenderBody = ({ setHtmlAttributes }) => {
+  setHtmlAttributes({ lang: 'en' });
+};
