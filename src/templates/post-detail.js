@@ -14,7 +14,24 @@ const PostDetail = ({ data, pageContext }) => {
   const [headings, setHeadings] = useState([]);
   const [activeHeadingId, setActiveHeadingId] = useState(null);
   const [isVisible, setIsVisible] = useState(false);
-  
+  const tocRef = useRef(null); // Ref for TOC
+
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (tocRef.current && !tocRef.current.contains(event.target)) {
+        setIsVisible(false); // Close TOC if clicked outside
+      }
+    };
+
+    if (isVisible) {
+      document.addEventListener("mousedown", handleClickOutside);
+    }
+
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [isVisible]);
+
   const ctaImage = post.categories.nodes[0]?.ctaImage;
   const ctaLink = post.categories.nodes[0]?.ctaLink;
   const ctaLinkNofollow = post.categories.nodes[0]?.ctaLinkNofollow;  
@@ -189,7 +206,7 @@ const PostDetail = ({ data, pageContext }) => {
           
                 {/* TOC Content */}
                 {isVisible && (
-                  <div>
+                  <div ref={tocRef} className="table-of-contents-toggle-content">
                   <div className="table-of-contents">
                 <span className="toc-title">Table of Contents</span>
                   <ul>
