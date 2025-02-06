@@ -18,15 +18,6 @@ module.exports = {
     siteUrl: 'https://5d43103688.nxcli.io/blog/testwordpress',
   },
   pathPrefix: "/blog/testwordpress",
-  developMiddleware: app => {
-    app.use(
-      "/api/",
-      createProxyMiddleware({
-        target: "https://blog.meetanshi.com/",
-        changeOrigin: true,
-      })
-    );
-  },
   plugins: [
     {
       resolve: `gatsby-source-wordpress`,
