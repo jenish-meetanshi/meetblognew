@@ -68,8 +68,8 @@ const Header = () => {
 
           <nav className={`nav-menu ${isMenuOpen ? "open" : ""}`}>
             <ul className="nav-list d-flex flex-column flex-lg-row">
-              <li className="dropdown">
-                <span className="dropdown-toggle">
+              <li className={`dropdown ${openDropdown === "extensions" ? "open" : ""}`}>
+                <span className="dropdown-toggle" onClick={() => toggleDropdown("extensions")}>
                   Extensions &#9662;
                 </span>
                 <ul className="dropdown-menu">
@@ -81,8 +81,8 @@ const Header = () => {
                   <li><a href="https://meetanshi.com/shopify-apps.html">Shopify Apps</a></li>
                 </ul>
               </li>
-              <li className="dropdown">
-                <span className="dropdown-toggle">
+              <li className={`dropdown ${openDropdown === "services" ? "open" : ""}`}>
+                <span className="dropdown-toggle" onClick={() => toggleDropdown("services")}>
                   Services &#9662;
                 </span>
                 <ul className="dropdown-menu">
