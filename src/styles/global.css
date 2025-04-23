@@ -32,6 +32,10 @@ body {
         flex: 0 0 auto;
         width: 100%;
     }
+    .col-md-6 {
+          flex: 0 0 auto;
+          width: 50%;
+      }
 }
 .container, .container-fluid, .container-lg, .container-md, .container-sm, .container-xl, .container-xxl {
     margin-left: auto;
@@ -167,6 +171,12 @@ dl, ol, ul {
   justify-content: center;
 }
 
+.h1, h1 {
+    font-size: 2.5rem;
+}
+.mb-4 {
+    margin-bottom: 1.5rem !important;
+}
 
 
 .page-enter {
@@ -655,6 +665,10 @@ social-media ul{
 }
 .sticky-posts-main-container .listing-blog-info {
   margin-bottom: 12px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 3px;
 }
 .sitemap-main ul {
   padding-left: 15px;
