@@ -23,17 +23,17 @@ export const onRenderBody = ({ setHeadComponents, setPostBodyComponents, setHtml
     />,
 
     // Other head components
-    <link
-      key="font-awesome-preload"
-      rel="preload"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
-      as="style"
-    />,
-    <link
-      key="font-awesome"
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
-    />,
+    // <link
+    //   key="font-awesome-preload"
+    //   rel="preload"
+    //   href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    //   as="style"
+    // />,
+    // <link
+    //   key="font-awesome"
+    //   rel="stylesheet"
+    //   href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    // />,
     <meta key="robots" name="robots" content="index, follow" />,
     <meta key="googlebot" name="googlebot" content="index, follow" />,
   ]);
