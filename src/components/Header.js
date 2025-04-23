@@ -40,7 +40,7 @@ const Header = () => {
     <header>
       <div className="bg-dark">
         <div className="container-lg p-2">
-          <p className="d-flex justify-content-center mb-0 text-white">
+          <p className="d-flex justify-content-center mb-0 mt-0 text-white">
             Magento 2.4.8 is available with the latest features and enhancements.
             <a
               style={{ color: "#ff7d0f", marginLeft: "5px", textAlign: "center" }}
