@@ -107,21 +107,7 @@ return (
             </div>
             <div className="social-media">
               <ul>
-                <li>
-                  <a target="_blank" href="https://x.com/MeetanshiInc" title="Twitter"><i className="fab fa-classic fa-brands fa-x-twitter"></i></a>
-                </li>
-                <li className="facebook-social-icon">
-                  <a target="_blank" href="https://www.facebook.com/MeetanshiInc/" title="Facebook"><i className="fab fa-classic fa-brands fa-facebook-f"></i></a>
-                </li>
-                <li>
-                  <a target="_blank" href="https://www.linkedin.com/company/meetanshi/" title="LinkedIn"><i className="fab fa-classic fa-brands fa-linkedin-in"></i></a>
-                </li>
-                <li>
-                  <a target="_blank" href="https://www.youtube.com/channel/UCYsTAn7JerbeZK-KpGFuJWw" title="YouTube"><i className="fab fa-classic fa-brands fa-youtube"></i></a>
-                </li>
-                <li>
-                  <a target="_blank" href="https://github.com/MeetanshiInc" title="GitHub"><i className="fab fa-classic fa-brands fa-github"></i></a>
-                </li>
+                
               </ul>
             </div>
             <div className="net-zero-website">
