@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect } from "react";
 import { graphql, Link} from "gatsby";
 import { Breadcrumb } from "gatsby-plugin-breadcrumb"; // Import Breadcrumb
 import { Helmet } from "react-helmet";
@@ -6,7 +6,7 @@ import Header from "../components/Header";
 import Footer from "../components/Footer";
 import WordPressContent from '../components/WordPressContent';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faChevronDown, faChevronUp } from "@fortawesome/free-solid-svg-icons";
+import { faList, faChevronRight } from '@fortawesome/free-solid-svg-icons';
 
 const PostDetail = ({ data, pageContext }) => {
   const post = data.wpPost;
@@ -14,27 +14,31 @@ const PostDetail = ({ data, pageContext }) => {
   const [headings, setHeadings] = useState([]);
   const [activeHeadingId, setActiveHeadingId] = useState(null);
   const [isVisible, setIsVisible] = useState(false);
-  const tocRef = useRef(null); // Ref for TOC
-
-  useEffect(() => {
-    const handleClickOutside = (event) => {
-      if (tocRef.current && !tocRef.current.contains(event.target)) {
-        setIsVisible(false); // Close TOC if clicked outside
-      }
-    };
-
-    if (isVisible) {
-      document.addEventListener("mousedown", handleClickOutside);
-    }
-
-    return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
-    };
-  }, [isVisible]);
-
+  
+  // Extract both primary and secondary CTA data
   const ctaImage = post.categories.nodes[0]?.ctaImage;
+  const ctaImageAlt = post.categories.nodes[0]?.ctaImageAlt;
   const ctaLink = post.categories.nodes[0]?.ctaLink;
-  const ctaLinkNofollow = post.categories.nodes[0]?.ctaLinkNofollow;  
+  const ctaLinkNofollow = post.categories.nodes[0]?.ctaLinkNofollow;
+  
+  // Extract secondary CTA data
+  const secondaryCtaImage = post.categories.nodes[0]?.secondaryCtaImage;
+  const secondaryCtaImageAlt = post.categories.nodes[0]?.secondaryCtaImageAlt;
+  const secondaryCtaLink = post.categories.nodes[0]?.secondaryCtaLink;
+  const secondaryCtaLinkNofollow = post.categories.nodes[0]?.secondaryCtaLinkNofollow;
+
+  const formatDate = (dateString) => {
+    const date = new Date(dateString);
+    return date.toLocaleDateString("en-US", {
+      month: "short",
+      day: "2-digit",
+      year: "numeric",
+    });
+  };
+
+  const datePublished = new Date(post.date).toISOString();
+  const dateModified = new Date(post.modified).toISOString();
+
   useEffect(() => {
     const parser = new DOMParser();
     const doc = parser.parseFromString(post.content, "text/html");
@@ -134,18 +138,24 @@ const PostDetail = ({ data, pageContext }) => {
             "@type": "Article",
             mainEntityOfPage: {
               "@type": "WebPage",
-              "@id": `https://meetanshi.com/blog/${post.slug}`,
+              "@id": `https://meetanshi.com/blog/${post.slug}/`,
             },
             headline: post.title,
             description: post.excerpt,
             author: {
               "@type": "Person",
               name: post.author.node.name,
-              url: `https://meetanshi.com/blog/author/${post.author.node.slug}`,
+              url: `https://meetanshi.com/blog/author/${post.author.node.slug}/`,
               image: post.author.node.userImage, // URL of the author's image
               jobTitle: post.author.node.designation, // Author's designation
+              "sameAs": [
+                post.author.node.linkedinUrl,
+                post.author.node.twitterUrl
+              ].filter(Boolean),
             },
-            datePublished: post.date,
+            datePublished: datePublished,
+            dateModified: dateModified,
+            image: post.seoImage,
             publisher: {
               "@type": "Organization",
               legalName: "Meetanshi Technologies LLP",
@@ -159,6 +169,14 @@ const PostDetail = ({ data, pageContext }) => {
                 "https://x.com/MeetanshiInc",
                 "https://github.com/MeetanshiInc",
               ],
+              address: {
+                "@type": "PostalAddress",
+                streetAddress: "305, Victoria Prime, Near Water Tank, Kaliyabid",
+                addressLocality: "Bhavnagar",
+                addressRegion: "GJ",
+                postalCode: "364002",
+                addressCountry: "IN",
+              },
               logo: {
                 "@type": "ImageObject",
                 url: "https://meetanshi.com/media/logo/stores/1/logo.png",
@@ -173,139 +191,98 @@ const PostDetail = ({ data, pageContext }) => {
         <div className="row">
           <div className="col-md-12">
             <div className="home-hero-section post-detail-banner">
-              <nav className="breadcrumb" aria-label="Breadcrumb">
-                <ol className="breadcrumb__list">
-                  <li className="breadcrumb__list__item">
-                    <Link to="/" className="post-detail-hero-breadcrumb">
-                      Blog
-                    </Link>
-                  </li>
-                  <span className="breadcrumb__separator" aria-hidden="true"> / </span>
-                  <li className="breadcrumb__list__item">
-                   <span className="post-detail-hero-breadcrumb">{post.title}</span>
-                  </li>
-                </ol>
-              </nav>
               <h1>{post.title}</h1>
-              <span className="postdetail-heromain">by&nbsp;<Link className="blog-detail-author-link" to={`/author/${post.author.node.slug}`}>{post.author.node.name}</Link> <span className="hero-ellipse"></span> {post.reading_time} min read</span>
-              <span>Updated on {post.date}</span>          
+              <span className="postdetail-heroauthorname">By&nbsp;<Link className="blog-detail-author-link" to={`/author/${post.author.node.slug}`}>{post.author.node.name}</Link></span>
+              <span className="postdetail-heromain">Updated on {formatDate(post.modified)} <span className="hero-ellipse"></span> {post.reading_time} min read</span>
           </div>
           </div>
         </div>
       </div>
-
-      <div className="container-lg">
-        <div className="row">
-          <div className="col-md-9">
-              <div className="toc-container">
+          <div className={`table-of-contents-toggle-main ${isVisible ? "toc-main-hide" : "toc-main-display"}`} >
+            <div className="table-of-contents-wrapper-main">
+              <div className="table-of-contents-wrapper">
                 {/* Toggle Button */}
-                <button className="toc-toggle" onClick={() => setIsVisible(!isVisible)}>
-                  {isVisible ? "Hide TOC" : "Show TOC"}
-                  <FontAwesomeIcon icon={isVisible ? faChevronUp : faChevronDown} className="icon" />
+                <button className={`toc-toggle ${isVisible ? "toc-hide" : "toc-display"}`} onClick={() => setIsVisible(!isVisible)} >
+                    <FontAwesomeIcon icon={faList} className="icon" />
                 </button>
-          
+
                 {/* TOC Content */}
                 {isVisible && (
-                  <div ref={tocRef} className="table-of-contents-toggle-content">
-                  <div className="table-of-contents">
-                <span className="toc-title">Table of Contents</span>
-                  <ul>
-                    {headings.map((heading) => (
-                      <li
-                        key={heading.id}
-                        className={`toc-${heading.level} ${
-                          activeHeadingId === heading.id ? "active" : ""
-                        }`}
-                      >
-                        <a
-                          href={`#${heading.id}`}
-                          onClick={(e) => {
-                            e.preventDefault();
-                            scrollToSection(heading.id);
-                          }}
-                        >
-                          {heading.text}
-                        </a>
-                      </li>
-                    ))}
-                  </ul>
+                  <div className="table-of-contents-toggle-content">
+                    <div className="table-of-contents">
+                    <span className="toc-title">Table of Contents</span>
+                      <ul>
+                        {headings.map((heading) => (
+                          <li
+                            key={heading.id}
+                            className={`toc-${heading.level} ${
+                              activeHeadingId === heading.id ? "active" : ""
+                            }`}
+                          >
+                            <a
+                              href={`#${heading.id}`}
+                              onClick={(e) => {
+                                e.preventDefault();
+                                scrollToSection(heading.id);
+                              }}
+                            >
+                              {heading.text}
+                            </a>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  </div>
+                 )}
               </div>
-          	      </div>
-                )}
-              </div>
-            <div className="post-content-main">
-              <article>
-                <WordPressContent content={post.content} />
-              </article>
             </div>
-            {/* <div className="comment-form mt-4" id="commentForm">
-              <h4 className="mb-4">{parentCommentId ? "Reply to Comment" : "Leave a Comment"}</h4>
-              <form onSubmit={handleCommentSubmit} className="p-4 border rounded bg-light">
-                <div className="row mb-3">
-                  <div className="col-md-6">
-                    <label htmlFor="commentName" className="form-label">Your Name</label>
-                    <input
-                      type="text"
-                      id="commentName"
-                      className="form-control"
-                      value={commentName}
-                      onChange={(e) => setCommentName(e.target.value)}
-                      placeholder="Enter your name"
-                      required
-                    />
-                  </div>
-                  <div className="col-md-6">
-                    <label htmlFor="commentEmail" className="form-label">Your Email</label>
-                    <input
-                      type="email"
-                      id="commentEmail"
-                      className="form-control"
-                      value={commentEmail}
-                      onChange={(e) => setCommentEmail(e.target.value)}
-                      placeholder="Enter your email"
-                      required
-                    />
+          </div>
+      <div className="container">
+        <div className="row">
+          <div className="col-md-9">
+              <div className="post-content-main">
+                  <WordPressContent content={post.content} />
+              </div>
+            <div className="author-section-postdetail">
+            <div className="row justify-content-center align-items-center">
+              <div className="col-auto">
+              {post.author.node.fullImage && (
+                <img
+                  src={post.author.node.fullImage}
+                  alt={`${post.author.node.name} Full Image`}
+                  className="author-section-image img-fluid"
+                />
+              )} 
+              </div>
+              <div className="col-auto">
+                <div className="author-block-content ps-4">
+                  <span className="author-section-title d-block">Article by</span>
+                  <Link className="author-section-name" to={`/author/${post.author.node.slug}`}>{post.author.node.name}</Link>
+                  {post.author.node.descriptionText && (
+                    <p dangerouslySetInnerHTML={{ __html: post.author.node.descriptionText }} />
+                  )}
+                  <div className="social-links">
+                  {post.author.node.linkedinUrl && (
+                    <a href={post.author.node.linkedinUrl} target="_blank" rel="noopener noreferrer">
+                      <i className="fab fa-linkedin-in"></i> {/* LinkedIn Icon */}
+                    </a>
+                  )}
+
+                  {post.author.node.twitterUrl && (
+                    <a href={post.author.node.twitterUrl} target="_blank" rel="noopener noreferrer">
+                      <i className="fab fa-x-twitter"></i> {/* Twitter Icon */}
+                    </a>
+                  )}
                   </div>
                 </div>
-
-                <div className="mb-3">
-                  <label htmlFor="commentText" className="form-label">Your Comment</label>
-                  <textarea
-                    id="commentText"
-                    className="form-control"
-                    value={commentText}
-                    onChange={(e) => setCommentText(e.target.value)}
-                    placeholder="Write your comment..."
-                    rows="4"
-                    required
-                  ></textarea>
-                </div>
-
-                {parentCommentId && (
-                  <div className="alert alert-info mb-3">
-                    Replying to a comment. 
-                    <button 
-                      type="button" 
-                      className="btn btn-sm btn-link" 
-                      onClick={() => setParentCommentId(null)}
-                    >
-                      Cancel Reply
-                    </button>
-                  </div>
-                )}
-
-                <div className="d-grid">
-                  <button type="submit" className="btn btn-primary">
-                    {parentCommentId ? "Reply to Comment" : "Post Comment"}
-                  </button>
-                </div>
-              </form>
-            </div> */}
+              </div>
+            </div>
+            </div>
           </div>
           
           <div className="col-md-3 blog-sidebar-main">
             <div className="sidebar-main">
-              <div className="table-of-contents">
+               <div className="table-of-contents">
                 <span className="toc-title">Table of Contents</span>
                   <ul>
                     {headings.map((heading) => (
@@ -327,11 +304,30 @@ const PostDetail = ({ data, pageContext }) => {
                       </li>
                     ))}
                   </ul>
-              </div>
+                </div>
+              
+              {/* Primary CTA - only displayed if content exists */}
               {ctaImage && ctaLink && (
                 <div className="cta-section">
                   <a href={ctaLink} target="_blank" rel={ctaLinkNofollow ? "nofollow" : ""}>
-                    <img src={ctaImage} alt="CTA" style={{ maxWidth: "100%" }} />
+                    <img src={ctaImage} alt={ctaImageAlt} style={{ maxWidth: "100%" }} />
+                  </a>
+                </div>
+              )}
+              
+              {/* Secondary CTA - only displayed if content exists */}
+              {secondaryCtaImage && secondaryCtaLink && (
+                <div className="secondary-cta-section">
+                  <a 
+                    href={secondaryCtaLink} 
+                    target="_blank" 
+                    rel={secondaryCtaLinkNofollow ? "nofollow" : ""}
+                  >
+                    <img 
+                      src={secondaryCtaImage} 
+                      alt={secondaryCtaImageAlt} 
+                      style={{ maxWidth: "100%" }} 
+                    />
                   </a>
                 </div>
               )}
@@ -357,7 +353,8 @@ export const query = graphql`
       seoTitle
       seoDescription
       seoImage
-      date(formatString: "MMMM DD, YYYY")
+      date
+      modified
       author {
         node {
           name
@@ -365,14 +362,22 @@ export const query = graphql`
           descriptionText
           slug
           designation
+          fullImage
+          linkedinUrl
+          twitterUrl
         }
       }
       categories {
         nodes {
           name
           ctaImage
+          ctaImageAlt
           ctaLink
           ctaLinkNofollow
+          secondaryCtaImage
+          secondaryCtaImageAlt
+          secondaryCtaLink
+          secondaryCtaLinkNofollow
         }
       }
     }
