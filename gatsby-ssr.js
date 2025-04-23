@@ -1,104 +1,60 @@
+import React from "react";
+import { Script } from "gatsby";
 
-// import React from "react";
+export const onRenderBody = ({ setHeadComponents, setPostBodyComponents, setHtmlAttributes }) => {
+  setHtmlAttributes({ lang: "en" });
+  setHeadComponents([
+   <link key="google-fonts-preconnect" rel="preconnect" href="https://fonts.googleapis.com" />,
+    <link key="google-fonts-preconnect-gstatic" rel="preconnect" href="https://fonts.gstatic.com" crossorigin />,
 
-// export const onRenderBody = ({ setHeadComponents}) => {
-//   setHeadComponents([
-//     <meta key="robots" name="robots" content="noindex, nofollow" />,
-//     <meta key="googlebot" name="googlebot" content="noindex, nofollow" />,
-//     <link
-//       key="font-awesome"
-//       rel="stylesheet"
-//       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
-//     />,
-//   ]);
-// };
+    // Preload the font CSS
+    <link
+      key="google-fonts-preload"
+      rel="preload"
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap"
+      as="style"
+    />,
 
-// export const onPreRenderHTML = ({ getHeadComponents, replaceHeadComponents }) => {
-//   let headComponents = getHeadComponents();
+    // Load the font CSS non-blocking
+    <link
+      key="google-fonts"
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap"
+    />,
 
-//   // Remove the existing Gatsby script
-//   headComponents = headComponents.filter(
-//     (component) =>
-//       !(
-//         component.type === "script" &&
-//         component.props.id === "gatsby-script-loader"
-//       )
-//   );
-
-//   // Add the modified script
-//   headComponents.push(
-//     <script key="gatsby-script-loader" id="gatsby-script-loader"></script>
-//   );
-
-//   replaceHeadComponents(headComponents);
-// };
-
-
-// export const onRenderBody = ({ setPostBodyComponents }) => {
-//   // Don't add the script during SSR - we'll handle it client-side only
-//   return null;
-// }
-
-
-// import React from 'react';
-
-// // Remove default scripts
-// export const onPreRenderHTML = ({ getHeadComponents, replaceHeadComponents }) => {
-//   const headComponents = getHeadComponents();
-  
-//   // Filter out Gatsby's default script loader
-//   const filteredComponents = headComponents.filter(component => {
-//     return !(
-//       component.type === 'script' && 
-//       component.props && 
-//       component.props.id === 'gatsby-script-loader'
-//     );
-//   });
-  
-//   replaceHeadComponents(filteredComponents);
-// };
-
-// // Add our blank script
-// export const onRenderBody = ({ setPostBodyComponents }) => {
-//   setPostBodyComponents([
-//     <script key="gatsby-script-loader" id="gatsby-script-loader" />,
-//   ]);
-// };
-
-
-import React from 'react';
-
-// Remove scripts from both head and body
-export const onPreRenderHTML = ({ getHeadComponents, replaceHeadComponents, getPostBodyComponents, replacePostBodyComponents }) => {
-  // Clean head components
-  const headComponents = getHeadComponents();
-  const filteredHeadComponents = headComponents.filter(component => {
-    return !(
-      component?.type === 'script' && 
-      component?.props?.id === 'gatsby-script-loader'
-    );
-  });
-  replaceHeadComponents(filteredHeadComponents);
-
-  // Clean body components
-  const bodyComponents = getPostBodyComponents();
-  const filteredBodyComponents = bodyComponents.filter(component => {
-    return !(
-      component?.type === 'script' && 
-      component?.props?.id === 'gatsby-script-loader'
-    );
-  });
-  
-  // Add single empty script to body components
-  filteredBodyComponents.push(
-    <script key="gatsby-script-loader" id="gatsby-script-loader" />
-  );
-  
-  replacePostBodyComponents(filteredBodyComponents);
-};
-
-
-// Add language attribute and re-enable body rendering
-export const onRenderBody = ({ setHtmlAttributes }) => {
-  setHtmlAttributes({ lang: 'en' });
+    // Other head components
+    <link
+      key="font-awesome-preload"
+      rel="preload"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+      as="style"
+    />,
+    <link
+      key="font-awesome"
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    />,
+    <meta key="robots" name="robots" content="index, follow" />,
+    <meta key="googlebot" name="googlebot" content="index, follow" />,
+  ]);
+  setPostBodyComponents([
+    <Script
+      key="clarity-script"
+      strategy="post-hydrate"
+      src="https://www.clarity.ms/tag/bukkl6z34m"
+    />,
+    <Script
+      key="gtm-script"
+      strategy="post-hydrate"
+      dangerouslySetInnerHTML={{
+        __html: `
+          (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+          new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+          j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+          'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+          })(window,document,'script','dataLayer','GTM-54H9W4K');
+        `,
+      }}
+    />,
+  ]);
 };
