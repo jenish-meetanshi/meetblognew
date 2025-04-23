@@ -26,7 +26,6 @@ const Home = ({ data, pageContext }) => {
   const pageDescription = currentPage === 1
     ? baseDescription
     : `Page ${currentPage} of ${numPages} - ${baseDescription}`;
-
   
   const isFirst = currentPage === 1;
   const isLast = currentPage === numPages;
@@ -36,7 +35,7 @@ const Home = ({ data, pageContext }) => {
   return (
     <main>
       <Helmet>
-        <title>{pageTitle}</title>
+         <title>{pageTitle}</title>
         <link rel="canonical" href={canonicalURL} />
         <meta name="description" content={pageDescription} />
         <script type="application/ld+json">
@@ -117,14 +116,14 @@ const Home = ({ data, pageContext }) => {
                         <img
                           src={post.author.node.userImage}
                           alt={`${post.author.node.name}'s Image`}
-                          className="user-image"
+                          className="user-image img-fluid"
                         />
                       )}
                   <span>
                     <Link to={`/author/${post.author.node.slug}`}>{post.author.node.name}</Link>
                   </span>
                   <span>
-                    {" | "}{post.date} 
+                    {" | "}{post.modified} 
                   </span>
                   <span>
                      {" | "}{post.reading_time} min read
@@ -156,14 +155,14 @@ const Home = ({ data, pageContext }) => {
                       <img
                         src={post.author.node.userImage}
                         alt={`${post.author.node.name}'s Image`}
-                        className="user-image"
+                        className="user-image img-fluid"
                       />
                     )}
                   <span>
                     <Link to={`/author/${post.author.node.slug}`}>{post.author.node.name}</Link>
                   </span>
                   <span>
-                    {" | "}{post.date} 
+                    {" | "}{post.modified} 
                   </span>
                   <span>
                      {" | "}{post.reading_time} min read
@@ -248,7 +247,8 @@ export const query = graphql`
         uri
         excerpt
         reading_time
-        date(formatString: "MMMM DD, YYYY")
+        date(formatString: "MMM DD, YYYY")
+        modified(formatString: "MMM DD, YYYY")
         author {
           node {
             name
@@ -268,7 +268,8 @@ export const query = graphql`
         title
         excerpt
         reading_time
-        date(formatString: "MMMM DD, YYYY")
+        date(formatString: "MMM DD, YYYY")
+        modified(formatString: "MMM DD, YYYY")
         author {
           node {
             name
