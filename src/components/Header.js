@@ -1,17 +1,14 @@
 import React, { useState, useRef, useEffect } from "react";
 import { Link, withPrefix } from "gatsby";
-import { Navbar, Nav, NavDropdown, Form, FormControl, Button } from "react-bootstrap";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faSearch, faChevronDown } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faSearch, faChevronDown } from "@fortawesome/free-solid-svg-icons";
 
 const Header = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const searchRef = useRef(null);
 
-  const handleSearchChange = (e) => {
-    setSearchQuery(e.target.value);
-  };
+  const handleSearchChange = (e) => setSearchQuery(e.target.value);
 
   const handleSearchSubmit = (e) => {
     e.preventDefault();
@@ -20,20 +17,15 @@ const Header = () => {
     }
   };
 
-  const toggleSearch = () => {
-    setIsSearchOpen(!isSearchOpen);
-  };
+  const toggleSearch = () => setIsSearchOpen(!isSearchOpen);
 
   useEffect(() => {
-  if (isSearchOpen && searchRef.current) {
-    const inputElement = searchRef.current.querySelector("input");
-    if (inputElement) {
-      inputElement.focus(); // Auto-focus the input field
+    if (isSearchOpen && searchRef.current) {
+      const inputElement = searchRef.current.querySelector("input");
+      if (inputElement) inputElement.focus();
     }
-  }
-}, [isSearchOpen]);
+  }, [isSearchOpen]);
 
-  // Close search box when clicking outside
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (searchRef.current && !searchRef.current.contains(event.target)) {
@@ -41,80 +33,74 @@ const Header = () => {
       }
     };
     document.addEventListener("mousedown", handleClickOutside);
-    return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
-    };
+    return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
   return (
     <header>
-      <div className="bg-dark">
-        <div className="container-lg p-2">
-          <p className="d-flex justify-content-center mb-0 text-white">
-          Magento 2.4.8 is available with the latest features and enhancements.
-          <a
-            style={{ color: "#ff7d0f", marginLeft: "5px", textAlign: "center" }}
-            href="https://meetanshi.com/magento-upgrade-service">
-            Upgrade now
-          </a>
-        </p>
+      <div className="header-top">
+        <div className="container">
+          <p className="announcement">
+            Magento 2.4.8 is available with the latest features and enhancements.
+            <a href="https://meetanshi.com/magento-upgrade-service" className="highlight-link">Upgrade now</a>
+          </p>
         </div>
       </div>
-      <Navbar expand="lg" className="py-3">
-        <div className="container-lg">
-          <Navbar.Brand as={Link} to="https://meetanshi.com/" style={{ maxWidth: "190px", display: "block" }}>
-            <img
-              src={withPrefix("/images/headerlogo.svg")}
-              alt="Site Logo"
-              style={{ width: "100%", height: "27px" }}
-            />
-          </Navbar.Brand>
 
-          <Navbar.Toggle aria-controls="basic-navbar-nav" />
-          <Navbar.Collapse id="basic-navbar-nav">
-            <Nav className="me-auto ms-0 ms-md-5 ps-md-3">
-              <NavDropdown title={<>Extensions <FontAwesomeIcon icon={faChevronDown} className="ms-1" /></>} id="extensions-dropdown" className="menu-item menu-item-first-child">
-                <NavDropdown.Item as={Link} to="https://meetanshi.com/magento-2-extensions.html">Magento 2 Extensions</NavDropdown.Item>
-                <NavDropdown.Item as={Link} to="https://meetanshi.com/graphql-compatible-magento-2-extensions.html">GraphQL Compatible M2 Extensions</NavDropdown.Item>
-                <NavDropdown.Item as={Link} to="https://meetanshi.com/magento-extensions.html">Magento Extensions</NavDropdown.Item>
-                <NavDropdown.Item as={Link} to="https://meetanshi.com/free-magento-extensions.html">Free Magento Extensions</NavDropdown.Item>
-                <NavDropdown.Item as={Link} to="https://meetanshi.com/hyva-theme-magento-2-extensions.html">Hyva Theme Extensions</NavDropdown.Item>
-                <NavDropdown.Item as={Link} to="https://meetanshi.com/shopify-apps.html">Shopify Apps</NavDropdown.Item>
-              </NavDropdown>
-              <NavDropdown title={<>Services <FontAwesomeIcon icon={faChevronDown} className="ms-1" /></>} id="services-dropdown" className="menu-item">
-                <NavDropdown.Item as={Link} to="https://meetanshi.com/magento-development-services.html">Magento Development Services</NavDropdown.Item>
-                <NavDropdown.Item as={Link} to="https://meetanshi.com/migration-services.html">Migration Services</NavDropdown.Item>
-                <NavDropdown.Item as={Link} to="https://meetanshi.com/hire-us.html">Hire Us</NavDropdown.Item>
-                <NavDropdown.Item as={Link} to="https://meetanshi.com/shopify-services.html">Shopify Services</NavDropdown.Item>
-                <NavDropdown.Item as={Link} to="https://meetanshi.com/shopify-migration-service.html">Shopify Migration Service</NavDropdown.Item>
-              </NavDropdown>
-              <Nav.Link as={Link} to="https://meetanshi.com/blog/" className="menu-item active-link-header">Blog</Nav.Link>
-              <Nav.Link as={Link} to="https://meetanshi.com/about" className="menu-item">About</Nav.Link>
-              <Nav.Link as={Link} to="https://meetanshi.com/contacts" className="menu-item">Contact</Nav.Link>
-            </Nav>
+      <nav className="main-nav">
+        <div className="container nav-container">
+          <Link to="https://meetanshi.com/" className="site-logo">
+            <img src={withPrefix("/images/headerlogo.svg")} alt="Site Logo" />
+          </Link>
 
-            {/* Search Box */}
-            <div className="header-search-container" ref={searchRef}>
-              <Button variant="link" onClick={toggleSearch} className="search-icon-btn">
-                <FontAwesomeIcon icon={faSearch} />
-              </Button>
-              <Form className={`search-form ${isSearchOpen ? "open" : ""}`} onSubmit={handleSearchSubmit}>
-                <FormControl
+          <ul className="nav-links">
+            <li className="dropdown">
+              <button className="dropdown-toggle">Extensions <FontAwesomeIcon icon={faChevronDown} /></button>
+              <ul className="dropdown-menu">
+                <li><a href="https://meetanshi.com/magento-2-extensions.html">Magento 2 Extensions</a></li>
+                <li><a href="https://meetanshi.com/graphql-compatible-magento-2-extensions.html">GraphQL Compatible M2 Extensions</a></li>
+                <li><a href="https://meetanshi.com/magento-extensions.html">Magento Extensions</a></li>
+                <li><a href="https://meetanshi.com/free-magento-extensions.html">Free Magento Extensions</a></li>
+                <li><a href="https://meetanshi.com/hyva-theme-magento-2-extensions.html">Hyva Theme Extensions</a></li>
+                <li><a href="https://meetanshi.com/shopify-apps.html">Shopify Apps</a></li>
+              </ul>
+            </li>
+            <li className="dropdown">
+              <button className="dropdown-toggle">Services <FontAwesomeIcon icon={faChevronDown} /></button>
+              <ul className="dropdown-menu">
+                <li><a href="https://meetanshi.com/magento-development-services.html">Magento Development Services</a></li>
+                <li><a href="https://meetanshi.com/migration-services.html">Migration Services</a></li>
+                <li><a href="https://meetanshi.com/hire-us.html">Hire Us</a></li>
+                <li><a href="https://meetanshi.com/shopify-services.html">Shopify Services</a></li>
+                <li><a href="https://meetanshi.com/shopify-migration-service.html">Shopify Migration Service</a></li>
+              </ul>
+            </li>
+            <li><a href="https://meetanshi.com/blog/">Blog</a></li>
+            <li><a href="https://meetanshi.com/about">About</a></li>
+            <li><a href="https://meetanshi.com/contacts">Contact</a></li>
+          </ul>
+
+          <div className="search-container" ref={searchRef}>
+            <button onClick={toggleSearch} className="search-btn">
+              <FontAwesomeIcon icon={faSearch} />
+            </button>
+            {isSearchOpen && (
+              <form onSubmit={handleSearchSubmit} className="search-form">
+                <input
                   type="text"
-                  placeholder="Search the blog..."
-                  className="header-form-input"
-                  aria-label="Search"
                   value={searchQuery}
                   onChange={handleSearchChange}
+                  placeholder="Search the blog..."
+                  aria-label="Search"
                 />
-                <Button type="submit" variant="primary" aria-label="Search">
+                <button type="submit" className="submit-btn">
                   <FontAwesomeIcon icon={faSearch} />
-                </Button>
-              </Form>
-            </div>
-          </Navbar.Collapse>
+                </button>
+              </form>
+            )}
+          </div>
         </div>
-      </Navbar>
+      </nav>
     </header>
   );
 };
