@@ -5,8 +5,8 @@ import { Helmet } from "react-helmet";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import WordPressContent from '../components/WordPressContent';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faList, faChevronRight } from '@fortawesome/free-solid-svg-icons';
+//import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+//import { faList, faChevronRight } from '@fortawesome/free-solid-svg-icons';
 
 const PostDetail = ({ data, pageContext }) => {
   const post = data.wpPost;
@@ -203,7 +203,7 @@ const PostDetail = ({ data, pageContext }) => {
               <div className="table-of-contents-wrapper">
                 {/* Toggle Button */}
                 <button className={`toc-toggle ${isVisible ? "toc-hide" : "toc-display"}`} onClick={() => setIsVisible(!isVisible)} >
-                    <FontAwesomeIcon icon={faList} className="icon" />
+                    // <FontAwesomeIcon icon={faList} className="icon" />
                 </button>
 
                 {/* TOC Content */}
