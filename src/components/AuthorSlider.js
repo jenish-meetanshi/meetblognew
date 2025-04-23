@@ -12,6 +12,7 @@ const AuthorSlider = () => {
           id
           name
           userImage
+          designation
           slug
         }
       }
@@ -54,12 +55,12 @@ const AuthorSlider = () => {
           <h3 className="author-slider-title mb-4">Meet Our Authors</h3>
         </div>
         {authors.map((author) => (
-          <div className="col-xl-3 col-lg-4 col-md-6 col-sm-6 author-card mb-3">
+          <div key={author.id} className="col-xl-3 col-lg-4 col-md-6 col-sm-6 author-card mb-3">
             <Link to={`/author/${author.slug}`}>
               <img
                 src={author.userImage}
-                alt={author.name}
-                className="author-avatar"
+                alt={`Profile picture of ${author.name}, ${author.designation} at Meetanshi`}
+                className="author-avatar" loading="lazy"
               />
               <span className="author-name">{author.name}</span>
             </Link>
