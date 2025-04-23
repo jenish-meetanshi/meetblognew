@@ -9,11 +9,9 @@ const AuthorDetail = ({ data, pageContext }) => {
   const author = data.wpUser; // Author details from GraphQL
   const { authorSlug, currentPage, numPages } = pageContext;
 
-   const currentAuthor = author || {};
+  const baseTitle = author.seoTitle;
+  const baseDescription = author.seoDescription;
 
-  const baseTitle = currentAuthor.seoTitle || currentAuthor.name;
-  const baseDescription = currentAuthor.seoDescription;
-  
   const pageTitle = currentPage === 1 
     ? baseTitle 
     : `Page ${currentPage} of ${numPages} - ${baseTitle}`;
@@ -21,7 +19,7 @@ const AuthorDetail = ({ data, pageContext }) => {
   const pageDescription = currentPage === 1
     ? baseDescription
     : `Page ${currentPage} of ${numPages} - ${baseDescription}`;
-
+  
   // Helper function to create pagination with ellipses
   const getPagination = () => {
     const pageNumbers = [];
@@ -40,7 +38,6 @@ const AuthorDetail = ({ data, pageContext }) => {
         pageNumbers.push("...");
       }
     }
-
     return pageNumbers;
   };
 
@@ -66,6 +63,7 @@ const AuthorDetail = ({ data, pageContext }) => {
           {JSON.stringify({
             "@context": "https://schema.org",
             "@type": "ProfilePage",
+            "dateCreated": author.userRegistered,
             "dateModified": new Date().toISOString(),
             "mainEntity": {
               "@type": "Person",
@@ -76,35 +74,36 @@ const AuthorDetail = ({ data, pageContext }) => {
                 "@type": "ImageObject",
                 "url": author.fullImage,
               },
+              "sameAs": [
+                author.linkedinUrl,
+                author.twitterUrl
+              ].filter(Boolean), 
             },
-          })}
-        </script>
-        <script type="application/ld+json">
-          {JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "Organization",
-            legalName: "Meetanshi Technologies LLP",
-            name: "Meetanshi",
-            url: "https://meetanshi.com/",
-            sameAs: [
-              "https://in.linkedin.com/company/meetanshi",
-              "https://www.youtube.com/c/MeetanshiInc",
-              "https://www.facebook.com/MeetanshiInc/",
-              "https://www.instagram.com/meetanshiinc/",
-              "https://x.com/MeetanshiInc",
-              "https://github.com/MeetanshiInc",
-            ],
-            address: {
-              "@type": "PostalAddress",
-              streetAddress: "305, Victoria Prime, Near Water Tank, Kaliyabid",
-              addressLocality: "Bhavnagar",
-              addressRegion: "GJ",
-              postalCode: "364002",
-              addressCountry: "IN",
-            },
-            logo: {
-              "@type": "ImageObject",
-              url: "https://meetanshi.com/media/logo/stores/1/logo.png",
+            publisher: {
+              "@type": "Organization",
+              legalName: "Meetanshi Technologies LLP",
+              name: "Meetanshi",
+              url: "https://meetanshi.com/",
+              sameAs: [
+                "https://in.linkedin.com/company/meetanshi",
+                "https://www.youtube.com/c/MeetanshiInc",
+                "https://www.facebook.com/MeetanshiInc/",
+                "https://www.instagram.com/meetanshiinc/",
+                "https://x.com/MeetanshiInc",
+                "https://github.com/MeetanshiInc",
+              ],
+              address: {
+                "@type": "PostalAddress",
+                streetAddress: "305, Victoria Prime, Near Water Tank, Kaliyabid",
+                addressLocality: "Bhavnagar",
+                addressRegion: "GJ",
+                postalCode: "364002",
+                addressCountry: "IN",
+              },
+              logo: {
+                "@type": "ImageObject",
+                url: "https://meetanshi.com/media/logo/stores/1/logo.png",
+              },
             },
           })}
         </script>
@@ -115,9 +114,24 @@ const AuthorDetail = ({ data, pageContext }) => {
           <div className="row align-items-end justify-content-between">
             <div className="col-lg-auto order-2 order-lg-1">
             <div className="author-detailpage-wrapper">
-                <h2 className="single-author-title"> {author.name}</h2>
+                <h1 className="single-author-title"> {author.name}</h1>
                 {author.designation && <span className="single-author-designation">{author.designation}</span>}
-                {author.descriptionText && <p>{author.descriptionText}</p>}
+                {author.descriptionText && (
+                  <p dangerouslySetInnerHTML={{ __html: author.descriptionText }} />
+                )}
+              <div className="social-links-authordetail">
+                  {author.linkedinUrl && (
+                    <a href={author.linkedinUrl} target="_blank" rel="noopener noreferrer">
+                      <i className="fab fa-linkedin-in"></i> {/* LinkedIn Icon */}
+                    </a>
+                  )}
+
+                  {author.twitterUrl && (
+                    <a href={author.twitterUrl} target="_blank" rel="noopener noreferrer">
+                      <i className="fab fa-x-twitter"></i> {/* Twitter Icon */}
+                    </a>
+                  )}
+              </div>
             </div>
             </div>
 
@@ -136,7 +150,7 @@ const AuthorDetail = ({ data, pageContext }) => {
      <div className="container-lg blog-list-main-container mt-5">
         <div className="row">
           <div className="col-md-12">
-          <span className="author-blogs-title">Articles by Author</span>
+          <h2 className="author-blogs-title">Articles by Author</h2>
           </div>
         </div>
         {/* Post List */}
@@ -165,7 +179,7 @@ const AuthorDetail = ({ data, pageContext }) => {
                   <Link to={`/author/${post.author.node.slug}`}>{post.author.node.name}</Link>
                 </span>
                 <span>
-                    {" | "}{post.date} 
+                    {" | "}{post.modified} 
                   </span>
                   <span>
                      {" | "}{post.reading_time} min read
@@ -192,7 +206,7 @@ const AuthorDetail = ({ data, pageContext }) => {
                     to={
                       page === 1
                         ? `/author/${authorSlug}/`
-                        : `/author/${authorSlug}/${page}`
+                        : `/author/${authorSlug}/page/${page}`
                     }
                     className={`page-number ${currentPage === page ? "active" : ""}`}
                   >
@@ -224,6 +238,9 @@ export const query = graphql`
       descriptionText  # Fetch the description text field
       seoTitle
       seoDescription
+      userRegistered
+      linkedinUrl
+      twitterUrl
     }
     allWpPost(
       filter: { author: { node: { slug: { eq: $authorSlug } } } }
@@ -237,7 +254,8 @@ export const query = graphql`
         slug
         excerpt
         reading_time
-        date(formatString: "MMMM DD, YYYY")
+        date(formatString: "MMM DD, YYYY")
+        modified(formatString: "MMM DD, YYYY")
         author {
           node {
             name
