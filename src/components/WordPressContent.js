@@ -3,7 +3,7 @@ import React from 'react';
 const WordPressContent = ({ content }) => {
   const processContent = (htmlContent) => {
     if (!htmlContent) return '';
-
+    
     // Replace data URI SVG placeholders with original WordPress URLs
     const processedContent = htmlContent.replace(
       /<img[^>]*src="data:image\/svg\+xml[^>]*data-wp-inline-image="[^"]*"[^>]*>/g,
@@ -22,7 +22,7 @@ const WordPressContent = ({ content }) => {
               // Extract the WordPress URL from the Gatsby URL
               const wpUrl = new URL(originalSrc).searchParams.get('u');
               if (wpUrl) {
-                return `<img src="${decodeURIComponent(wpUrl)}" class="wp-image" alt="${hydrationData.alt || ''}" />`;
+                return `<img src="${decodeURIComponent(wpUrl)}" class="wp-image img-fluid" alt="${hydrationData.alt || ''}" />`;
               }
             } catch (e) {
               console.error('Error processing image:', e);
@@ -34,11 +34,11 @@ const WordPressContent = ({ content }) => {
     )
     // Clean up any remaining Gatsby image wrappers
     .replace(/<div[^>]*data-gatsby-image-wrapper[^>]*>([\s\S]*?)<\/div>/g, '$1')
-    // Replace Gatsby processed image paths with original WordPress URLs
+    // Replace Gatsby processed image paths with original WordPress URLs and add img-fluid class
     .replace(/src="[^"]*\/_gatsby\/image\/[^"]*\?u=([^&]*)&[^"]*"/g, (match, wpUrl) => {
-      return `src="${decodeURIComponent(wpUrl)}"`;
+      return `src="${decodeURIComponent(wpUrl)}" class="img-fluid"`;
     });
-
+    
     return processedContent;
   };
 
