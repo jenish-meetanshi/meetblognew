@@ -1,7 +1,7 @@
 import "./src/styles/global.css"; // Import your custom global styles
-import { config } from '@fortawesome/fontawesome-svg-core'
+//import { config } from '@fortawesome/fontawesome-svg-core'
 import React from "react";
-import '@fortawesome/fontawesome-svg-core/styles.css'
+//import '@fortawesome/fontawesome-svg-core/styles.css'
 config.autoAddCss = false
 
 export const onRenderBody = ({ setHeadComponents, setHtmlAttributes }) => {
