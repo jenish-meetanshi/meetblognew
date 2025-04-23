@@ -11,15 +11,27 @@ const CategoryDetail = ({ data, pageContext }) => {
 
   // Find the category matching the categorySlug
   const currentCategory = categories.find(
-  (category) => category.slug === categorySlug
-  ) || {};
+    (category) => category.slug === categorySlug
+  );
 
   // Get the description of the current category
   const categoryDescription = currentCategory?.description || '';
 
+  // Create page title and description with pagination info
+  const baseTitle = currentCategory?.seoTitle || categoryName;
+  const baseDescription = currentCategory?.seoDescription || '';
+  
+  const pageTitle = currentPage === 1 
+    ? baseTitle 
+    : `Page ${currentPage} of ${numPages} - ${baseTitle}`;
+    
+  const pageDescription = currentPage === 1
+    ? baseDescription
+    : `Page ${currentPage} of ${numPages} - ${baseDescription}`;
+
  // Construct the canonical URL
   const canonicalUrl = `https://meetanshi.com/blog/category/${categorySlug}/${
-    currentPage > 1 ? `${currentPage}/` : ""
+    currentPage > 1 ? `page/${currentPage}/` : ""
   }`;
   
   // Helper function to create pagination with ellipses
@@ -55,9 +67,9 @@ const CategoryDetail = ({ data, pageContext }) => {
   return (
     <div>
     <Helmet>
-        <title>{currentCategory.seoTitle || currentCategory.name}</title>
+        <title>{pageTitle}</title>
         <link rel="canonical" href={canonicalUrl} />
-        <meta name="description" content={currentCategory.seoDescription} />
+        <meta name="description" content={pageDescription} />
         <script type="application/ld+json">
           {JSON.stringify({
            "@context": "https://schema.org",
@@ -182,7 +194,7 @@ const CategoryDetail = ({ data, pageContext }) => {
                       <Link to={`/author/${post.author.node.slug}`}>{post.author.node.name}</Link>
                     </span>
                     <span>
-                      {" | "}{post.date} 
+                      {" | "}{post.modified} 
                     </span>
                     <span>
                       {" | "}{post.reading_time} min read
@@ -209,7 +221,7 @@ const CategoryDetail = ({ data, pageContext }) => {
                     to={
                       page === 1
                         ? `/category/${categorySlug}/`
-                        : `/category/${categorySlug}/${page}`
+                        : `/category/${categorySlug}/page/${page}`
                     }
                     className={`page-number ${currentPage === page ? "active" : ""}`}
                   >
@@ -253,7 +265,8 @@ export const query = graphql`
         excerpt
         reading_time
         content
-        date(formatString: "MMMM DD, YYYY")
+        date(formatString: "MMM DD, YYYY")
+        modified(formatString: "MMM DD, YYYY")
         author {
           node {
             name
