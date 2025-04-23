@@ -1,7 +1,5 @@
 import React, { useState, useRef, useEffect } from "react";
 import { Link, withPrefix } from "gatsby";
-// import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-// import { faSearch, faChevronDown } from "@fortawesome/free-solid-svg-icons";
 
 const Header = () => {
   const [searchQuery, setSearchQuery] = useState("");
@@ -51,7 +49,7 @@ const Header = () => {
               onClick={() => handleDropdownToggle("extensions")}
             >
               <span>
-                Extensions <FontAwesomeIcon icon={faChevronDown} />
+                Extensions
               </span>
               {activeDropdown === "extensions" && (
                 <ul className="dropdown">
@@ -70,7 +68,7 @@ const Header = () => {
               onClick={() => handleDropdownToggle("services")}
             >
               <span>
-                Services <FontAwesomeIcon icon={faChevronDown} />
+                Services
               </span>
               {activeDropdown === "services" && (
                 <ul className="dropdown">
@@ -91,7 +89,7 @@ const Header = () => {
 
         <div className="search-box" ref={searchRef}>
           <button onClick={() => setIsSearchOpen(!isSearchOpen)} className="search-icon">
-            // <FontAwesomeIcon icon={faSearch} />
+           Button
           </button>
           {isSearchOpen && (
             <form onSubmit={handleSearchSubmit} className="search-form">
@@ -102,7 +100,7 @@ const Header = () => {
                 placeholder="Search..."
               />
               <button type="submit">
-                // <FontAwesomeIcon icon={faSearch} />
+                Button
               </button>
             </form>
           )}
