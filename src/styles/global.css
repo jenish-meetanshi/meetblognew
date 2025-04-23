@@ -42,12 +42,10 @@ body {
   font-size: 20px;
 }
 
-
 .navbar-brand img {
   width: 100%;
   height: 27px;
 }
-
 .navbar-toggler {
   background-color: transparent;
   border: none;
@@ -75,15 +73,14 @@ body {
 
 .nav-list li a {
   text-decoration: none;
-  color: white;
+  color: #333;
   padding: 10px;
   display: block;
 }
 
 .nav-list li a:hover,
 .nav-list li a.active-link-header {
-  background-color: #ff7d0f;
-  color: white;
+  color: #ff7d0f;
   border-radius: 5px;
 }
 
@@ -118,59 +115,19 @@ body {
 }
 
 .dropdown-menu li a {
-  color: white;
+  color: #333;
   text-decoration: none;
 }
 
 .dropdown-menu li a:hover {
-  background-color: #ff7d0f;
-  color: white;
+  color: #ff7d0f;
   border-radius: 5px;
 }
 
-/* Search Box Styling */
-.header-search-container {
-  position: relative;
-  display: inline-block;
-}
 
-.search-icon-btn {
-  background: transparent;
-  border: none;
-  color: white;
-  font-size: 22px;
-  cursor: pointer;
-}
 
-.search-form {
-  display: none;
-  position: absolute;
-  top: 0;
-  right: 0;
-  display: flex;
-  gap: 5px;
-}
 
-.search-form.open {
-  display: flex;
-}
 
-.header-form-input {
-  padding: 5px;
-  font-size: 16px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-}
-
-.search-submit {
-  background-color: #ff7d0f;
-  border: none;
-  color: white;
-  padding: 6px 10px;
-  font-size: 16px;
-  cursor: pointer;
-  border-radius: 4px;
-}
 
 
 .page-enter {
