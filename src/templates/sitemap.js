@@ -15,17 +15,31 @@ const Sitemap = ({ data }) => {
         <link rel="canonical" href="https://meetanshi.com/blog/sitemap/" />
       </Helmet>
       <Header />
-      <div className="container-lg my-5">
-        <h1>Sitemap</h1>
-        <p>Browse all blog posts:</p>
-        <ul>
-          {posts.map(post => (
-            <li key={post.id}>
-              <Link to={`/${post.slug}`}>{post.title}</Link>
-            </li>
-          ))}
-        </ul>
-      </div>
+        <section>
+          <div className="container-lg">
+            <div className="row">
+              <div className="col-md-12">
+                <div className="home-hero-section">
+                  <h1>Sitemap</h1>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+        <div className="container-lg sitemap-main">
+          <div className="row">
+            <div className="col-md-12">
+              <h2>Posts</h2>
+              <ul>
+                {posts.map(post => (
+                  <li key={post.id}>
+                    <Link to={`/${post.slug}`}>{post.title}</Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+        </div>
       <Footer />
     </main>
   );
