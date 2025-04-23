@@ -5,19 +5,15 @@ import React from "react";
 import '@fortawesome/fontawesome-svg-core/styles.css'
 config.autoAddCss = false
 
-export const onRenderBody = ({ setHeadComponents }) => {
-
-  setHtmlAttributes({ lang: 'en' });
-  
-  setHeadComponents([
-    <link
-      key="google-fonts"
-      rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap"
-    />,
-    <meta key="robots" name="robots" content="noindex, nofollow" />,
-    <meta key="googlebot" name="googlebot" content="noindex, nofollow" />,
-  ]);
+export const onRenderBody = ({ setHeadComponents, setHtmlAttributes }) => {
+ // Set HTML language attribute
+ setHtmlAttributes({ lang: 'en' });
+ 
+ // Set additional head components
+ setHeadComponents([
+   <meta key="robots" name="robots" content="noindex, nofollow" />,
+   <meta key="googlebot" name="googlebot" content="noindex, nofollow" />,
+ ]);
 };
 
 export const onPreRouteUpdate = ({ location, prevLocation }) => {
@@ -47,11 +43,6 @@ export const onRouteUpdate = ({ location, prevLocation }) => {
       document.body.style.overflow = '';
     }, 500); // Match CSS transition duration
   }
-
-   if (typeof window !== 'undefined') {
-    // Update pagePath for client-side routing
-    window.pagePath = '/blog' + window.location.pathname;
-  }
 };
 
 export const shouldUpdateScroll = () => {
@@ -60,8 +51,7 @@ export const shouldUpdateScroll = () => {
 };
 
 export const onClientEntry = () => {
-
-    window.onload = () => {
+  window.onload = () => {
     const codeBlocks = document.querySelectorAll('pre.EnlighterJSRAW');
 
     codeBlocks.forEach((block) => {
