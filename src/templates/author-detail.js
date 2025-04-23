@@ -122,13 +122,13 @@ const AuthorDetail = ({ data, pageContext }) => {
               <div className="social-links-authordetail">
                   {author.linkedinUrl && (
                     <a href={author.linkedinUrl} target="_blank" rel="noopener noreferrer">
-                      <i className="fab fa-linkedin-in"></i> {/* LinkedIn Icon */}
+                      LinkedIn
                     </a>
                   )}
 
                   {author.twitterUrl && (
                     <a href={author.twitterUrl} target="_blank" rel="noopener noreferrer">
-                      <i className="fab fa-x-twitter"></i> {/* Twitter Icon */}
+                      Twitter
                     </a>
                   )}
               </div>
