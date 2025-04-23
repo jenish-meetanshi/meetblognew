@@ -1,7 +1,7 @@
 import React, { useState, useRef, useEffect } from "react";
 import { Link, withPrefix } from "gatsby";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faSearch, faChevronDown } from "@fortawesome/free-solid-svg-icons";
+// import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+// import { faSearch, faChevronDown } from "@fortawesome/free-solid-svg-icons";
 
 const Header = () => {
   const [searchQuery, setSearchQuery] = useState("");
@@ -91,7 +91,7 @@ const Header = () => {
 
         <div className="search-box" ref={searchRef}>
           <button onClick={() => setIsSearchOpen(!isSearchOpen)} className="search-icon">
-            <FontAwesomeIcon icon={faSearch} />
+            // <FontAwesomeIcon icon={faSearch} />
           </button>
           {isSearchOpen && (
             <form onSubmit={handleSearchSubmit} className="search-form">
@@ -102,7 +102,7 @@ const Header = () => {
                 placeholder="Search..."
               />
               <button type="submit">
-                <FontAwesomeIcon icon={faSearch} />
+                // <FontAwesomeIcon icon={faSearch} />
               </button>
             </form>
           )}
