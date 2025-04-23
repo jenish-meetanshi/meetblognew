@@ -54,11 +54,11 @@ const Header = () => {
 
       <div className="navbar py-3">
         <div className="container-lg d-flex align-items-center justify-content-between">
-          <Link to="https://meetanshi.com/" className="navbar-brand" style={{ maxWidth: "190px" }}>
+          <Link to="https://meetanshi.com/" className="navbar-brand" style={{ maxWidth: "190px", width: "190px" }}>
             <img
               src={withPrefix("/images/headerlogo.svg")}
               alt="Site Logo"
-              style={{ width: "100%", height: "27px" }}
+              style={{ width: "190px", height: "27px" }}
             />
           </Link>
 
