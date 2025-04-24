@@ -7,7 +7,9 @@ const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const searchRef = useRef(null);
 
-  const handleSearchChange = (e) => setSearchQuery(e.target.value);
+  const handleSearchChange = (e) => {
+    setSearchQuery(e.target.value);
+  };
 
   const handleSearchSubmit = (e) => {
     e.preventDefault();
@@ -16,32 +18,33 @@ const Header = () => {
     }
   };
 
-  // Fix: Ensure toggleSearch properly updates the state
   const toggleSearch = () => {
-    setIsSearchOpen(prevState => !prevState);
+    setIsSearchOpen(!isSearchOpen);
   };
-  
-  const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
 
   useEffect(() => {
-    if (isSearchOpen && searchRef.current) {
-      const input = searchRef.current.querySelector("input");
-      if (input) {
-        input.focus();
-      }
+  if (isSearchOpen && searchRef.current) {
+    const inputElement = searchRef.current.querySelector("input");
+    if (inputElement) {
+      inputElement.focus(); // Auto-focus the input field
     }
-  }, [isSearchOpen]);
+  }
+}, [isSearchOpen]);
 
+  // Close search box when clicking outside
   useEffect(() => {
-    const handleClickOutside = (e) => {
-      if (searchRef.current && !searchRef.current.contains(e.target)) {
+    const handleClickOutside = (event) => {
+      if (searchRef.current && !searchRef.current.contains(event.target)) {
         setIsSearchOpen(false);
       }
     };
     document.addEventListener("mousedown", handleClickOutside);
-    return () => document.removeEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
   }, []);
 
+  
   return (
     <header>
       <div className="bg-dark">
@@ -102,34 +105,24 @@ const Header = () => {
           </nav>
 
           {/* Search Box */}
-          <div className="header-search-container" ref={searchRef}>
-            <button 
-              onClick={toggleSearch} 
-              className="search-icon-btn" 
-              aria-label="Toggle Search"
-              type="button"
-            >
-              <img src={withPrefix("/images/icon-search.svg")} alt="search icon" />
-            </button>
-            {/* Fix: Added conditional display to ensure React properly updates the DOM */}
-            <form 
-              className={`search-form ${isSearchOpen ? "open" : ""}`} 
-              onSubmit={handleSearchSubmit}
-              style={{ display: isSearchOpen ? "flex" : null }}
-            >
-              <input
-                type="text"
-                placeholder="Search the blog..."
-                className="header-form-input"
-                aria-label="Search"
-                value={searchQuery}
-                onChange={handleSearchChange}
-              />
-              <button type="submit" className="search-submit" aria-label="Search">
+            <div className="header-search-container" ref={searchRef}>
+              <Button variant="link" onClick={toggleSearch} className="search-icon-btn">
                 <img src={withPrefix("/images/icon-search.svg")} alt="search icon" />
-              </button>
-            </form>
-          </div>
+              </Button>
+              <Form className={`search-form ${isSearchOpen ? "open" : ""}`} onSubmit={handleSearchSubmit}>
+                <FormControl
+                  type="text"
+                  placeholder="Search the blog..."
+                  className="header-form-input"
+                  aria-label="Search"
+                  value={searchQuery}
+                  onChange={handleSearchChange}
+                />
+                <Button type="submit" variant="primary" aria-label="Search">
+                  <img src={withPrefix("/images/icon-search.svg")} alt="search icon" />
+                </Button>
+              </Form>
+            </div>
         </div>
       </div>
     </header>
