@@ -195,7 +195,7 @@ const AuthorDetail = ({ data, pageContext }) => {
         <div className="row">
           <div className="col-md-12">
             {/* Pagination with Ellipsis */}
-            <div className="pagination">
+            <div className="pagination d-flex">
               {getPagination().map((page, index) => {
                 if (page === "...") {
                   return <span key={index} className="page-ellipsis">...</span>;
