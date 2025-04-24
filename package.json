@@ -4,17 +4,25 @@
   "description": "A simplified bare-bones starter for Gatsby",
   "version": "0.1.0",
   "license": "0BSD",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/gatsbyjs/gatsby-starter-hello-world"
+  },
+  "bugs": {
+    "url": "https://github.com/gatsbyjs/gatsby/issues"
+  },
   "scripts": {
-    "build": "gatsby build",
     "develop": "gatsby develop",
     "start": "gatsby develop",
+    "build": "GATSBY_SKIP_IMAGE_PROCESSING=true gatsby build --no-uglify",
     "serve": "gatsby serve",
     "clean": "gatsby clean",
     "test": "echo \"Write tests! -> https://gatsby.dev/unit-testing\" && exit 1"
   },
-  "dependencies": { 
+  "dependencies": {
     "gatsby": "^5.14.0",
     "gatsby-plugin-breadcrumb": "^12.3.2",
+    "gatsby-plugin-google-tagmanager": "^5.0.0",
     "gatsby-plugin-image": "^3.14.0",
     "gatsby-plugin-manifest": "^5.14.0",
     "gatsby-plugin-netlify": "^5.1.1",
@@ -29,16 +37,5 @@
     "react-helmet": "^6.1.0",
     "react-slick": "^0.30.2",
     "slick-carousel": "^1.8.1"
-  },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/gatsbyjs/gatsby-starter-hello-world"
-  },
-  "bugs": {
-    "url": "https://github.com/gatsbyjs/gatsby/issues"
-  },
-  "scripts": {
-    "build": "GATSBY_SKIP_IMAGE_PROCESSING=true gatsby build --no-uglify",
-    "clean": "gatsby clean"
   }
 }
