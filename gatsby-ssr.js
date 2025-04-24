@@ -34,8 +34,8 @@ export const onRenderBody = ({ setHeadComponents, setPostBodyComponents, setHtml
     //   rel="stylesheet"
     //   href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
     // />,
-    <meta key="robots" name="robots" content="index, follow" />,
-    <meta key="googlebot" name="googlebot" content="index, follow" />,
+    <meta key="robots" name="robots" content="noindex, nofollow" />,
+    <meta key="googlebot" name="googlebot" content="noindex, nofollow" />,
   ]);
   setPostBodyComponents([
     <Script
