@@ -181,7 +181,7 @@ const Home = ({ data, pageContext }) => {
         <div className="row">
           <div className="col-md-12">
               {numPages > 1 && (
-                <div className="pagination">
+                <div className="pagination d-flex">
                   {Array.from({ length: numPages }, (_, i) => {
                     const page = i + 1;
                     const isCurrent = currentPage === page;
