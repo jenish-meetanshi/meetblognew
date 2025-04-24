@@ -262,13 +262,13 @@ const PostDetail = ({ data, pageContext }) => {
                   <div className="social-links">
                   {post.author.node.linkedinUrl && (
                     <a href={post.author.node.linkedinUrl} target="_blank" rel="noopener noreferrer">
-                     LinkedIn
+                        <img src={withPrefix("/images/icon-linkedin.svg")} alt="Linkedin icon" />
                     </a>
                   )}
 
                   {post.author.node.twitterUrl && (
                     <a href={post.author.node.twitterUrl} target="_blank" rel="noopener noreferrer">
-                      Twitter
+                        <img src={withPrefix("/images/icon-x.svg")} alt="Twitter icon" />
                     </a>
                   )}
                   </div>
