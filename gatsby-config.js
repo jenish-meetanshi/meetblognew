@@ -67,7 +67,7 @@ module.exports = {
       options: {
         name: `Meetanshi Blog: Magento, Shopify & Marketing`,
         short_name: `Meetanshi Blog`,
-        start_url: `/blog/`,
+        start_url: `https://5d43103688.nxcli.io/blog/testwordpress/`,
         icon: `static/favicon.png`,
       },
     },
