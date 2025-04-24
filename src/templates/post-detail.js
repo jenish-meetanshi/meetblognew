@@ -5,6 +5,7 @@ import { Helmet } from "react-helmet";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import WordPressContent from '../components/WordPressContent';
+import { withPrefix } from "gatsby";
 
 const PostDetail = ({ data, pageContext }) => {
   const post = data.wpPost;
@@ -262,13 +263,13 @@ const PostDetail = ({ data, pageContext }) => {
                   <div className="social-links">
                   {post.author.node.linkedinUrl && (
                     <a href={post.author.node.linkedinUrl} target="_blank" rel="noopener noreferrer">
-                        LinkedIn
+                       <img src={withPrefix("/images/icon-linkedin.svg")} alt="LinkedIn icon" />
                     </a>
                   )}
 
                   {post.author.node.twitterUrl && (
                     <a href={post.author.node.twitterUrl} target="_blank" rel="noopener noreferrer">
-                        Twitter
+                       <img src={withPrefix("/images/icon-x.svg")} alt="Twitter icon" />
                     </a>
                   )}
                   </div>
