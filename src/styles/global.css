@@ -69,7 +69,10 @@ body {
   width:30px;
 }
 
-
+.post-content-main .wordpress-content .wp-block-table{
+  margin-left:0;
+  margin-right:0;
+}
 /* === Base Reset for Box Sizing === */
 *, *::before, *::after {
   box-sizing: border-box;
