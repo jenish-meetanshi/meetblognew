@@ -48,7 +48,7 @@ const Header = () => {
           </button>
 
           <nav className={`nav-menu ${isMenuOpen ? "open" : ""}`}>
-            <ul className="nav-list d-flex flex-column flex-lg-row">
+            <ul className="nav-list d-flex flex-column flex-lg-row mb-0">
               <li className="dropdown">
                 <span className="dropdown-toggle">Extensions ▾</span>
                 <ul className="dropdown-menu">
