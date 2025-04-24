@@ -16,13 +16,12 @@ const Header = () => {
     }
   };
 
-  const toggleSearch = () => setIsSearchOpen(!isSearchOpen);
-  const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
+  const toggleSearch = () => setIsSearchOpen((prev) => !prev);
+  const toggleMenu = () => setIsMenuOpen((prev) => !prev);
 
   useEffect(() => {
     if (isSearchOpen && searchRef.current) {
-      const input = searchRef.current.querySelector("input");
-      input?.focus();
+      searchRef.current.querySelector("input")?.focus();
     }
   }, [isSearchOpen]);
 
@@ -38,6 +37,7 @@ const Header = () => {
 
   return (
     <header>
+      {/* Top Notice */}
       <div className="bg-dark">
         <div className="container-lg p-2">
           <p className="d-flex justify-content-center mb-0 mt-0 text-white">
@@ -52,6 +52,7 @@ const Header = () => {
         </div>
       </div>
 
+      {/* Navbar */}
       <div className="navbar py-3">
         <div className="container-lg d-flex align-items-center justify-content-between">
           <Link to="https://meetanshi.com/" className="navbar-brand" style={{ maxWidth: "190px", width: "190px" }}>
@@ -62,16 +63,12 @@ const Header = () => {
             />
           </Link>
 
-          <button className="navbar-toggler" onClick={toggleMenu}>
-            ☰
-          </button>
+          <button className="navbar-toggler" onClick={toggleMenu}>☰</button>
 
           <nav className={`nav-menu ${isMenuOpen ? "open" : ""}`}>
             <ul className="nav-list d-flex flex-column flex-lg-row">
               <li className="dropdown">
-                <span className="dropdown-toggle">
-                  Extensions &#9662;
-                </span>
+                <span className="dropdown-toggle">Extensions &#9662;</span>
                 <ul className="dropdown-menu">
                   <li><a href="https://meetanshi.com/magento-2-extensions.html">Magento 2 Extensions</a></li>
                   <li><a href="https://meetanshi.com/graphql-compatible-magento-2-extensions.html">GraphQL Compatible M2 Extensions</a></li>
@@ -82,9 +79,7 @@ const Header = () => {
                 </ul>
               </li>
               <li className="dropdown">
-                <span className="dropdown-toggle">
-                  Services &#9662;
-                </span>
+                <span className="dropdown-toggle">Services &#9662;</span>
                 <ul className="dropdown-menu">
                   <li><a href="https://meetanshi.com/magento-development-services.html">Magento Development Services</a></li>
                   <li><a href="https://meetanshi.com/migration-services.html">Migration Services</a></li>
@@ -100,11 +95,11 @@ const Header = () => {
           </nav>
 
           {/* Search Box */}
-          <div className="header-search-container" ref={searchRef}>
+          <div className={`header-search-container ${isSearchOpen ? "active" : ""}`} ref={searchRef}>
             <button onClick={toggleSearch} className="search-icon-btn" aria-label="Toggle Search">
               <img src={withPrefix("/images/icon-search.svg")} alt="search icon" />
             </button>
-            <form className={`search-form ${isSearchOpen ? "open" : ""}`} onSubmit={handleSearchSubmit}>
+            <form className="search-form" onSubmit={handleSearchSubmit}>
               <input
                 type="text"
                 placeholder="Search the blog..."
