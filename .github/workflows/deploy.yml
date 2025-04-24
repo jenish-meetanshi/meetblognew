@@ -26,22 +26,8 @@ jobs:
           npm run clean
           rm -rf .cache public
           
-      - name: Build Gatsby site
-        env:
-          NODE_OPTIONS: "--max-old-space-size=4096"
-          GATSBY_CONCURRENT_DOWNLOAD: "5"
-          GATSBY_SKIP_IMAGE_PROCESSING: "true"
-          GATSBY_DISABLE_SHARP: "true"
-        run: |
-          GATSBY_CPU_COUNT=1 npm run build -- --prefix-paths
-          
-      # Add step to verify image paths before deployment
-      - name: Verify build output
-        run: |
-          echo "Checking for _gatsby/image paths..."
-          if grep -r "_gatsby/image" public; then
-            echo "Warning: Found _gatsby/image paths in build output"
-          fi
+      - name: Build Gatsby site with prefix paths
+        run: npm run build -- --prefix-paths
           
       - name: Deploy to Nexcess
         uses: appleboy/scp-action@v0.1.4
