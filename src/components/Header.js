@@ -102,7 +102,7 @@ const Header = () => {
           {/* Search Box */}
           <div className="header-search-container" ref={searchRef}>
             <button onClick={toggleSearch} className="search-icon-btn" aria-label="Toggle Search">
-              🔍
+              <img src={withPrefix("/images/icon-search.svg")} alt="search icon" />
             </button>
             <form className={`search-form ${isSearchOpen ? "open" : ""}`} onSubmit={handleSearchSubmit}>
               <input
@@ -114,7 +114,7 @@ const Header = () => {
                 onChange={handleSearchChange}
               />
               <button type="submit" className="search-submit" aria-label="Search">
-                🔍
+                <img src={withPrefix("/images/icon-search.svg")} alt="search icon" />
               </button>
             </form>
           </div>
