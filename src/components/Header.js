@@ -95,11 +95,11 @@ const Header = () => {
           </nav>
 
           {/* Search Box */}
-          <div className={`header-search-container ${isSearchOpen ? "active" : ""}`} ref={searchRef}>
+          <div className="header-search-container" ref={searchRef}>
             <button onClick={toggleSearch} className="search-icon-btn" aria-label="Toggle Search">
               <img src={withPrefix("/images/icon-search.svg")} alt="search icon" />
             </button>
-            <form className="search-form" onSubmit={handleSearchSubmit}>
+            <form className={`search-form ${isSearchOpen ? "open" : ""}`} onSubmit={handleSearchSubmit}>
               <input
                 type="text"
                 placeholder="Search the blog..."
