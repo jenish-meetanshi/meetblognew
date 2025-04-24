@@ -13,6 +13,8 @@ body {
     color: #ffffff !important;
 }
 
+
+
 /* Container */
 .header-search-container {
   position: relative;
@@ -39,18 +41,20 @@ body {
   border: 1px solid #ccc;
   border-radius: 6px;
   box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-  opacity: 0;
-  visibility: hidden;
-  transform: translateY(10px);
-  transition: all 0.2s ease;
   z-index: 100;
+  /* Animation for the search form */
+  animation: fadeIn 0.2s ease-in-out;
 }
 
-/* Show search form when open */
-.search-form.open {
-  opacity: 1;
-  visibility: visible;
-  transform: translateY(0);
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 /* Input field */
