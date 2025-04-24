@@ -68,7 +68,6 @@ body {
 .search-form .search-submit img{
   width:30px;
 }
-
 .post-content-main .wordpress-content .wp-block-table{
   margin-left:0;
   margin-right:0;
@@ -1985,4 +1984,11 @@ pre.EnlighterJSRAW.copied::before {
     color: #fff;
     height: 25px;
     width: 25px;
+}
+.author-section-postdetail .author-block-content .social-links a, .social-links-authordetail a {
+    width: 35px;
+    height: 35px;
+}
+.author-section-postdetail .author-block-content .social-links a img, .social-links-authordetail a img{
+    width: 31px;
 }
