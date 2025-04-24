@@ -127,14 +127,18 @@ exports.createPages = async ({ graphql, actions }) => {
     });
   });
 
-  categories.forEach(category => {
+ categories.forEach(category => {
     const categoryPosts = posts.filter(post =>
       post.categories.nodes.some(cat => cat.slug === category.slug)
     );
     const numPages = Math.ceil(categoryPosts.length / postsPerPage);
+    
     Array.from({ length: numPages }).forEach((_, i) => {
       createPage({
-        path: i === 0 ? `/category/${category.slug}/` : `/category/${category.slug}/${i + 1}`,
+        // Fix the path format for consistency
+        path: i === 0 
+          ? `/category/${category.slug}/` 
+          : `/category/${category.slug}/page/${i + 1}/`,
         component: path.resolve("./src/templates/category-detail.js"),
         context: {
           limit: postsPerPage,
