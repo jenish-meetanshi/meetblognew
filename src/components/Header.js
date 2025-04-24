@@ -16,12 +16,19 @@ const Header = () => {
     }
   };
 
-  const toggleSearch = () => setIsSearchOpen((prev) => !prev);
-  const toggleMenu = () => setIsMenuOpen((prev) => !prev);
+  // Fix: Ensure toggleSearch properly updates the state
+  const toggleSearch = () => {
+    setIsSearchOpen(prevState => !prevState);
+  };
+  
+  const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
 
   useEffect(() => {
     if (isSearchOpen && searchRef.current) {
-      searchRef.current.querySelector("input")?.focus();
+      const input = searchRef.current.querySelector("input");
+      if (input) {
+        input.focus();
+      }
     }
   }, [isSearchOpen]);
 
@@ -37,7 +44,6 @@ const Header = () => {
 
   return (
     <header>
-      {/* Top Notice */}
       <div className="bg-dark">
         <div className="container-lg p-2">
           <p className="d-flex justify-content-center mb-0 mt-0 text-white">
@@ -52,7 +58,6 @@ const Header = () => {
         </div>
       </div>
 
-      {/* Navbar */}
       <div className="navbar py-3">
         <div className="container-lg d-flex align-items-center justify-content-between">
           <Link to="https://meetanshi.com/" className="navbar-brand" style={{ maxWidth: "190px", width: "190px" }}>
@@ -63,7 +68,9 @@ const Header = () => {
             />
           </Link>
 
-          <button className="navbar-toggler" onClick={toggleMenu}>☰</button>
+          <button className="navbar-toggler" onClick={toggleMenu}>
+            ☰
+          </button>
 
           <nav className={`nav-menu ${isMenuOpen ? "open" : ""}`}>
             <ul className="nav-list d-flex flex-column flex-lg-row">
@@ -96,10 +103,20 @@ const Header = () => {
 
           {/* Search Box */}
           <div className="header-search-container" ref={searchRef}>
-            <button onClick={toggleSearch} className="search-icon-btn" aria-label="Toggle Search">
+            <button 
+              onClick={toggleSearch} 
+              className="search-icon-btn" 
+              aria-label="Toggle Search"
+              type="button"
+            >
               <img src={withPrefix("/images/icon-search.svg")} alt="search icon" />
             </button>
-            <form className={`search-form ${isSearchOpen ? "open" : ""}`} onSubmit={handleSearchSubmit}>
+            {/* Fix: Added conditional display to ensure React properly updates the DOM */}
+            <form 
+              className={`search-form ${isSearchOpen ? "open" : ""}`} 
+              onSubmit={handleSearchSubmit}
+              style={{ display: isSearchOpen ? "flex" : null }}
+            >
               <input
                 type="text"
                 placeholder="Search the blog..."
