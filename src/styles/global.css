@@ -21,7 +21,12 @@ body {
 .text-end {
     text-align: right !important;
 }
-
+.listing-blog-info{
+  align-items: center;
+  justify-content: start;
+  display: flex;
+  gap: 4px;
+}
 /* Container */
 .header-search-container {
   position: relative;
