@@ -48,14 +48,16 @@ body {
 .search-submit {
   background: transparent;
   border: none;
-  border-radius: 0;
+  border-radius: 5px;
   padding: 2px;
   cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
 }
-
+.search-form .search-submit img{
+  width:30px;
+}
 
 
 /* === Base Reset for Box Sizing === */
