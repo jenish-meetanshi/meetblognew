@@ -1,6 +1,6 @@
 import "./src/styles/global.css"; // Import your custom global styles
 import React from "react";
-config.autoAddCss = false
+// Removed the line: config.autoAddCss = false
 
 export const onRenderBody = ({ setHeadComponents, setHtmlAttributes }) => {
  // Set HTML language attribute
@@ -18,10 +18,8 @@ export const onPreRouteUpdate = ({ location, prevLocation }) => {
     // Add fade-out class before page transition
     document.body.classList.add('page-exit');
     document.body.classList.remove('page-enter');
-
     // Temporarily hide scrolling
     document.body.style.overflow = 'hidden';
-
     setTimeout(() => {
       document.body.classList.remove('page-exit');
     }, 500); // Match CSS transition duration
@@ -33,7 +31,6 @@ export const onRouteUpdate = ({ location, prevLocation }) => {
     // Add fade-in class after page transition
     document.body.classList.add('page-enter');
     document.body.classList.remove('page-exit');
-
     setTimeout(() => {
       document.body.classList.remove('page-enter');
       // Restore scrolling
@@ -50,7 +47,6 @@ export const shouldUpdateScroll = () => {
 export const onClientEntry = () => {
   window.onload = () => {
     const codeBlocks = document.querySelectorAll('pre.EnlighterJSRAW');
-
     codeBlocks.forEach((block) => {
       block.addEventListener('click', () => {
         const codeText = block.textContent; // Get the code text from the block
