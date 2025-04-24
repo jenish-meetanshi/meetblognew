@@ -3,6 +3,7 @@ import Header from "../components/Header";
 import { graphql, Link } from "gatsby";
 import { Helmet } from "react-helmet";
 import Footer from "../components/Footer";
+import { withPrefix } from "gatsby";
 
 const AuthorDetail = ({ data, pageContext }) => {
   const posts = data.allWpPost.nodes;
@@ -120,16 +121,15 @@ const AuthorDetail = ({ data, pageContext }) => {
                   <p dangerouslySetInnerHTML={{ __html: author.descriptionText }} />
                 )}
               <div className="social-links-authordetail">
-                  {author.linkedinUrl && (
-                    <Link href={author.linkedinUrl} target="_blank" rel="noopener noreferrer">
-                      <img src={withPrefix("/images/icon-linkedin.svg")} alt="Linkedin icon" />
-                    </Link>
+                 {author.linkedinUrl && (
+                    <a href={author.linkedinUrl} target="_blank" rel="noopener noreferrer">
+                      <img src={withPrefix("/images/icon-linkedin.svg")} alt="LinkedIn icon" />
+                    </a>
                   )}
-
                   {author.twitterUrl && (
-                    <Link href={author.twitterUrl} target="_blank" rel="noopener noreferrer">
+                    <a href={author.twitterUrl} target="_blank" rel="noopener noreferrer">
                       <img src={withPrefix("/images/icon-x.svg")} alt="Twitter icon" />
-                    </Link>
+                    </a>
                   )}
               </div>
             </div>
