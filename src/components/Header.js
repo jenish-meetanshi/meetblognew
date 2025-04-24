@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link, withPrefix } from "gatsby";
+import { Link, navigate, withPrefix } from "gatsby";
 
 const Header = () => {
   const [searchQuery, setSearchQuery] = useState("");
@@ -10,7 +10,8 @@ const Header = () => {
   const handleSearchSubmit = (e) => {
     e.preventDefault();
     if (searchQuery.trim() !== "") {
-      window.location.href = withPrefix(`/search/?query=${encodeURIComponent(searchQuery)}`);
+      const searchUrl = `/search/?query=${encodeURIComponent(searchQuery)}`;
+      navigate(searchUrl); // Use navigate for client-side routing
     }
   };
 
@@ -49,7 +50,7 @@ const Header = () => {
           <nav className={`nav-menu ${isMenuOpen ? "open" : ""}`}>
             <ul className="nav-list d-flex flex-column flex-lg-row">
               <li className="dropdown">
-                <span className="dropdown-toggle">Extensions &#9662;</span>
+                <span className="dropdown-toggle">Extensions ▾</span>
                 <ul className="dropdown-menu">
                   <li><a href="https://meetanshi.com/magento-2-extensions.html">Magento 2 Extensions</a></li>
                   <li><a href="https://meetanshi.com/graphql-compatible-magento-2-extensions.html">GraphQL Compatible M2 Extensions</a></li>
@@ -60,7 +61,7 @@ const Header = () => {
                 </ul>
               </li>
               <li className="dropdown">
-                <span className="dropdown-toggle">Services &#9662;</span>
+                <span className="dropdown-toggle">Services ▾</span>
                 <ul className="dropdown-menu">
                   <li><a href="https://meetanshi.com/magento-development-services.html">Magento Development Services</a></li>
                   <li><a href="https://meetanshi.com/migration-services.html">Migration Services</a></li>
@@ -75,7 +76,6 @@ const Header = () => {
             </ul>
           </nav>
 
-          {/* Simple Search Box - Always visible */}
           <div className="header-search-container">
             <form className="search-form" onSubmit={handleSearchSubmit}>
               <input
