@@ -1,11 +1,9 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState } from "react";
 import { Link, withPrefix } from "gatsby";
 
 const Header = () => {
   const [searchQuery, setSearchQuery] = useState("");
-  const [isSearchOpen, setIsSearchOpen] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const searchRef = useRef(null);
 
   const handleSearchChange = (e) => setSearchQuery(e.target.value);
 
@@ -16,33 +14,7 @@ const Header = () => {
     }
   };
 
-  // Make sure this toggleSearch function actually works
-  const toggleSearch = () => {
-    console.log("Search toggled, current state:", isSearchOpen);
-    setIsSearchOpen(!isSearchOpen);
-  };
-  
   const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
-
-  useEffect(() => {
-    console.log("Search state changed:", isSearchOpen);
-    if (isSearchOpen && searchRef.current) {
-      const input = searchRef.current.querySelector("input");
-      if (input) {
-        setTimeout(() => input.focus(), 100);
-      }
-    }
-  }, [isSearchOpen]);
-
-  useEffect(() => {
-    const handleClickOutside = (e) => {
-      if (searchRef.current && !searchRef.current.contains(e.target)) {
-        setIsSearchOpen(false);
-      }
-    };
-    document.addEventListener("mousedown", handleClickOutside);
-    return () => document.removeEventListener("mousedown", handleClickOutside);
-  }, []);
 
   return (
     <header>
@@ -103,35 +75,21 @@ const Header = () => {
             </ul>
           </nav>
 
-          {/* Search Box */}
-          <div className="header-search-container" ref={searchRef}>
-            <button 
-              onClick={toggleSearch} 
-              className="search-icon-btn" 
-              aria-label="Toggle Search"
-              type="button"
-            >
-              <img src={withPrefix("/images/icon-search.svg")} alt="search icon" />
-            </button>
-            
-            {isSearchOpen && (
-              <form 
-                className="search-form open"
-                onSubmit={handleSearchSubmit}
-              >
-                <input
-                  type="text"
-                  placeholder="Search the blog..."
-                  className="header-form-input"
-                  aria-label="Search"
-                  value={searchQuery}
-                  onChange={handleSearchChange}
-                />
-                <button type="submit" className="search-submit" aria-label="Search">
-                  <img src={withPrefix("/images/icon-search.svg")} alt="search icon" />
-                </button>
-              </form>
-            )}
+          {/* Simple Search Box - Always visible */}
+          <div className="header-search-container">
+            <form className="search-form" onSubmit={handleSearchSubmit}>
+              <input
+                type="text"
+                placeholder="Search the blog..."
+                className="header-form-input"
+                aria-label="Search"
+                value={searchQuery}
+                onChange={handleSearchChange}
+              />
+              <button type="submit" className="search-submit" aria-label="Search">
+                <img src={withPrefix("/images/icon-search.svg")} alt="search icon" />
+              </button>
+            </form>
           </div>
         </div>
       </div>
