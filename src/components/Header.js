@@ -43,10 +43,6 @@ const Header = () => {
             />
           </Link>
 
-          <button className="navbar-toggler" onClick={toggleMenu}>
-            ☰
-          </button>
-
           <nav className={`nav-menu ${isMenuOpen ? "open" : ""}`}>
             <ul className="nav-list d-flex flex-column flex-lg-row mb-0">
               <li className="dropdown">
