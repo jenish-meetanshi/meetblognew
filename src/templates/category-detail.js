@@ -213,15 +213,15 @@ const CategoryDetail = ({ data, pageContext }) => {
             <div className="pagination d-flex">
               {getPagination().map((page, index) => {
                 if (page === "...") {
-                  return <span key={index} className="page-ellipsis">...</span>;
+                  return <span key={`ellipsis-${index}`} className="page-ellipsis">...</span>;
                 }
                 return (
                   <Link
-                    key={page}
+                    key={`page-${page}`}
                     to={
                       page === 1
                         ? `/category/${categorySlug}/`
-                        : `/category/${categorySlug}/page/${page}`
+                        : `/category/${categorySlug}/page/${page}/`
                     }
                     className={`page-number ${currentPage === page ? "active" : ""}`}
                   >
