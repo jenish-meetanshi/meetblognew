@@ -2112,6 +2112,8 @@ pre.EnlighterJSRAW.copied::before {
   }
   .footer-copy-text{
     max-width:350px;
+    margin-left:auto;
+    margin-right:auto;
   }
   .col-auto{
      width:100%;
@@ -2121,5 +2123,8 @@ pre.EnlighterJSRAW.copied::before {
   }
   .col-lg-auto{
      width:100%;
+  }
+  .author-section-postdetail .author-block-content .social-links, .social-links-authordetail{
+    justify-content:center;
   }
 }
