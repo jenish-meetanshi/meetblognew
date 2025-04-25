@@ -2005,3 +2005,47 @@ pre.EnlighterJSRAW.copied::before {
     padding: 5px;
     border-radius: 5px;
 }
+
+
+/* Hide nav by default on mobile */
+.nav-menu {
+  display: none;
+}
+
+.nav-menu.open {
+  display: block;
+}
+
+@media (min-width: 992px) {
+  .nav-menu {
+    display: block !important;
+  }
+}
+
+/* Mobile menu toggle */
+.mobile-menu-toggle {
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.nav-list {
+  list-style: none;
+  padding-left: 0;
+}
+
+.nav-list .dropdown {
+  position: relative;
+}
+
+.nav-list .dropdown-menu {
+  display: none;
+  position: absolute;
+  background: #fff;
+  z-index: 10;
+  padding: 0.5rem 1rem;
+}
+
+.nav-list .dropdown:hover .dropdown-menu {
+  display: block;
+}
