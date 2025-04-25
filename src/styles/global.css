@@ -2020,6 +2020,9 @@ pre.EnlighterJSRAW.copied::before {
   .nav-menu {
     display: block !important;
   }
+   .mobile-menu-toggle {
+    display: none !important;
+  }
 }
 
 /* Mobile menu toggle */
