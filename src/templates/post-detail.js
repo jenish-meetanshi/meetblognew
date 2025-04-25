@@ -202,7 +202,7 @@ const PostDetail = ({ data, pageContext }) => {
               <div className="table-of-contents-wrapper">
                 {/* Toggle Button */}
                 <button className={`toc-toggle ${isVisible ? "toc-hide" : "toc-display"}`} onClick={() => setIsVisible(!isVisible)} >
-                   <img src={withPrefix("/images/list-svgrepo-com.svg")} alt="search icon" /> 
+                   Button 
                 </button>
 
                 {/* TOC Content */}
