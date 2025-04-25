@@ -2097,4 +2097,7 @@ pre.EnlighterJSRAW.copied::before {
   .blog-list-main-container .blog-list-content-wrapper{
     width:100%;
   }
+  .footer-copy-text{
+    max-width:350px;
+  }
 }
