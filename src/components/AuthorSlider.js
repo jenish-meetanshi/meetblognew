@@ -39,7 +39,7 @@ const AuthorGrid = () => {
           </div>
         </div>
 
-        <div className="row">
+        <div className="row justify-content-center">
           {authors.map((author) => (
             <div key={author.id} className="col-xl-3 col-lg-3 col-md-6 col-sm-6 mb-4">
               <div className="author-card text-center">
