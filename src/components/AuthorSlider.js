@@ -51,5 +51,4 @@ const AuthorGrid = () => {
     </div>
   );
 };
-
 export default AuthorGrid;
