@@ -2049,3 +2049,11 @@ pre.EnlighterJSRAW.copied::before {
 .nav-list .dropdown:hover .dropdown-menu {
   display: block;
 }
+.nav-menu.open{
+    position: absolute;
+    width: 100%;
+    background: #fff;
+    top: 115px;
+    left: 0;
+    padding: 10px;
+}
