@@ -2116,4 +2116,7 @@ pre.EnlighterJSRAW.copied::before {
   .col-md-9{
      width:100%;
   }
+  .col-lg-auto{
+     width:100%;
+  }
 }
