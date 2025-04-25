@@ -2032,8 +2032,10 @@ pre.EnlighterJSRAW.copied::before {
   .nav-list .dropdown-menu {
     top: 50px;
   }
-  .header-search-container{
-    display:none;
+}
+@media (max-width: 992px) {
+  .header-search-container {
+    display: none;
   }
 }
 
