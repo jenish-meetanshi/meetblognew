@@ -11,7 +11,7 @@ const Header = () => {
     e.preventDefault();
     if (searchQuery.trim() !== "") {
       const searchUrl = `/search/?query=${encodeURIComponent(searchQuery)}`;
-      navigate(searchUrl); // Use navigate for client-side routing
+      navigate(searchUrl);
     }
   };
 
@@ -19,12 +19,13 @@ const Header = () => {
 
   return (
     <header>
+      {/* Top banner */}
       <div className="bg-dark">
         <div className="container-lg p-2">
           <p className="d-flex justify-content-center mb-0 mt-0 text-white">
             Magento 2.4.8 is available with the latest features and enhancements.
             <a
-              style={{ color: "#ff7d0f", marginLeft: "5px", textAlign: "center" }}
+              style={{ color: "#ff7d0f", marginLeft: "5px" }}
               href="https://meetanshi.com/magento-upgrade-service"
             >
               Upgrade now
@@ -33,9 +34,11 @@ const Header = () => {
         </div>
       </div>
 
+      {/* Main navbar */}
       <div className="navbar py-3">
         <div className="container-lg d-flex align-items-center justify-content-between">
-          <Link to="https://meetanshi.com/" className="navbar-brand" style={{ maxWidth: "190px", width: "190px" }}>
+          {/* Logo */}
+          <Link to="https://meetanshi.com/" className="navbar-brand" style={{ maxWidth: "190px" }}>
             <img
               src={withPrefix("/images/headerlogo.svg")}
               alt="Site Logo"
@@ -43,6 +46,16 @@ const Header = () => {
             />
           </Link>
 
+          {/* Mobile Menu Toggle */}
+          <button
+            className="mobile-menu-toggle d-lg-none"
+            onClick={toggleMenu}
+            aria-label="Toggle menu"
+          >
+            <img src={withPrefix("/images/menu-icon.svg")} alt="Menu Icon" />
+          </button>
+
+          {/* Nav Menu */}
           <nav className={`nav-menu ${isMenuOpen ? "open" : ""}`}>
             <ul className="nav-list d-flex flex-column flex-lg-row mb-0">
               <li className="dropdown">
@@ -72,7 +85,8 @@ const Header = () => {
             </ul>
           </nav>
 
-          <div className="header-search-container">
+          {/* Search */}
+          <div className="header-search-container d-none d-lg-block">
             <form className="search-form" onSubmit={handleSearchSubmit}>
               <input
                 type="text"
