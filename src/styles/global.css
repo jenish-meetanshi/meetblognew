@@ -871,7 +871,7 @@ social-media ul{
   height: 80px;
   border-radius: 50%;
   object-fit: cover;
-  margin-bottom: 0px;
+  margin-bottom: 0px !important;
 }
 .author-name {
   font-size: 16px;
@@ -1997,4 +1997,8 @@ pre.EnlighterJSRAW.copied::before {
     display: flex;
     text-decoration: none;
     gap: 10px;
+    justify-content: start;
+    border: 1px solid #cccccc;
+    padding: 5px;
+    border-radius: 5px;
 }
