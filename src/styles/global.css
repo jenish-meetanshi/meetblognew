@@ -2100,4 +2100,7 @@ pre.EnlighterJSRAW.copied::before {
   .footer-copy-text{
     max-width:350px;
   }
+  .col-auto{
+     width:100%;
+  }
 }
