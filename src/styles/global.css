@@ -2047,6 +2047,9 @@ pre.EnlighterJSRAW.copied::before {
   .header-search-container {
     display: none;
   }
+  .author-detailpage-wrapper p{
+    max-width:500px;
+  }
 }
 
 /* Mobile menu toggle */
