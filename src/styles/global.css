@@ -92,7 +92,20 @@ body {
     max-width: 1366px;
   }
 }
-
+.order-1 {
+    order: 1 !important;
+}
+.order-2 {
+    order: 2 !important;
+}
+@media (min-width: 992px) {
+    .order-lg-1 {
+        order: 1 !important;
+    }
+    .order-lg-2 {
+        order: 2 !important;
+    }
+}
 /* === Grid === */
 .row {
   display: flex;
