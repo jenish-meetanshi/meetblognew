@@ -2049,6 +2049,8 @@ pre.EnlighterJSRAW.copied::before {
   }
   .author-detailpage-wrapper p{
     max-width:500px;
+    margin-left:auto;
+    margin-right:auto;
   }
 }
 
@@ -2112,8 +2114,6 @@ pre.EnlighterJSRAW.copied::before {
   }
   .footer-copy-text{
     max-width:350px;
-    margin-left:auto;
-    margin-right:auto;
   }
   .col-auto{
      width:100%;
