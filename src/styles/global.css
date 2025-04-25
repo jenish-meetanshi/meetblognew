@@ -704,9 +704,7 @@ social-media ul{
 .toc-toggle.toc-hide {
   background: #f47526;
 }
-.toc-toggle img{
-  max-width: 30px;
-}
+
 .table-of-contents-toggle-content {
   background: #ffffff;
   max-width: 300px;
