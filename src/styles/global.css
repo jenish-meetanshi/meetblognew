@@ -2065,3 +2065,8 @@ pre.EnlighterJSRAW.copied::before {
     padding: 10px;
     text-decoration: none;
 }
+.nav-menu.open .nav-list .dropdown-menu{
+  display: block;
+  width: 100%;
+  padding: 0;
+}
