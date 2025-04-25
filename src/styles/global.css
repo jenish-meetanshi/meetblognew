@@ -2094,4 +2094,7 @@ pre.EnlighterJSRAW.copied::before {
   .col-md-12 {
     width:100%;
   }
+  .blog-list-main-container .blog-list-content-wrapper{
+    width:100%;
+  }
 }
