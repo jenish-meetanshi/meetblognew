@@ -34,7 +34,7 @@ const AuthorGrid = () => {
           {authors.map((author) => (
             <div key={author.id} className="col-xl-3 col-lg-3 col-md-6 col-sm-6 mb-4">
               <div className="author-card text-center">
-                <Link to={`/author/${author.slug}`} className="text-decoration-none">
+                <Link to={`/author/${author.slug}`} className="text-decoration-none d-flex align-items-center">
                   <img
                     src={author.userImage}
                     alt={`Profile picture of ${author.name}, ${author.designation} at Meetanshi`}
@@ -42,9 +42,6 @@ const AuthorGrid = () => {
                     loading="lazy"
                   />
                   <h5 className="author-name">{author.name}</h5>
-                  {author.designation && (
-                    <p className="author-designation text-muted">{author.designation}</p>
-                  )}
                 </Link>
               </div>
             </div>
