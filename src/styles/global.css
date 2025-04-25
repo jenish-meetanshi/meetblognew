@@ -1574,6 +1574,12 @@ pre.EnlighterJSRAW.copied::before {
   .author-section-postdetail .author-block-content p{
     max-width: 550px;
   }
+  .category-list-hero{
+    flex-wrap:wrap;
+  }
+  .category-list-hero .list-inline-item {
+    margin-bottom: 30px;
+  }
 }
 @media (max-width: 991.98px) {
   .single-author-image {
