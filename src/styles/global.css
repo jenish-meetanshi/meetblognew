@@ -1588,7 +1588,8 @@ pre.EnlighterJSRAW.copied::before {
     flex-wrap:wrap;
   }
   .category-list-hero .list-inline-item {
-    margin-bottom: 30px;
+    margin-bottom: 15px;
+    margin-top: 15px;
   }
 }
 @media (max-width: 991.98px) {
