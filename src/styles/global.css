@@ -2139,4 +2139,9 @@ pre.EnlighterJSRAW.copied::before {
   .author-section-postdetail .col-auto{
     text-align:center;
   }
+  .author-section-postdetail .author-block-content p {
+    max-width: 500px;
+    margin-right:auto;
+    margin-left:auto;
+  }
 }
