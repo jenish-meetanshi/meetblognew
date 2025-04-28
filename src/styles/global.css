@@ -318,16 +318,15 @@ dl, ol, ul {
   display: flex;
   gap: 10px;
   justify-content: center;
+  margin-top: 25px;
+  margin-bottom: 40px;
 }
-
 .h1, h1 {
     font-size: 2.5rem;
 }
 .mb-4 {
     margin-bottom: 1.5rem !important;
 }
-
-
 .page-enter {
   opacity: 1;
   position: fixed; /* Keep the page fixed during fade-in */
@@ -2041,7 +2040,7 @@ pre.EnlighterJSRAW.copied::before {
     display: none !important;
   }
   .nav-list .dropdown-menu {
-    top: 50px;
+    top: 50px !important;
   }
 }
 @media (max-width: 992px) {
