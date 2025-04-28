@@ -1341,7 +1341,7 @@ social-media ul{
 header .navbar {
   background-color: #fff;
   border-bottom: 1px solid #1a141f;
-  padding: 9px 0 !important;
+  padding: 1rem 0 !important;
 }
 header .navbar-brand{
  margin-right: 0;
