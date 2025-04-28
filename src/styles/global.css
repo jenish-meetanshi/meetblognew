@@ -2136,4 +2136,7 @@ pre.EnlighterJSRAW.copied::before {
   .author-card .text-decoration-none{
         min-width: 300px;
   }
+  .author-section-postdetail .col-auto{
+    text-align:center:
+  }
 }
