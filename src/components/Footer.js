@@ -15,7 +15,9 @@ return (
             <img
               className="img-fluid"
               src={withPrefix("/images/footer-logo.png")}
-              alt="Site Logo" />
+              alt="Site Logo"
+              style={{ width: "156px", height: "23px" }}  
+              />
             </Link>
           </div>
           <div className="footer-address">
