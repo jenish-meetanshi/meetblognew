@@ -88,7 +88,7 @@ const Header = () => {
                 onChange={handleSearchChange}
               />
               <button type="submit" className="search-submit" aria-label="Search">
-                <img src={withPrefix("/images/icon-search.svg")} alt="search icon" />
+                <img src={withPrefix("/images/icon-search.svg")} alt="search icon" style={{ width: "30px", height: "30px" }} />
               </button>
             </form>
           </div>
