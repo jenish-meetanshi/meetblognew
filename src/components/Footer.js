@@ -70,6 +70,7 @@ return (
                       marginBottom: "0.6rem",
                       display: "inline-block",
                       color: "#333",
+                      backgroundColor: "#fff",
                     }} >
                   Hiring!
                 </span>
