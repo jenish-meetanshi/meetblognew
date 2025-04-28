@@ -22,13 +22,9 @@ const AuthorGrid = () => {
   `);
 
   // Filter out 'meetanshi-admin' and sort by number of posts
-  const authors = data.allWpUser.nodes
-    .filter((author) => author.slug !== "meetanshi-admin")
-    .map((author) => ({
-      ...author,
-      postCount: author.posts.nodes.length,
-    }))
-    .sort((a, b) => b.postCount - a.postCount); // Sort descending by post count
+  const authors = data.allWpUser.nodes.filter(
+    (author) => author.slug !== "meetanshi-admin"
+  );
 
   return (
     <div className="author-grid-container py-5">
