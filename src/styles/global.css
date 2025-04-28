@@ -2145,3 +2145,8 @@ pre.EnlighterJSRAW.copied::before {
     margin-left:auto;
   }
 }
+@media (max-width: 768px) {
+  .home-hero-section h1{
+        font-size: 26px;
+  }
+}
