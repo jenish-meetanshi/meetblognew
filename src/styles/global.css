@@ -2150,3 +2150,12 @@ pre.EnlighterJSRAW.copied::before {
         font-size: 26px;
   }
 }
+@media (max-width: 576px) {
+  .category-list-hero{
+      margin-top:10px;
+  }
+  .category-list-hero .list-inline-item {
+      margin-bottom: 8px;
+      margin-top: 8px;
+  }
+}
