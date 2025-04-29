@@ -2164,4 +2164,12 @@ pre.EnlighterJSRAW.copied::before {
 .footer-copy-links li a{
     font-size: 12px;
 }
+  .listing-blog-info span {
+    font-size: 12px;
+}
+  .listing-blog-info .user-image {
+    height: 30px;
+    margin-right: 5px;
+    width: 30px;
+}
 }
