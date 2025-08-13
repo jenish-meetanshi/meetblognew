@@ -59,7 +59,10 @@ exports.createPages = async ({ graphql, actions }) => {
     {
       allWpPost(
       sort: { date: DESC }
-      filter: { status: { eq: "publish" } }
+      filter: { 
+        status: { eq: "publish" }
+        trash: { ne: true }
+      }
       ) {
         nodes {
           id
@@ -106,7 +109,6 @@ exports.createPages = async ({ graphql, actions }) => {
   const postsPerPage = 10;
   const numPages = Math.ceil(posts.length / postsPerPage);
 
-
    createPage({
     path: `/sitemap/`,
     component: path.resolve("./src/templates/sitemap.js"),
@@ -129,7 +131,7 @@ exports.createPages = async ({ graphql, actions }) => {
       },
     });
   });
-
+  
  categories.forEach(category => {
     const categoryPosts = posts.filter(post =>
       post.categories.nodes.some(cat => cat.slug === category.slug)
@@ -167,7 +169,7 @@ exports.createPages = async ({ graphql, actions }) => {
   });
 
   // Create author pages with pagination
-  authors.forEach(author => {
+authors.forEach(author => {
     const authorPosts = posts.filter(post =>
       post.author.node.slug === author.slug
     );
@@ -199,7 +201,10 @@ exports.onPostBuild = async ({ graphql, reporter }) => {
   const result = await graphql(`
     {
       allWpPost (
-        filter: { status: { eq: "publish" } }
+        filter: { 
+          status: { eq: "publish" }
+          trash: { ne: true }
+        }
       ){
         nodes {
           slug
