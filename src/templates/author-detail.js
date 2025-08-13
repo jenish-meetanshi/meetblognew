@@ -243,7 +243,11 @@ export const query = graphql`
       twitterUrl
     }
     allWpPost(
-      filter: { author: { node: { slug: { eq: $authorSlug } } } }
+      filter: { 
+        author: { node: { slug: { eq: $authorSlug } } }
+        status: { eq: "publish" }
+        trash: { ne: true }
+      }
       sort: { fields: date, order: DESC }
       limit: $limit
       skip: $skip
