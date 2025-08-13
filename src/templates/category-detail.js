@@ -253,6 +253,8 @@ export const query = graphql`
     allWpPost(
       filter: {
         categories: { nodes: { elemMatch: { slug: { eq: $categorySlug } } } }
+        status: { eq: "publish" }
+        trash: { ne: true }
       }
       sort: { fields: date, order: DESC }
       limit: $limit
@@ -278,5 +280,4 @@ export const query = graphql`
     }
   }
 `;
-
 export default CategoryDetail;
