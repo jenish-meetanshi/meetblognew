@@ -92,7 +92,11 @@ const SearchPage = ({ location, data }) => {
 
 export const query = graphql`
   query SearchQuery {
-    allWpPost {
+    allWpPost (
+      filter: { 
+        status: { eq: "publish" }
+      }
+    ) {
       nodes {
         id
         title
