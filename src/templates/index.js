@@ -241,7 +241,6 @@ export const query = graphql`
       filter: { 
         isSticky: { eq: false }
         status: { eq: "publish" }
-        trash: { ne: true }
       } 
     ) {
       nodes {
@@ -269,7 +268,6 @@ export const query = graphql`
       filter: { 
         isSticky: { eq: true }
         status: { eq: "publish" }
-        trash: { ne: true }
       }, 
       sort: { date: DESC }
     ) {
