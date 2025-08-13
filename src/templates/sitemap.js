@@ -51,7 +51,6 @@ export const query = graphql`
       sort: { date: DESC }
       filter: {
         status: { eq: "publish" }
-        trash: { ne: true }
       }
     ) {
       nodes {
