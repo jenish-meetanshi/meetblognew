@@ -47,7 +47,13 @@ const Sitemap = ({ data }) => {
 
 export const query = graphql`
   query SitemapQuery {
-    allWpPost(sort: { date: DESC }) {
+    allWpPost(
+      sort: { date: DESC }
+      filter: {
+        status: { eq: "publish" }
+        trash: { ne: true }
+      }
+    ) {
       nodes {
         id
         title
@@ -56,5 +62,4 @@ export const query = graphql`
     }
   }
 `;
-
 export default Sitemap;
