@@ -3,6 +3,7 @@ on:
   push:
     branches:
       - main
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -10,6 +11,12 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v3
       
+      - name: Remove Gatsby cache completely
+        run: |
+          echo "🧹 Removing Gatsby caches..."
+          rm -rf .cache public node_modules/.cache
+          echo "✅ Cache deleted."
+
       - name: Set up Node.js
         uses: actions/setup-node@v3
         with:
@@ -24,7 +31,7 @@ jobs:
       - name: Clean Gatsby cache and public directory
         run: |
           npm run clean
-          rm -rf .cache public
+          rm -rf .cache public node_modules/.cache
           
       - name: Build Gatsby site with prefix paths
         run: npm run build -- --prefix-paths
