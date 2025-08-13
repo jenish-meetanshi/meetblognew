@@ -246,9 +246,8 @@ export const query = graphql`
       filter: { 
         author: { node: { slug: { eq: $authorSlug } } }
         status: { eq: "publish" }
-        trash: { ne: true }
       }
-      sort: { fields: date, order: DESC }
+      sort: { date: DESC }
       limit: $limit
       skip: $skip
     ) {
