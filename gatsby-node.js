@@ -61,7 +61,6 @@ exports.createPages = async ({ graphql, actions }) => {
       sort: { date: DESC }
       filter: { 
         status: { eq: "publish" }
-        trash: { ne: true }
       }
       ) {
         nodes {
@@ -203,7 +202,6 @@ exports.onPostBuild = async ({ graphql, reporter }) => {
       allWpPost (
         filter: { 
           status: { eq: "publish" }
-          trash: { ne: true }
         }
       ){
         nodes {
