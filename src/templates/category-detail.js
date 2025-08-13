@@ -254,9 +254,8 @@ export const query = graphql`
       filter: {
         categories: { nodes: { elemMatch: { slug: { eq: $categorySlug } } } }
         status: { eq: "publish" }
-        trash: { ne: true }
       }
-      sort: { fields: date, order: DESC }
+      sort: { date: DESC }
       limit: $limit
       skip: $skip
     ) {
