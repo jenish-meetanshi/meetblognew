@@ -57,7 +57,10 @@ exports.createPages = async ({ graphql, actions }) => {
   // Fetch posts
   const result = await graphql(`
     {
-      allWpPost(sort: { date: DESC }) {
+      allWpPost(
+      sort: { date: DESC }
+      filter: { status: { eq: "publish" } }
+      ) {
         nodes {
           id
           title
@@ -195,7 +198,9 @@ exports.onPostBuild = async ({ graphql, reporter }) => {
   // Query GraphQL for all WordPress posts (use allWpPost)
   const result = await graphql(`
     {
-      allWpPost {
+      allWpPost (
+        filter: { status: { eq: "publish" } }
+      ){
         nodes {
           slug
         }
