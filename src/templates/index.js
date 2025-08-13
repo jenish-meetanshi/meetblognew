@@ -238,7 +238,11 @@ export const query = graphql`
       sort: { date: DESC }
       skip: $skip
       limit: $limit
-      filter: { isSticky: { eq: false } } 
+      filter: { 
+        isSticky: { eq: false }
+        status: { eq: "publish" }
+        trash: { ne: true }
+      } 
     ) {
       nodes {
         id
@@ -261,7 +265,14 @@ export const query = graphql`
         }
       }
     }
-    stickyPosts: allWpPost(filter: { isSticky: { eq: true } }, sort: { date: DESC }) {
+    stickyPosts: allWpPost(
+      filter: { 
+        isSticky: { eq: true }
+        status: { eq: "publish" }
+        trash: { ne: true }
+      }, 
+      sort: { date: DESC }
+    ) {
       nodes {
         id
         slug
